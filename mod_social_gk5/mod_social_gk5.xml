@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.6.0" client="site" method="upgrade">
+	<name>Social GK5</name>
+	<author>GavickPro</author>
+	<creationDate>15/05/2012</creationDate>
+	<copyright>Copyright (C) 2011-2012 GavickPro. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later</license>
+	<authorEmail>info@gavick.com</authorEmail>
+	<authorUrl>www.gavickpro.com</authorUrl>
+	<version>GK5 1.0</version>
+	<description><![CDATA[
+		<style type="text/css">
+			span.readonly { padding: 10px; font-family: Arial; font-size:13px !important; font-weight: normal !important; text-align: justify; color: #4d4d4d; line-height: 24px; }
+			span.readonly h1 { clear:both; font-family: Georgia, sans-serif; font-size:38px; margin:30px 20px 23px; padding:0px 0px 24px 10px; color:#333; border-bottom: 1px solid #eee; font-weight: normal; }
+			span.readonly p { margin: 0 26px 10px }
+			span.readonly p a { color: #2F4C6D }
+			span.readonly p.homepage { margin-top: 30px }
+			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
+		</style>
+		
+		<span class="readonly"><h1>Social GK5<small>ver. 1.0</small></h1><p>GK5 is one product of the next generation of GavickPro extensions designed exclusively for Joomla 2.5+.</p><p>Curabitur blandit tempus porttitor. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</a></p><p class='license'>Tabs GK5 is released under the <a target="_blank" href="http://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL v2 license.</a></p></span>
+	]]></description>
+	<files>
+		<filename module="mod_social_gk5">mod_social_gk5.php</filename>
+		<filename module="mod_social_gk5">mod_social_gk5.xml</filename>
+		<filename module="mod_social_gk5">helper.php</filename>
+		<filename module="mod_social_gk5">index.html</filename>
+		<folder>admin</folder>
+		<folder>config</folder>
+		<folder>styles</folder>
+		<folder>scripts</folder>
+		<folder>tmpl</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB.mod_social_gk5.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params" addfieldpath="/modules/mod_social_gk5/admin/elements">
+			<!-- basic -->
+			<fieldset name="SOCIAL_BASIC">
+				<field type="asset" path="modules/mod_social_gk5/admin/" />
+				<field name="config_manager" type="configmanager" directory="modules/mod_social_gk5/config/" />
+				<field name="automatic_module_id" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_AUTOMATIC_MODULE_ID" description="MOD_SOCIAL_AUTOMATIC_MODULE_ID_DESC">
+				        <option value="0">MOD_SOCIAL_DISABLED</option>
+				        <option value="1">MOD_SOCIAL_ENABLED</option>
+				</field>
+				<field name="module_id" type="text" default="gk-social-1" label="MOD_SOCIAL_MODULE_ID" description="MOD_SOCIAL_MODULE_ID_DESC" />
+				<field name="moduleclass_sfx" type="text" default="" label="MOD_SOCIAL_MODCLASSSUFFIX" description="MOD_SOCIAL_MODCLASSSUFFIX_DESC" />
+				<field name="module_data_source" type="list" default="fb" label="MOD_SOCIAL_DATA_SOURCE" description="MOD_SOCIAL_DATA_SOURCE_DESC">
+				        <option value="fb">MOD_SOCIAL_FB_SOURCE</option>
+				        <option value="gplus">MOD_SOCIAL_GPLUS_SOURCE</option>
+						<option value="twitter">MOD_SOCIAL_TWITTER_SOURCE</option>
+				</field>
+			</fieldset>
+			
+			<!-- twitter -->
+			<fieldset name="SOCIAL_TWITTER_BASIC">
+				<field name="twitter_widget" type="list" default="search" label="MOD_SOCIAL_TWITTER_WIDGET" description="MOD_SOCIAL_TWITTER_WIDGET_DESC">
+					<option value="search">MOD_SOCIAL_TWITTER_SEARCH</option>
+					<option value="watch">MOD_SOCIAL_TWITTER_WATCH</option>
+					<option value="tweets">MOD_SOCIAL_TWITTER_TWEETS</option>
+					<option value="profile">MOD_SOCIAL_TWITTER_PROFILE</option>
+					<option value="users">MOD_SOCIAL_TWITTER_FAVORITE_TWEETS</option>
+					<option value="list">MOD_SOCIAL_TWITTER_USER_LIST_VIEW</option>
+				 </field>
+				 <!-- profile settings -->
+				 <field name="twitter_username" type="text" default="gavickpro" label="MOD_SOCIAL_TWITTER_PROFILE_USERNAME" description="MOD_SOCIAL_TWITTER_PROFILE_USERNAME_DESC" />
+				 <!-- search settings -->
+				 <field name="twitter_search_query" type="text" default="gavickpro" label="MOD_SOCIAL_TWITTER_SEARCH_QUERY" description="MOD_SOCIAL_TWITTER_SEARCH_QUERY_DESC" />
+				 <field name="twitter_title" type="text" default="Search tweets" label="MOD_SOCIAL_TWITTER_SEARCH_TITLE" description="MOD_SOCIAL_TWITTER_SEARCH_TITLE_DESC" />
+				 <field name="twitter_desc" type="text" default="by phrase..." label="MOD_SOCIAL_TWITTER_SEARCH_DESC" description="MOD_SOCIAL_TWITTER_SEARCH_DESC_DESC" />
+				 	<!-- user list settings -->
+					<field name="twitter_lists" type="twitterlists" directory="modules/mod_social_gk5/config/" label="MOD_SOCIAL_TWITTER_LISTS" />
+			</fieldset>
+			
+			<!-- twitter preferences -->
+			<fieldset name="SOCIAL_TWITTER_PREFERENCES">
+				<field name="twitter_tweet_amount" type="text" default="10" label="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT" description="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT_DESC" />
+				<field name="twitter_auto_refresh" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_AUTO_REFRESH" description="MOD_SOCIAL_TWITTER_AUTO_REFRESH_DESC">
+				        <option value="0">MOD_SOCIAL_DISABLED</option>
+				        <option value="1">MOD_SOCIAL_ENABLED</option>
+				</field>
+				<field name="twitter_include_scrollbar" type="list" class="gk_switch" default="0" label="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR" description="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR_DESC">
+				        <option value="0">MOD_SOCIAL_DISABLED</option>
+				        <option value="1">MOD_SOCIAL_ENABLED</option>
+				</field>
+			</fieldset>
+			
+			<!-- twitter layout -->
+			<fieldset name="SOCIAL_TWITTER_LAYOUT">
+				<field name="twitter_widget_color" type="text" default="#CECCCC" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_WIDGET_BG" description="MOD_SOCIAL_TWITTER_WIDGET_BG_DESC" />
+				<field name="twitter_tweet_color" type="text" default="#FFFFFF" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TWEET_BG" description="MOD_SOCIAL_TWITTER_TWEET_BG_DESC" />
+				<field name="twitter_link_color" type="text" default="#A51212" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_LINK_COLOR" description="MOD_SOCIAL_TWITTER_LINK_COLOR_DESC" />
+				<field name="twitter_widget_text_color" type="text" default="#474747" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_LINK_TEXT_COLOR_DESC" />
+				<field name="twitter_tweet_text_color" type="text" default="#444444" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR_DESC" />
+				
+				<field name="twitter_preview" type="twitterpreview" label="MOD_SOCIAL_TWITTER_LISTS" />
+				
+			</fieldset>
+			
+			<!-- updates -->
+			<fieldset name="SOCIAL_UPDATES" addfieldpath="/modules/mod_social_gk5/admin/elements">
+			    <field type="update" name="module_updates" /> 
+			</fieldset>
+			<!-- about us -->
+			<fieldset name="SOCIAL_ABOUT_US" addfieldpath="/modules/mod_social_gk5/admin/elements">
+			    <field type="about" name="about_us" /> 
+			</fieldset>
+		</fields>
+	</config>
+</extension>

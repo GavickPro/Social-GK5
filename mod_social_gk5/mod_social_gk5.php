@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Tabs GK5 - main PHP file
+* Social GK5 - main PHP file
 * @package Joomla!
 * @Copyright (C) 2009-2012 Gavick.com
 * @ All rights reserved
@@ -13,10 +13,36 @@
 // no direct access
 defined('_JEXEC') or die;
 
+
 // helper loading
-require_once (dirname(__FILE__).DS.'helper.php');
-// create class instance with params
-$helper = new SocialGK5Helper($module, $params); 
+
+
+
+$config = $params->toArray();
+print_r($config['module_data_source']);
+print_r($config['twitter_widget']);
+// load helper file depends of source type
+if($config['module_data_source'] == 'twitter') {
+	require_once (dirname(__FILE__).DS.'helper.twitter.php');
+	$helper = new SocialGK5TwitterHelper($module, $params); 
+	// try to parse the data
+	if($config['twitter_widget'] == 'tweets') {
+		try{
+			$helper->getData();
+			//$helper->parseData();    
+		} catch (Exception $e) {
+			// use backup
+			$helper->useBackup();
+		}
+	}
+} else if ($config['module_data_source'] == 'fb') {
+	require_once (dirname(__FILE__).DS.'helper.fb.php');
+	$helper = new SocialGK5FbHelper($module, $params); 
+} else {
+	require_once (dirname(__FILE__).DS.'helper.gplus.php');
+	$helper = new SocialGK5GPlus($module, $params); 
+}
+
 // creating HTML code	
 $helper->render();
 

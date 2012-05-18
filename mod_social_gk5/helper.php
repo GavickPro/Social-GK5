@@ -3,7 +3,7 @@
 /**
 * Helper class for Social GK5 module
 *
-* GK Social
+* GK Social GK5
 * @package Joomla!
 * @Copyright (C) 2009-2012 Gavick.com
 * @ All rights reserved
@@ -19,14 +19,12 @@ jimport('joomla.utilities.string');
 // Main GK Tab class
 class SocialGK5Helper {
 	private $config; // configuration array
-	private $tabs; // array of tabs content
-	private $mod_getter; // object to get the modules
-	private $active_tab; // number of the active tab
+
 	// constructor
 	public function __construct($module, $params) {
 		// put the module params to the $config variable
 		$this->config = $params->toArray();
-		print_r($this->config);
+		
 		// if the user set engine mode to Mootools
 		if($this->config['engine_mode'] == 'mootools') {
 			// load the MooTools framework to use with the module

@@ -30,8 +30,48 @@ var SocialGK5Settings = new Class({
 	initialize: function() {
 		// helper handler
 		$this = this;
+		// columns/rows view
+		var merge = document.id('jform_params_twitter_columns-lbl').getParent();
+		var rows = document.id('jform_params_twitter_rows-lbl').getParent();
+		var columns = merge.get('html');
+		console.log(columns);
+		merge.setStyle('display', 'none');
+		rows.innerHTML = rows.innerHTML + columns;
+		merge.destroy();
+		
+		//minutes in cache
+		document.id('jform_params_twitter_cache_time-lbl').getParent().innerHTML = document.id('jform_params_twitter_cache_time-lbl').getParent().innerHTML + '<span class="minutes">minutes</span>';
+		
+		// switchers
+		$$('.gk_switch').each(function(el){
+			el.setStyle('display','none');
+			var style = (el.value == 1) ? 'on' : 'off';
+			var switcher = new Element('div',{'class' : 'switcher-'+style});
+			switcher.inject(el, 'after');
+			switcher.addEvent("click", function(){
+				if(el.value == 1){
+					switcher.setProperty('class','switcher-off');
+					el.value = 0;
+				}else{
+					switcher.setProperty('class','switcher-on');
+					el.value = 1;
+				}
+			});
+		});
+		
 		// current mode
 		var sourceMode = document.id('jform_params_module_data_source').get('value');
+				if(sourceMode == 'fb') {
+					document.id('jform_params_module_data_source').addClass('fb');
+					//document.id('EXTERNAL_SOURCES-options').removeClass('gkUnvisible');
+				} else if (sourceMode == 'gplus') {
+					document.id('jform_params_module_data_source').addClass('gplus');
+					//document.id('TABS_MANAGER-options').removeClass('gkUnvisible');
+					//document.id('EXTERNAL_SOURCES-options').addClass('gkUnvisible');
+				} else {
+					document.id('jform_params_module_data_source').addClass('twitter');
+				}
+			
 		document.id('jform_params_twitter_preview-lbl').setStyle('display', 'none');
 		// add unvisible class
 		if(sourceMode == 'external') {
@@ -134,22 +174,7 @@ var SocialGK5Settings = new Class({
 		$$('.input-percents').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">%</span>"});
 		$$('.input-minutes').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">minutes</span>"});
 		$$('.input-ms').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">ms</span>"});*/
-		// switchers
-		$$('.gk_switch').each(function(el){
-			el.setStyle('display','none');
-			var style = (el.value == 1) ? 'on' : 'off';
-			var switcher = new Element('div',{'class' : 'switcher-'+style});
-			switcher.inject(el, 'after');
-			switcher.addEvent("click", function(){
-				if(el.value == 1){
-					switcher.setProperty('class','switcher-off');
-					el.value = 0;
-				}else{
-					switcher.setProperty('class','switcher-on');
-					el.value = 1;
-				}
-			});
-		});
+		
 		// creating the demo link
 		/*new Element('a', { 
 			'href' : 'http://mootools.net/demos/?demo=Transitions', 
@@ -282,8 +307,8 @@ function getLists() {
 			} else {
 					content+='<option value="error">No lists for specified username</option>';
 			}
-			document.id('twitter_list_name').innerHTML = '';
-			document.id('twitter_list_name').innerHTML = content;
+			document.id('jform_params_twitter_lists').innerHTML = '';
+			document.id('jform_params_twitter_lists').innerHTML = content;
 			
 		  }
 		}).send();

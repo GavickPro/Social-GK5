@@ -73,6 +73,7 @@
 				 <field name="twitter_desc" type="text" default="by phrase..." label="MOD_SOCIAL_TWITTER_SEARCH_DESC" description="MOD_SOCIAL_TWITTER_SEARCH_DESC_DESC" />
 				 	<!-- user list settings -->
 					<field name="twitter_lists" type="twitterlists" directory="modules/mod_social_gk5/config/" label="MOD_SOCIAL_TWITTER_LISTS" />
+					
 			</fieldset>
 			
 			<!-- twitter layout -->
@@ -98,6 +99,9 @@
 					<option value="style2">style2</option>
 					<option value="style3">style3</option>
 				 </field>
+				 <field name="twitter_rows" size="2" type="text" default="5" label="MOD_SOCIAL_TWITTER_ROWS" description="MOD_SOCIAL_TWITTER_ROWS_DESC" />
+				 <field name="twitter_columns" size="2" type="text" default="1" label="MOD_SOCIAL_TWITTER_COLS" description="MOD_SOCIAL_TWITTER_COLS_DESC" />
+				 
 				 <field name="twitter_use_css" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_USECSS" description="MOD_SOCIAL_TWITTER_USECSS_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
@@ -122,15 +126,11 @@
 				        <option value="cdate">MOD_SOCIAL_TWITTER_CDATE</option>
 				        <option value="tdate">MOD_SOCIAL_TWITTER_TIMESTAMP</option>
 				</field>
-				<field name="twitter_show_bird" type="list" class="gk_switch" default="0" label="MOD_SOCIAL_TWITTER_BIRD" description="MOD_SOCIAL_TWITTER_BIRD_DESC">
-				        <option value="0">MOD_SOCIAL_DISABLED</option>
-				        <option value="1">MOD_SOCIAL_ENABLED</option>
-				</field>
 				<field name="twitter_cache" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_CACHE" description="MOD_SOCIAL_TWITTER_CACHE_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_cache_time" type="text" default="10" label="MOD_SOCIAL_CACHE_TIME" description="MOD_SOCIAL_CACHE_TIME_DESC" />
+				<field name="twitter_cache_time" size="4" type="text" default="10" label="MOD_SOCIAL_CACHE_TIME" description="MOD_SOCIAL_CACHE_TIME_DESC" />
 			</fieldset>
 			
 			<!-- updates -->

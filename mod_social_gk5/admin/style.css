@@ -396,3 +396,8 @@ button#twitter_load_lists {
 div.colorpicker-container {
 	z-index: 9999;
 }
+#jform_params_twitter_columns-lbl {display: none}
+#jform_params_twitter_columns {display:inline-block}
+span.minutes {font-style: italic; line-height: 34px; margin-left: 5px}
+#jform_params_twitter_rows,
+#jform_params_twitter_columns {text-align: center}

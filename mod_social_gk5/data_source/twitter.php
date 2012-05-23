@@ -26,8 +26,12 @@ class SocialGK5TwitterHelper
         jimport('joomla.filesystem.file');
         // configuration array
         $this->config = $params->toArray();
+		// query validation process
+        $this->config['twitter_search_query'] = str_replace('#','%23', $this->config['twitter_search_query']);
+        $this->config['twitter_search_query'] = str_replace('@','%40', $this->config['twitter_search_query']);
+		$this->config['twitter_search_query'] = str_replace(' ','%20', $this->config['twitter_search_query']);
+        
     }
-
 
     function getData()
     {
@@ -41,13 +45,7 @@ class SocialGK5TwitterHelper
 			$uri = JURI::getInstance();
 			$doc->addStyleSheet( $uri->root().'modules/mod_social_gk5/styles/twitter/'.$this->config['twitter_tweet_style'].'.css', 'text/css' );
 		}
-        // query validation process
-        $this->config['twitter_search_query'] = str_replace('#','%23', $this->config['twitter_search_query']);
-        $this->config['twitter_search_query'] = str_replace('@','%40', $this->config['twitter_search_query']);
-		$this->config['twitter_search_query'] = str_replace(' ','%20', $this->config['twitter_search_query']);
-        
-  
-		
+  	
         if($this->config['twitter_cache'] == 1) {
             if(filesize(realpath('modules/mod_social_gk5/cache/cache.xml')) == 0 || ((filemtime(realpath('modules/mod_social_gk5/cache/cache.xml')) + $this->config['twitter_cache_time'] * 60) < time())) {
 				
@@ -77,7 +75,17 @@ class SocialGK5TwitterHelper
      **/
     function render()
     {
-    	require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterTweets'));
+		if($this->config['twitter_widget'] == 'tweets') {
+    		require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterTweets'));
+		} else if($this->config['twitter_widget'] == 'search') {
+			require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterSearch'));
+		} else if($this->config['twitter_widget'] == 'profile') {
+			require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterProfile'));
+		} else if($this->config['twitter_widget'] == 'faves') {
+			require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterFavs'));
+		} else if($this->config['twitter_widget'] == 'list') {
+			require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterList'));
+		}
     }
 
     function dateDifference($date)

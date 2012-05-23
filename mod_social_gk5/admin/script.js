@@ -42,22 +42,6 @@ var SocialGK5Settings = new Class({
 		//minutes in cache
 		document.id('jform_params_twitter_cache_time-lbl').getParent().innerHTML = document.id('jform_params_twitter_cache_time-lbl').getParent().innerHTML + '<span class="minutes">minutes</span>';
 		
-		// switchers
-		$$('.gk_switch').each(function(el){
-			el.setStyle('display','none');
-			var style = (el.value == 1) ? 'on' : 'off';
-			var switcher = new Element('div',{'class' : 'switcher-'+style});
-			switcher.inject(el, 'after');
-			switcher.addEvent("click", function(){
-				if(el.value == 1){
-					switcher.setProperty('class','switcher-off');
-					el.value = 0;
-				}else{
-					switcher.setProperty('class','switcher-on');
-					el.value = 1;
-				}
-			});
-		});
 		
 		// current mode
 		var sourceMode = document.id('jform_params_module_data_source').get('value');

@@ -61,7 +61,7 @@
 					<option value="watch">MOD_SOCIAL_TWITTER_WATCH</option>
 					<option value="tweets">MOD_SOCIAL_TWITTER_TWEETS</option>
 					<option value="profile">MOD_SOCIAL_TWITTER_PROFILE</option>
-					<option value="users">MOD_SOCIAL_TWITTER_FAVORITE_TWEETS</option>
+					<option value="faves">MOD_SOCIAL_TWITTER_FAVORITE_TWEETS</option>
 					<option value="list">MOD_SOCIAL_TWITTER_USER_LIST_VIEW</option>
 				 </field>
 				 <!-- profile settings -->
@@ -84,14 +84,25 @@
 				<field name="twitter_link_color" type="text" default="#A51212" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_LINK_COLOR" description="MOD_SOCIAL_TWITTER_LINK_COLOR_DESC" />
 				<field name="twitter_widget_text_color" type="text" default="#474747" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_LINK_TEXT_COLOR_DESC" />
 				<field name="twitter_tweet_text_color" type="text" default="#444444" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR_DESC" />
-				<field name="twitter_auto_refresh" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_AUTO_REFRESH" description="MOD_SOCIAL_TWITTER_AUTO_REFRESH_DESC">
-				        <option value="0">MOD_SOCIAL_DISABLED</option>
-				        <option value="1">MOD_SOCIAL_ENABLED</option>
+				<field name="twitter_auto_refresh" type="list" class="gk_switch" default="true" label="MOD_SOCIAL_TWITTER_AUTO_REFRESH" description="MOD_SOCIAL_TWITTER_AUTO_REFRESH_DESC">
+				        <option value="false">MOD_SOCIAL_DISABLED</option>
+				        <option value="true">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_include_scrollbar" type="list" class="gk_switch" default="0" label="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR" description="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR_DESC">
-				        <option value="0">MOD_SOCIAL_DISABLED</option>
-				        <option value="1">MOD_SOCIAL_ENABLED</option>
+				<field name="twitter_loop" type="list" class="gk_switch" default="true" label="MOD_SOCIAL_TWITTER_LOOP" description="MOD_SOCIAL_TWITTER_AUTO_LOOP_DESC">
+				        <option value="false">MOD_SOCIAL_DISABLED</option>
+				        <option value="true">MOD_SOCIAL_ENABLED</option>
 				</field>
+				<field name="twitter_behaviour" type="list" default="default" label="MOD_SOCIAL_TWITTER_BEHAVIOUR" description="MOD_SOCIAL_TWITTER_BEHAVIOUR_DESC">
+					<option value="default">MOD_SOCIAL_TWITTER_INTERVAL</option>
+					<option value="all">MOD_SOCIAL_TWITTER_ALL</option>
+				 </field>
+				<field name="twitter_include_scrollbar" type="list" class="gk_switch" default="false" label="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR" description="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR_DESC">
+				        <option value="false">MOD_SOCIAL_DISABLED</option>
+				        <option value="true">MOD_SOCIAL_ENABLED</option>
+				</field>
+				<field name="twitter_interval" type="text" default="30000" size="5" label="MOD_SOCIAL_TWITTER_INTERVAL_TIME" description="MOD_SOCIAL_TWITTER_INTERVAL_TIME_DESC" />
+				<field name="twitter_height" type="text" default="250" size="5" label="MOD_SOCIAL_TWITTER_HEIGHT" description="MOD_SOCIAL_TWITTER_HEIGHT_DESC" />
+				
 				<field name="twitter_preview" type="twitterpreview" label="MOD_SOCIAL_TWITTER_LISTS" />
 				<!-- tweets options -->
 				<field name="twitter_tweet_style" type="list" default="search" label="MOD_SOCIAL_TWITTER_STYLE" description="MOD_SOCIAL_TWITTER_STYLE_DESC">

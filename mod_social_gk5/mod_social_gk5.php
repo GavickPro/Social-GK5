@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
 $config = $params->toArray();
 // load helper file depends of source type
 if($config['module_data_source'] == 'twitter') {
-	require_once (dirname(__FILE__).DS.'helper.twitter.php');
+	require_once (dirname(__FILE__).DS.'data_source'.DS.'twitter.php');
 	$helper = new SocialGK5TwitterHelper($module, $params); 
 	// try to parse the data
 	if($config['twitter_widget'] == 'tweets') {

@@ -13,14 +13,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
-
 // helper loading
-
-
-
 $config = $params->toArray();
-print_r($config['module_data_source']);
-print_r($config['twitter_widget']);
 // load helper file depends of source type
 if($config['module_data_source'] == 'twitter') {
 	require_once (dirname(__FILE__).DS.'helper.twitter.php');

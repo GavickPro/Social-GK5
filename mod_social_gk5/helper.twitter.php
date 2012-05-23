@@ -32,25 +32,64 @@ class SocialGK5TwitterHelper
     function getData()
     {
         clearstatcache();
-		
-		if($this->config['twitter_show_actions'] == 1) {
-			$doc = JFactory::getDocument();
+		setlocale(LC_ALL,"0");
+		$doc = JFactory::getDocument();
+		if($this->config['twitter_show_actions']) {
 			$doc->addScript("http://platform.twitter.com/widgets.js");
+		}
+		if($this->config['twitter_use_css']) {
+			$uri = JURI::getInstance();
+			$doc->addStyleSheet( $uri->root().'modules/mod_social_gk5/styles/twitter/'.$this->config['twitter_tweet_style'].'.css', 'text/css' );
 		}
         // query validation process
         $this->config['twitter_search_query'] = str_replace('#','%23', $this->config['twitter_search_query']);
         $this->config['twitter_search_query'] = str_replace('@','%40', $this->config['twitter_search_query']);
 		$this->config['twitter_search_query'] = str_replace(' ','%20', $this->config['twitter_search_query']);
-		
-        print_r($this->config);
         
-        $url = 'http://search.twitter.com/search.json?q=' . $this->config['twitter_search_query'].'&amp;rpp=' . $this->config['twitter_tweet_amount'].'&amp;result_type=recent';
-       	
-		print_r($url);
+  
 		
-        if ($this->config['twitter_cache'] == 1) {
+        if($this->config['twitter_cache'] == 1) {
             if(filesize(realpath('modules/mod_social_gk5/cache/cache.xml')) == 0 || ((filemtime(realpath('modules/mod_social_gk5/cache/cache.xml')) + $this->config['twitter_cache_time'] * 60) < time())) {
-            if (function_exists('curl_init') && ($this->config['twitter_search_query'] != '' || $this->config['twitter_tweet_amount'] > 0)) {                
+				
+            // get the data from twitter
+			$this->getTweets();
+			
+            if($this->error == '') {
+                // saving cache
+                if($this->pData != '') {
+                JFile::write(realpath('modules/mod_social_gk5/cache/cache.xml'), json_encode($this->pData));
+                JFile::write(realpath('modules/mod_social_gk5/cache/cache.backup.xml'), json_encode($this->pData));
+            	}
+            } else {
+                $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.xml')));
+            }
+            } else {
+				$this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.xml')));
+			} /// close
+        } else {
+			$this->getTweets();	
+		}
+    }
+
+
+    /**
+     *	RENDERING LAYOUT
+     **/
+    function render()
+    {
+    	require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterTweets'));
+    }
+
+    function dateDifference($date)
+    {
+        return $this->dateDiff("now", $date);
+    }
+	
+	function getTweets() {
+		
+		      $url = 'http://search.twitter.com/search.json?q=' . $this->config['twitter_search_query'].'&amp;rpp=' . $this->config['twitter_tweet_amount'].'&amp;result_type=recent';
+       	
+		if (function_exists('curl_init') && ($this->config['twitter_search_query'] != '' || $this->config['twitter_tweet_amount'] > 0)) {                
                 // phrase results
                 $curl = curl_init();
                 // saves us before putting directly results of request
@@ -68,8 +107,6 @@ class SocialGK5TwitterHelper
                 $decode = json_decode($json, true); //getting the file content as array
                 $count = count($decode['results']); //counting the number of status
 				
-				print_r($decode['results'][0]);
-				
                 for ($i = 0; $i < $count; $i++) {       
                 	$this->pData[$i]['id'] = $decode['results'][$i]['id'];
                 	$this->pData[$i]['text'] = $decode['results'][$i]['text'];
@@ -77,11 +114,34 @@ class SocialGK5TwitterHelper
 					$this->pData[$i]['user_id'] = $decode['results'][$i]['from_user_id'];
 					$this->pData[$i]['avatar'] = $decode['results'][$i]['profile_image_url'];
                  	$this->pData[$i]['name'] = $decode['results'][$i]['from_user_name'];
-                	$this->pData[$i]['time'] = strtotime($decode['results'][$i]['created_at']);
+                	$this->pData[$i]['time'] = date("d M", strtotime($decode['results'][$i]['created_at']));
                 	$this->pData[$i]['time_diff'] = $this->dateDifference($decode['results'][$i]['created_at']);
                  	$this->pData[$i]['url'] = $decode['results'][$i]['from_user'];
+					
+					preg_match_all('/#\w*/', $this->pData[$i]['text'], $matches, PREG_PATTERN_ORDER);
+					foreach($matches as $key => $match) {
+						foreach($match as $m) {
+							$m = substr($m, 1);
+							$this->pData[$i]['text'] = str_replace($m, "<a href='https://twitter.com/#!/search/".$m."'>".$m."</a>", $this->pData[$i]['text']);
+						}
+					}
+					
+					preg_match_all('/@\w*/', $this->pData[$i]['text'], $matches, PREG_PATTERN_ORDER);
+					foreach($matches as $key => $match) {
+						foreach($match as $m) {
+							$m = substr($m, 1);
+							$this->pData[$i]['text'] = str_replace($m, "<a href='https://twitter.com/#!/".$m."'>".$m."</a>", $this->pData[$i]['text']);
+						}
+					}
+					
+					preg_match_all('/http:\/\/\S*/', $this->pData[$i]['text'], $matches, PREG_PATTERN_ORDER);
+					foreach($matches as $key => $match) {
+						foreach($match as $m) {
+							$this->pData[$i]['text'] = str_replace($m, "<a href='".$m."'>".$m."</a>", $this->pData[$i]['text']);
+						}
+					}
                 }
-                
+     						
                 function cmp($a, $b)
                 {
                     $a = $a['time'];
@@ -98,35 +158,10 @@ class SocialGK5TwitterHelper
 				}
             } else {
                 $this->error = 'cURL extension and file_get_content method is not available on your server';
-            }
-            if($this->error == '') {
-                // saving cache
-                if($this->pData != '') {
-                JFile::write(realpath('modules/mod_social_gk5/cache/cache.xml'), json_encode($this->pData));
-                JFile::write(realpath('modules/mod_social_gk5/cache/cache_backup.xml'), json_encode($this->pData));
-                }
-            } else {
-                $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.xml')));
-            }
-            } else {
-				$this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.xml')));
-			} /// close
-        }
-    }
-
-
-    /**
-     *	RENDERING LAYOUT
-     **/
-    function render()
-    {
-    	require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterTweets'));
-    }
-
-    function dateDifference($date)
-    {
-        return $this->dateDiff("now", $date);
-    }
+            }	
+		
+	}
+	
     /*
     * Function to get the backup data
     * thanks to http://www.if-not-true-then-false.com/2010/php-calculate-real-differences-between-two-dates-or-timestamps/

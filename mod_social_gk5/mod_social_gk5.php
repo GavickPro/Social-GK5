@@ -33,8 +33,8 @@ if($config['module_data_source'] == 'twitter') {
 	require_once (dirname(__FILE__).DS.'helper.fb.php');
 	$helper = new SocialGK5FbHelper($module, $params); 
 } else {
-	require_once (dirname(__FILE__).DS.'helper.gplus.php');
-	$helper = new SocialGK5GPlus($module, $params); 
+	require_once (dirname(__FILE__).DS.'data_source'.DS.'gplus.php');
+	$helper = new SocialGK5GPLusHelper($module, $params); 
 }
 
 // creating HTML code	

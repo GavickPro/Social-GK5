@@ -144,6 +144,43 @@
 				<field name="twitter_cache_time" size="4" type="text" default="10" label="MOD_SOCIAL_CACHE_TIME" description="MOD_SOCIAL_CACHE_TIME_DESC" />
 			</fieldset>
 			
+			
+			<!-- google plus options -->
+			<fieldset name="SOCIAL_GPLUS_BASIC">
+				<field name="gplus_id" type="text" default="123456789012345678901" size="30" class="input-gplus-url" label="MOD_SOCIAL_GPLUS_GK4_ID" description="MOD_SOCIAL_GPLUS_GK4_ID_DESC"/>	
+				<field name="gplus_badge_style" type="list" default="standard_badge" label="MOD_SOCIAL_GPLUS_BADGE_STYLE" description="MOD_SOCIAL_GPLUS_BADGE_STYLE_DESC">
+							<option value="standard_badge">MOD_SOCIAL_GPLUS_STANDARD_BADGE</option>
+							<option value="small_badge">MOD_SOCIAL_GPLUS_SMALL_BADGE</option>
+							<option value="small_icon">MOD_SOCIAL_GPLUS_SMALL_ICON</option>
+							<option value="medium_icon">MOD_SOCIAL_GPLUS_MEDIUM_ICON</option>
+							<option value="large_icon">MOD_SOCIAL_GPLUS_LARGE_ICON</option>
+						</field>
+						
+						<field name="gk_line_1" type="line" class="hasText" text="MOD_SOCIAL_GPLUS_BADGE_SETTINGS" />
+						
+						<field name="gplus_lang_code" type="text" default="en" label="MOD_SOCIAL_GPLUS_LANG_CODE" description="MOD_SOCIAL_GPLUS_LANG_CODE_DESC" />
+						<field name="gplus_badge_width" type="text" default="300" class="input-pixels" label="MOD_SOCIAL_GPLUS_BADGE_WIDTH" description="MOD_SOCIAL_GPLUS_BADGE_WIDTH_DESC" />
+						<field name="gplus_badge_color" type="list" default="light" label="MOD_SOCIAL_GPLUS_BADGE_COLOR" description="MOD_SOCIAL_GPLUS_BADGE_COLOR_DESC">
+							<option value="light">MOD_SOCIAL_GPLUS_LIGHT</option>
+							<option value="dark">MOD_SOCIAL_GPLUS_DARK</option>
+						</field>
+						<field name="gplus_async_script" class="gk_switch" type="list" default="1" label="MOD_SOCIAL_GPLUS_ASYNC" description="MOD_SOCIAL_GPLUS_ASYNC_DESC">
+							<option value="1">MOD_SOCIAL_ENABLED</option>
+							<option value="0">MOD_SOCIAL_DISABLED</option>
+						</field>
+						<field name="gplus_html5_valid" class="gk_switch" type="list" default="1" label="MOD_SOCIAL_GPLUS_HTML5" description="MOD_SOCIAL_GPLUS_HTML5_DESC">
+							<option value="1">MOD_SOCIAL_ENABLED</option>
+							<option value="0">MOD_SOCIAL_DISABLED</option>
+						</field>
+						<field name="gk_line_2" type="line" class="hasText" text="MOD_SOCIAL_GPLUS_BUTTON_SETTINGS" />
+						<field name="gplus_custom_name" type="text" default="" label="MOD_SOCIAL_GPLUS_CUSTOM_NAME" description="MOD_SOCIAL_GPLUS_CUSTOM_NAME_DESC" />
+						<field name="gplus_custom_name_pos" default="before" type="list" label="MOD_SOCIAL_GPLUS_CUSTOM_NAME_POS" description="MOD_SOCIAL_GPLUS_CUSTOM_NAME_POS_DESC" >
+							<option value="before">MOD_SOCIAL_GPLUS_BEFORE</option>
+							<option value="after">MOD_SOCIAL_GPLUS_AFTER</option>
+						</field>
+			</fieldset>
+			
+			
 			<!-- updates -->
 			<fieldset name="SOCIAL_UPDATES" addfieldpath="/modules/mod_social_gk5/admin/elements">
 			    <field type="update" name="module_updates" /> 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Gavick Social GK5 - helper class
+ * Gavick Social GK5 - layout file
  * @package Joomla!
  * @ Copyright (C) 2009-2011 Gavick.com
  * @ All rights reserved

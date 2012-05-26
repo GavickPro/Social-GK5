@@ -30,8 +30,8 @@ if($config['module_data_source'] == 'twitter') {
 		}
 	}
 } else if ($config['module_data_source'] == 'fb') {
-	require_once (dirname(__FILE__).DS.'helper.fb.php');
-	$helper = new SocialGK5FbHelper($module, $params); 
+	require_once (dirname(__FILE__).DS.'data_source'.DS.'facebook.php');
+	$helper = new SocialGK5FacebookHelper($module, $params); 
 } else {
 	require_once (dirname(__FILE__).DS.'data_source'.DS.'gplus.php');
 	$helper = new SocialGK5GPLusHelper($module, $params); 

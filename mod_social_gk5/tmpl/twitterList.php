@@ -48,8 +48,13 @@ new TWTR.Widget({
     live:  <?php echo $this->config['twitter_auto_refresh']; ?>,
     behavior: '<?php echo $this->config['twitter_behaviour']; ?>'
   }
-}).render().setList('<?php echo $this->config['twitter_username']; ?>', '<?php echo $this->config['twitter_lists']; ?>').start();
+}).render().setList('<?php echo $this->config['twitter_username']; ?>', '<?php echo $this->config['twitter_lists_data']; ?>').start();
+
+
 </script>
-	
+	<?php 
+	print_r($this->config['twitter_username']);
+print_r($this->config['twitter_lists_data']);
+	?>
 	
 <?php endif; ?>

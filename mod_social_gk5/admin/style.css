@@ -35,6 +35,8 @@
 span.unit {
 	line-height: 34px;
 }
+#invisible,
+label[id^=jform_params_gk_line_] { display: none; }
 
 /* togglers */
 .pane-sliders .panel {
@@ -60,11 +62,11 @@ div.panel > h3 a {
 
 div.panel > h3 a:hover,
 div.panel h3.pane-toggler-down a {
-	color: #415e7f;
+	color: #467598;
 }
 
 div.panel h3.pane-toggler-down {
-	border-bottom: 4px solid #415e7f !important;
+	border-bottom: 4px solid #a9cde4 !important;
 }
 
 .pane-toggler span {
@@ -401,3 +403,46 @@ div.colorpicker-container {
 span.minutes {font-style: italic; line-height: 34px; margin-left: 5px}
 #jform_params_twitter_rows,
 #jform_params_twitter_columns {text-align: center}
+.gkFormLine {
+    background: none repeat scroll 0 0 #EEEEEE;
+    clear: both;
+    display: block;
+    height: 5px;
+}
+.gkFormLine.hasText {
+    border-bottom: 5px solid #FFFFFF;
+    border-top: 10px solid #FFFFFF;
+    color: #999999;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1px;
+    padding-left: 25px;
+}
+.gkFormLine.hasText span {
+    background: none repeat scroll 0 0 #FFFFFF;
+    padding: 3px;
+}
+label#jform_params_gk_line_1-lbl, label#jform_params_gk_line_2-lbl {
+    display: none;
+}
+label#jform_params_required_field-lbl,
+input#jform_params_required_field,
+label#jform_params_twitter_lists_data-lbl,
+input#jform_params_twitter_lists_data {display: none}
+span.required {width: 100%; text-transform: uppercase; font-size: 11px; text-align: center; display: block; color: #09C}
+div.panel.hidden,
+div.panel fieldset li.hidden {display: none}
+div.colorpicker-container {padding: 10px; border-radius: 5px;
+	-moz-box-shadow: 0px  9px  20px  #242324;
+-webkit-box-shadow: 0px  9px  20px  #242324;
+box-shadow: 0px  9px  20px  #242324;
+			border: 1px solid #999 !important;
+			background: #ffffff;
+background: -moz-linear-gradient(top, #ffffff 0%, #f9fcf7 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f9fcf7));
+background: -webkit-linear-gradient(top, #ffffff 0%,#f9fcf7 100%);
+background: -o-linear-gradient(top, #ffffff 0%,#f9fcf7 100%);
+background: -ms-linear-gradient(top, #ffffff 0%,#f9fcf7 100%);
+background: linear-gradient(top, #ffffff 0%,#f9fcf7 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f9fcf7',GradientType=0 );
+}

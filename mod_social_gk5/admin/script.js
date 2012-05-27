@@ -18,6 +18,34 @@ window.addEvent("domready",function(){
 	// intialize color picker
 	DynamicColorPicker.auto(".color-field");
 	
+	$$('.gk_switch').each(function(el){
+		el.setStyle('display','none');
+		var style = (el.value == 'true' || el.value == 1) ? 'on' : 'off';
+		var switcher = new Element('div',{'class' : 'switcher-'+style});
+		switcher.inject(el, 'after');
+		switcher.addEvent("click", function(){
+			if(el.value == 'true' || el.value=='false') {
+			if(el.value == 'true'){
+				switcher.setProperty('class','switcher-off');
+				el.value = 'false';
+			}else{
+				switcher.setProperty('class','switcher-on');
+				el.value = 'true';
+			}
+			} else {
+			if(el.value == 1){
+				switcher.setProperty('class','switcher-off');
+				el.value = 0;
+			}else{
+				switcher.setProperty('class','switcher-on');
+				el.value = 1;
+			}
+			}
+		});
+	});
+	$$('.px').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">px</span>"});
+	document.id('jform_params_required_field').getParent().innerHTML = "<span class=\"required\">APP ID is required for this plugin</span>";
+	hideTwitterOptions();
 });
 
 /*
@@ -34,7 +62,6 @@ var SocialGK5Settings = new Class({
 		var merge = document.id('jform_params_twitter_columns-lbl').getParent();
 		var rows = document.id('jform_params_twitter_rows-lbl').getParent();
 		var columns = merge.get('html');
-		console.log(columns);
 		merge.setStyle('display', 'none');
 		rows.innerHTML = rows.innerHTML + columns;
 		merge.destroy();
@@ -42,43 +69,87 @@ var SocialGK5Settings = new Class({
 		//minutes in cache
 		document.id('jform_params_twitter_cache_time-lbl').getParent().innerHTML = document.id('jform_params_twitter_cache_time-lbl').getParent().innerHTML + '<span class="minutes">minutes</span>';
 		
-		
 		// current mode
 		var sourceMode = document.id('jform_params_module_data_source').get('value');
 				if(sourceMode == 'fb') {
 					document.id('jform_params_module_data_source').addClass('fb');
-					//document.id('EXTERNAL_SOURCES-options').removeClass('gkUnvisible');
+					$$('.panel h3').each(function(item, index){
+						if(String.from(item.get('id')).contains('TWITTER')==true || String.from(item.get('id')).contains('GPLUS')==true){
+							item.getParent().addClass('hidden');
+						} else {
+							item.getParent().removeClass('hidden');
+						}
+					});
 				} else if (sourceMode == 'gplus') {
 					document.id('jform_params_module_data_source').addClass('gplus');
-					//document.id('TABS_MANAGER-options').removeClass('gkUnvisible');
-					//document.id('EXTERNAL_SOURCES-options').addClass('gkUnvisible');
+					$$('.panel h3').each(function(item, index){
+						if(String.from(item.get('id')).contains('SOCIAL_FB')==true || String.from(item.get('id')).contains('TWITTER')==true){
+							item.getParent().addClass('hidden');
+						} else {
+							item.getParent().removeClass('hidden');
+						}
+					});
 				} else {
 					document.id('jform_params_module_data_source').addClass('twitter');
+					$$('.panel h3').each(function(item, index){
+						if(String.from(item.get('id')).contains('SOCIAL_FB')==true || String.from(item.get('id')).contains('GPLUS')==true){
+							item.getParent().addClass('hidden');
+						} else {
+							item.getParent().removeClass('hidden');
+						}
+					});
 				}
 			
 		document.id('jform_params_twitter_preview-lbl').setStyle('display', 'none');
-		// add unvisible class
-		if(sourceMode == 'external') {
-			//document.id('TABS_MANAGER-options').addClass('gkUnvisible');
-		} else {
-			//document.id('EXTERNAL_SOURCES-options').addClass('gkUnvisible');
-		} 
+	
 		// hide one of unnecessary tabs
 		document.id('jform_params_module_data_source').addEvent('change', function() {
-			if(sourceMode != document.id('jform_params_module_data_source').get('value')) {
 				sourceMode = document.id('jform_params_module_data_source').get('value');
 				if(sourceMode == 'fb') {
+					document.id('jform_params_module_data_source').removeAttribute('class');
 					document.id('jform_params_module_data_source').addClass('fb');
-					//document.id('EXTERNAL_SOURCES-options').removeClass('gkUnvisible');
+					$$('.panel h3').each(function(item, index){
+						if(String.from(item.get('id')).contains('TWITTER')==true || String.from(item.get('id')).contains('GPLUS')==true){
+							item.getParent().addClass('hidden');
+						} else {
+							item.getParent().removeClass('hidden');
+						}
+					});
 				} else if (sourceMode == 'gplus') {
+					document.id('jform_params_module_data_source').removeAttribute('class');
 					document.id('jform_params_module_data_source').addClass('gplus');
-					//document.id('TABS_MANAGER-options').removeClass('gkUnvisible');
-					//document.id('EXTERNAL_SOURCES-options').addClass('gkUnvisible');
+					$$('.panel h3').each(function(item, index){
+						if(String.from(item.get('id')).contains('SOCIAL_FB')==true || String.from(item.get('id')).contains('TWITTER')==true){
+							item.getParent().addClass('hidden');
+						} else {
+							item.getParent().removeClass('hidden');
+						}
+					});
 				} else {
+					document.id('jform_params_module_data_source').removeAttribute('class');
 					document.id('jform_params_module_data_source').addClass('twitter');
+					$$('.panel h3').each(function(item, index){
+						if(String.from(item.get('id')).contains('SOCIAL_FB')==true || String.from(item.get('id')).contains('GPLUS')==true){
+							item.getParent().addClass('hidden');
+						} else {
+							item.getParent().removeClass('hidden');
+						}
+					});
 				}
-			}
 		});
+		
+		document.id('jform_params_twitter_widget').addEvent('change', function() {
+				// now hide part of layout options
+				hideTwitterOptions();	
+		});
+		
+		var listSource =  document.id('jform_params_twitter_lists').value;
+		document.id('jform_params_twitter_lists').addEvent('change', function() {
+			listSource =  document.id('jform_params_twitter_lists').value;
+			document.id('jform_params_twitter_lists_data').set('value', listSource);
+			
+		});
+		
 		// set colors for tweeter preview
 		$$('.twtr-hd h3').setStyle('color', document.id('jform_params_twitter_widget_text_color').get('value'));
 		$$('.twtr-hd h4 a').setStyle('color', document.id('jform_params_twitter_widget_text_color').get('value'));
@@ -88,12 +159,9 @@ var SocialGK5Settings = new Class({
 		$$('.twtr-tweet-text a').setStyle('color', document.id('jform_params_twitter_link_color').get('value'));
 		$$('.twtr-tweet-text > p').setStyle('color', document.id('jform_params_twitter_tweet_text_color').get('value'));
 		
-		
-		
 		// function used for changing data source to help if the onChange event doesn't fire
 		document.id('jform_params_module_data_source').addEvent('blur', function() {
 			document.id('jform_params_module_data_source').fireEvent('change');	
-		
 		});
 	},
 	
@@ -153,25 +221,7 @@ var SocialGK5Settings = new Class({
 			});
 		});
 		
-		// adjust the inputs
-		/*$$('.input-pixels').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">px</span>"});
-		$$('.input-percents').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">%</span>"});
-		$$('.input-minutes').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">minutes</span>"});
-		$$('.input-ms').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">ms</span>"});*/
 		
-		// creating the demo link
-		/*new Element('a', { 
-			'href' : 'http://mootools.net/demos/?demo=Transitions', 
-			'target' : '_blank', 
-			'id' : 'gkDemoLink', 
-			'html' : 'Demo'  
-		}).inject(document.id('jform_params_animation_function'), 'after');
-		// creating the help link
-		var link = new Element('a', { 'class' : 'gkHelpLink', 'href' : 'http://www.gavick.com/best-free-joomla-tab-module.html', 'target' : '_blank' })
-		link.inject($$('div.panel')[$$('div.panel').length-1].getElement('h3'), 'bottom');
-		link.addEvent('click', function(e) { e.stopPropagation(); });
-		// removing unnecessary borders
-		document.id('TABS_MANAGER-options').getParent().getElement('.panelform .adminformlist li').setStyle('border', 'none');*/
 	},
 	// function used to generate the updates list
 	getUpdates: function() {
@@ -274,6 +324,7 @@ var SocialGK5TwitterList = new Class({
 	} 
 });
 
+// get twitter lists for selected user
 function getLists() {
 	var username = document.id('jform_params_twitter_username').get('value');
 		var url = 'https://api.twitter.com/1/lists/all.json';
@@ -285,8 +336,13 @@ function getLists() {
 		  },
 		  onComplete: function(lists) {
 			if(lists.length > 0) {
+				var sel = document.id('jform_params_twitter_lists_data').value; 
 				Array.each(lists, function(list, index){
-					content+='<option value="'+list.name+'">'+list.name+'</option>';
+					if(sel == list.slug) {
+					content+='<option value="'+list.slug+'" selected="selected">'+list.name+'</option>';
+					} else {
+					content+='<option value="'+list.slug+'">'+list.name+'</option>';
+					}
 				});
 			} else {
 					content+='<option value="error">No lists for specified username</option>';
@@ -296,4 +352,34 @@ function getLists() {
 			
 		  }
 		}).send();
+		
+		document.id('jform_params_twitter_lists').set('value', document.id('jform_params_twitter_lists_data').value);
+}
+
+function hideTwitterOptions() {
+	if(document.id('jform_params_twitter_widget').value == 'tweets') {
+						document.id('jform_params_twitter_username-lbl').getParent().addClass('hidden');
+						document.id('jform_params_twitter_title-lbl').getParent().addClass('hidden');
+						document.id('jform_params_twitter_desc-lbl').getParent().addClass('hidden');
+						document.id('jform_params_twitter_lists-lbl').getParent().addClass('hidden');
+						document.id('jform_params_twitter_preview-lbl').getParent().getAllPrevious().each(function(item, index) {
+							item.addClass('hidden');
+							document.id('jform_params_twitter_preview-lbl').getParent().addClass('hidden');
+						});
+						document.id('jform_params_twitter_preview-lbl').getParent().getAllNext().each(function(item, index) {
+							item.removeClass('hidden');
+						});
+					} else {
+						document.id('jform_params_twitter_username-lbl').getParent().removeClass('hidden');
+						document.id('jform_params_twitter_title-lbl').getParent().removeClass('hidden');
+						document.id('jform_params_twitter_desc-lbl').getParent().removeClass('hidden');
+						document.id('jform_params_twitter_lists-lbl').getParent().removeClass('hidden');
+						document.id('jform_params_twitter_preview-lbl').getParent().getAllNext().each(function(item, index) {
+							item.addClass('hidden');
+						});
+						document.id('jform_params_twitter_preview-lbl').getParent().getAllPrevious().each(function(item, index) {
+							item.removeClass('hidden');
+							document.id('jform_params_twitter_preview-lbl').getParent().removeClass('hidden');
+						});
+					}
 }

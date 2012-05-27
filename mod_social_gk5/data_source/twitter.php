@@ -30,7 +30,8 @@ class SocialGK5TwitterHelper
         $this->config['twitter_search_query'] = str_replace('#','%23', $this->config['twitter_search_query']);
         $this->config['twitter_search_query'] = str_replace('@','%40', $this->config['twitter_search_query']);
 		$this->config['twitter_search_query'] = str_replace(' ','%20', $this->config['twitter_search_query']);
-        
+     	$this->config['twitter_lists_data'] = str_replace('@', '', $this->config['twitter_lists_data']);
+		$this->config['twitter_lists_data'] = str_replace(' ', '-', $this->config['twitter_lists_data']);
     }
 
     function getData()

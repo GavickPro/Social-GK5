@@ -58,7 +58,6 @@
 			<fieldset name="SOCIAL_TWITTER_BASIC">
 				<field name="twitter_widget" type="list" default="search" label="MOD_SOCIAL_TWITTER_WIDGET" description="MOD_SOCIAL_TWITTER_WIDGET_DESC">
 					<option value="search">MOD_SOCIAL_TWITTER_SEARCH</option>
-					<option value="watch">MOD_SOCIAL_TWITTER_WATCH</option>
 					<option value="tweets">MOD_SOCIAL_TWITTER_TWEETS</option>
 					<option value="profile">MOD_SOCIAL_TWITTER_PROFILE</option>
 					<option value="faves">MOD_SOCIAL_TWITTER_FAVORITE_TWEETS</option>
@@ -73,7 +72,7 @@
 				 <field name="twitter_desc" type="text" default="by phrase..." label="MOD_SOCIAL_TWITTER_SEARCH_DESC" description="MOD_SOCIAL_TWITTER_SEARCH_DESC_DESC" />
 				 	<!-- user list settings -->
 					<field name="twitter_lists" type="twitterlists" directory="modules/mod_social_gk5/config/" label="MOD_SOCIAL_TWITTER_LISTS" />
-					
+					<field name="twitter_lists_data" type="text" label="MOD_SOCIAL_TWITTER_LISTS" />
 			</fieldset>
 			
 			<!-- twitter layout -->

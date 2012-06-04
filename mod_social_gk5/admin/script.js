@@ -7,8 +7,9 @@
 // DOMContentLoaded event
 window.addEvent("domready",function(){
 	// initialize the configuration manager
-	getLists();
 	var configManager = new SocialGK5ConfigManager();
+	// get lists
+	getLists();
 	// initialize twitter lists 
 	var twitterLists = new SocialGK5TwitterList();
 	// initialize the main class
@@ -46,6 +47,9 @@ window.addEvent("domready",function(){
 	$$('.px').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">px</span>"});
 	document.id('jform_params_required_field').getParent().innerHTML = "<span class=\"required\">APP ID is required for this plugin</span>";
 	hideTwitterOptions();
+	
+	
+	
 });
 
 /*
@@ -58,6 +62,7 @@ var SocialGK5Settings = new Class({
 	initialize: function() {
 		// helper handler
 		$this = this;
+		this.formInit();
 		// columns/rows view
 		var merge = document.id('jform_params_twitter_columns-lbl').getParent();
 		var rows = document.id('jform_params_twitter_rows-lbl').getParent();
@@ -223,6 +228,64 @@ var SocialGK5Settings = new Class({
 		
 		
 	},
+	
+	formInit: function() {
+		// fix the width of the options when the browser window is too small
+		document.id('module-sliders').getParent().setStyle('position','relative');
+		//
+		var baseW = document.id('module-sliders').getSize().x;
+		var minW = 540;
+		//
+		if(baseW < minW) {
+			document.id('module-sliders').setStyles({
+				"position": "absolute",
+				"background": "white",
+				"width": baseW + "px",
+				"padding": "8px",
+				"-webkit-box-shadow": "-8px 0 15px #aaa",
+				"-moz-box-shadow": "-8px 0 15px #aaa",
+				"box-shadow": "-8px 0 15px #aaa"
+			});
+	
+			var WidthFX = new Fx.Morph(document.id('module-sliders'), {duration: 150});
+			var mouseOver = false;
+	
+			document.id('module-sliders').addEvent('mouseenter', function() {
+				mouseOver = true;
+				WidthFX.start({
+					'width': minW,
+					'margin-left': (-1 * (minW - baseW))
+				});
+			});
+	
+			document.id('module-sliders').addEvent('mouseleave', function() {
+				mouseOver = false;
+				(function() {
+					if(!mouseOver) {
+						WidthFX.start({
+							'width': baseW,
+							'margin-left': 0
+						});
+					}
+				}).delay(750);
+			});
+		}
+		$$('.panel h3.title').each(function(panel) {
+			panel.addEvent('click', function(){
+				if(panel.hasClass('pane-toggler')) {
+					(function(){ 
+						panel.getParent().getElement('.pane-slider').setStyle('height', 'auto'); 
+					}).delay(750);
+				
+					(function() {
+						var myFx = new Fx.Scroll(window, { duration: 150 }).toElement(panel);
+					}).delay(250);
+				}	
+			});
+		});
+		
+	},
+	
 	// function used to generate the updates list
 	getUpdates: function() {
 		var update_url = 'https://www.gavick.com/component/gk2_update/?task=json&tmpl=json&query=product&product=mod_social_gk5';
@@ -261,46 +324,6 @@ var SocialGK5Settings = new Class({
 		string = string.replace(/\[ampersand\]/g, '&').replace(/\[leftbracket\]/g, '<').replace(/\[rightbracket\]/g, '>');
 		return string;
 	}
-});
-
-/*
- *
- * Configuration manager class
- *
- */
-var SocialGK5ConfigManager = new Class({
-	// constructor
-	initialize: function() {
-		// create additional variable to avoid problems with the scopes
-		$obj = this;
-		// button load
-		document.id('config_manager_load').addEvent('click', function(e) {
-			e.stop();
-		    $obj.operation('load');
-		});
-		// button save
-		document.id('config_manager_save').addEvent('click', function(e) {
-			e.stop();
-		   	$obj.operation('save');
-		});
-	},
-	// operation made by the class
-	operation: function(type) {
-		// current url 
-		var current_url = window.location;
-		// check if the current url has no hashes
-		if((current_url + '').indexOf('#', 0) === -1) {
-			// if no - put the variables
-		    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');    
-		} else {
-			// if the url has hashes - remove the hash 
-		    current_url = current_url.substr(0, (current_url + '').indexOf('#', 0) - 1);
-		    // and put the variables
-		    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');
-		}
-		// redirect to the url with variables
-		window.location = current_url;
-	} 
 });
 
 var SocialGK5TwitterList = new Class({
@@ -383,3 +406,44 @@ function hideTwitterOptions() {
 						});
 					}
 }
+
+/*
+ *
+ * Configuration manager class
+ *
+ */
+var SocialGK5ConfigManager = new Class({
+	// constructor
+	initialize: function() {
+		// create additional variable to avoid problems with the scopes
+		$obj = this;
+		// button load
+		document.id('config_manager_load').addEvent('click', function(e) {
+			e.stop();
+		    $obj.operation('load');
+		});
+		// button save
+		document.id('config_manager_save').addEvent('click', function(e) {
+			e.stop();
+		   	$obj.operation('save');
+		});
+	},
+	// operation made by the class
+	operation: function(type) {
+		// current url 
+
+		var current_url = window.location;
+		// check if the current url has no hashes
+		if((current_url + '').indexOf('#', 0) === -1) {
+			// if no - put the variables
+		    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');    
+		} else {
+			// if the url has hashes - remove the hash 
+		    current_url = current_url.substr(0, (current_url + '').indexOf('#', 0) - 1);
+		    // and put the variables
+		    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');
+		}
+		// redirect to the url with variables
+		window.location = current_url;
+	} 
+});

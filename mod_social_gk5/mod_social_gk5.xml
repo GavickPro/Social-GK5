@@ -23,12 +23,13 @@
 	<files>
 		<filename module="mod_social_gk5">mod_social_gk5.php</filename>
 		<filename module="mod_social_gk5">mod_social_gk5.xml</filename>
-		<filename module="mod_social_gk5">helper.php</filename>
 		<filename module="mod_social_gk5">index.html</filename>
 		<folder>admin</folder>
+		<folder>cache</folder>
 		<folder>config</folder>
+		<folder>data_source</folder>
+		<folder>images</folder>
 		<folder>styles</folder>
-		<folder>scripts</folder>
 		<folder>tmpl</folder>
 	</files>
 	<languages>

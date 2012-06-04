@@ -28,8 +28,8 @@ DynamicColorPicker = new Class({
         textField: null,
         startMode:'h',
         startHex:'ff0000',
-        pickerPath: '../modules/mod_highlighter_gk4/admin/colorpicker',
-        autoLoadPath: '../modules/mod_highlighter_gk4/admin/colorpicker'
+        pickerPath: '../modules/mod_social_gk5/admin/colorpicker',
+        autoLoadPath: '../modules/mod_social_gk5/admin/colorpicker'
     },
 
     initialize: function(options) {

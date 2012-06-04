@@ -64,6 +64,7 @@ div.gkTweet > div p {
 	margin: 0;	
 	line-height: 17px;
 	font-size: 11px;
+	word-wrap: break-word;
 }
 div.gkTweet > div > span.gkTweetInfo {
 	font-size: 10px;	

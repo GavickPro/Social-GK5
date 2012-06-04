@@ -446,3 +446,5 @@ background: -ms-linear-gradient(top, #ffffff 0%,#f9fcf7 100%);
 background: linear-gradient(top, #ffffff 0%,#f9fcf7 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f9fcf7',GradientType=0 );
 }
+
+h3#SOCIAL_TWITTER_BASIC-options + div li:last-child {border: none}

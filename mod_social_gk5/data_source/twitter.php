@@ -48,7 +48,7 @@ class SocialGK5TwitterHelper
 		}
   	
         if($this->config['twitter_cache'] == 1) {
-            if(filesize(realpath('modules/mod_social_gk5/cache/cache.xml')) == 0 || ((filemtime(realpath('modules/mod_social_gk5/cache/cache.xml')) + $this->config['twitter_cache_time'] * 60) < time())) {
+            if(filesize(realpath('modules/mod_social_gk5/cache/cache.json')) == 0 || ((filemtime(realpath('modules/mod_social_gk5/cache/cache.json')) + $this->config['twitter_cache_time'] * 60) < time())) {
 				
             // get the data from twitter
 			$this->getTweets();
@@ -56,14 +56,14 @@ class SocialGK5TwitterHelper
             if($this->error == '') {
                 // saving cache
                 if($this->pData != '') {
-                JFile::write(realpath('modules/mod_social_gk5/cache/cache.xml'), json_encode($this->pData));
-                JFile::write(realpath('modules/mod_social_gk5/cache/cache.backup.xml'), json_encode($this->pData));
+                JFile::write(realpath('modules/mod_social_gk5/cache/cache.json'), json_encode($this->pData));
+                JFile::write(realpath('modules/mod_social_gk5/cache/cache.backup.json'), json_encode($this->pData));
             	}
             } else {
-                $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.xml')));
+                $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.json')));
             }
             } else {
-				$this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.xml')));
+				$this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json')));
 			} /// close
         } else {
 			$this->getTweets();	
@@ -249,7 +249,7 @@ class SocialGK5TwitterHelper
     function useBackup()
     {
         $this->error = '';
-        $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.xml')));
+        $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json')));
     }
 
 }

@@ -40,7 +40,13 @@ class SocialGK5TwitterHelper
 		setlocale(LC_ALL,"0");
 		$doc = JFactory::getDocument();
 		if($this->config['twitter_show_actions']) {
-			$doc->addScript("http://platform.twitter.com/widgets.js");
+			if($this->config['cookie_conset'] == 0) {
+						$content = '<script type="text/javascript" ';	
+			} else {
+						$content = '<script type="text/plain" class="cc-onconsent-social" ';	
+			}
+			$content .= 'src="http://platform.twitter.com/widgets.js"></script>';
+			echo $content;
 		}
 		if($this->config['twitter_use_css']) {
 			$uri = JURI::getInstance();

@@ -46,12 +46,17 @@ class SocialGK5GPLusHelper
             $link_founded = true;
         }
         
+		if($this->config['cookie_conset'] == 0) {
+			$type = '<script type="text/javascript"';	
+		} else {
+			$type = '<script type="text/plain" class="cc-onconsent-social"';	
+		}
+		
         if($this->config['gplus_badge_style'] == 'standard_badge' || $this->config['gplus_badge_style'] == 'small_badge') {
             if($this->config['gplus_async_script'] == 1) {
                 // async script mode
                 if($link_founded) {
-                    $content = '<script type="text/javascript">
-                                window.___gcfg = {lang: \''.$this->config['gplus_lang_code'].'\'};
+                    $content = $type.'>window.___gcfg = {lang: \''.$this->config['gplus_lang_code'].'\'};
                                 (function() 
                                 {var po = document.createElement("script");
                                 po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
@@ -59,7 +64,7 @@ class SocialGK5GPLusHelper
                                 s.parentNode.insertBefore(po, s);
                                 })();</script>';
                  } else {
-                    $content = '<link href="https://plus.google.com/'.$this->config['gplus_id'].'" rel="publisher" /><script type="text/javascript">
+                    $content = '<link href="https://plus.google.com/'.$this->config['gplus_id'].'" rel="publisher" />'.$type.'>
                             window.___gcfg = {lang: \''.$this->config['gplus_lang_code'].'\'};
                             (function() 
                             {var po = document.createElement("script");
@@ -70,9 +75,9 @@ class SocialGK5GPLusHelper
                  }
             } else {
                 if($link_founded) {
-                    $content = '<script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: \''.$this->config['gplus_lang_code'].'\'}</script>';
+                    $content = $type.' src="https://apis.google.com/js/plusone.js">{lang: \''.$this->config['gplus_lang_code'].'\'}</script>';
                 } else {
-                    $content = '<link href="https://plus.google.com/'.$this->config['gplus_id'].'" rel="publisher" /><script type="text/javascript" src="https://apis.google.com/js/plusone.js">{lang: \''.$this->config['gplus_lang_code'].'\'}</script>';
+                    $content = '<link href="https://plus.google.com/'.$this->config['gplus_id'].'" rel="publisher" />'.$type.' src="https://apis.google.com/js/plusone.js">{lang: \''.$this->config['gplus_lang_code'].'\'}</script>';
                 }
             }
         } else {
@@ -80,7 +85,7 @@ class SocialGK5GPLusHelper
         }
 		// if gplus script file doesn't exists in document head section
         if(!$script_founded && $this->config['gplus_id'] != '' && ($this->config['gplus_badge_style'] == 'standard_badge' || $this->config['gplus_badge_style'] == 'small_badge')){ 
-            $document->addCustomTag($content);
+            echo $content;
      	} 
 		// select proper layout to load
         if($this->config['gplus_badge_style'] == 'standard_badge' || $this->config['gplus_badge_style'] == 'small_badge') {

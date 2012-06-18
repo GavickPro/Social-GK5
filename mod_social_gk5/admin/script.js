@@ -416,16 +416,16 @@ var SocialGK5ConfigManager = new Class({
 	// constructor
 	initialize: function() {
 		// create additional variable to avoid problems with the scopes
-		$obj = this;
+		$obj_c = this;
 		// button load
 		document.id('config_manager_load').addEvent('click', function(e) {
 			e.stop();
-		    $obj.operation('load');
+		    $obj_c.operation('load');
 		});
 		// button save
 		document.id('config_manager_save').addEvent('click', function(e) {
 			e.stop();
-		   	$obj.operation('save');
+		   	$obj_c.operation('save');
 		});
 	},
 	// operation made by the class

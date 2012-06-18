@@ -39,7 +39,12 @@ class SocialGK5FacebookHelper
 		// set variable for false
 		$script_founded = 0;
 		// searching phrase facebook in scripts paths
-		$js = '<script>window.addEvent(\'load\', function() { if(document.id(\'fb-root\') == null){
+		if($this->config['cookie_conset'] == 0) {
+			$js = '<script type="text/javascript">';	
+		} else {
+			$js = '<script type="text/plain" class="cc-onconsent-social">';	
+		}
+		$js .= 'window.addEvent(\'load\', function() { if(document.id(\'fb-root\') == null){
 			console.log("not found"); 
 		var fbroot = new Element(\'div#fb-root\');
 		$$(\'body\').grab(fbroot);

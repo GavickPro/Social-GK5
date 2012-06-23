@@ -52,7 +52,7 @@ class SocialGK5GPLusHelper
 			$type = '<script type="text/plain" class="cc-onconsent-social"';	
 		}
 		
-        if($this->config['gplus_badge_style'] == 'standard_badge' || $this->config['gplus_badge_style'] == 'small_badge') {
+        if($this->config['gplus_badge_style'] == 'standard_badge') {
             if($this->config['gplus_async_script'] == 1) {
                 // async script mode
                 if($link_founded) {
@@ -84,11 +84,11 @@ class SocialGK5GPLusHelper
             $content = '<link href="https://plus.google.com/'.$this->config['gplus_id'].'" rel="publisher" />';
         }
 		// if gplus script file doesn't exists in document head section
-        if(!$script_founded && $this->config['gplus_id'] != '' && ($this->config['gplus_badge_style'] == 'standard_badge' || $this->config['gplus_badge_style'] == 'small_badge')){ 
+        if(!$script_founded && $this->config['gplus_id'] != '' && ($this->config['gplus_badge_style'] == 'standard_badge')){ 
             echo $content;
      	} 
 		// select proper layout to load
-        if($this->config['gplus_badge_style'] == 'standard_badge' || $this->config['gplus_badge_style'] == 'small_badge') {
+        if($this->config['gplus_badge_style'] == 'standard_badge') {
             require(JModuleHelper::getLayoutPath('mod_social_gk5', 'gplusBadge')); 
         } else {
             require(JModuleHelper::getLayoutPath('mod_social_gk5', 'gplusIcon')); 

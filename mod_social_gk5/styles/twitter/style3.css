@@ -1,5 +1,5 @@
 /**
-* Social GK5 - style 1
+* Social GK5 - style 3
 * @package Joomla!
 * @Copyright (C) 2009-2012 Gavick.com
 * @ All rights reserved
@@ -11,63 +11,70 @@ div.gkTweet {
     float: left;
     display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
-    color: #888;
+    color: #333;
     font-size: 11px;
 }
 div.gkTweet > div {
-    border: 1px solid #e2e2e2;
+    border: 1px solid #bbb;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     margin: 6px;
     padding: 8px;
-    background-image: linear-gradient(bottom, rgb(246, 246, 246) 39%, rgb(248, 248, 248) 85%);
-    background-image: -o-linear-gradient(bottom, rgb(246, 246, 246) 39%, rgb(248, 248, 248) 85%);
-    background-image: -moz-linear-gradient(bottom, rgb(246, 246, 246) 39%, rgb(248, 248, 248) 85%);
-    background-image: -webkit-linear-gradient(bottom, rgb(246, 246, 246) 39%, rgb(248, 248, 248) 85%);
-    background-image: -ms-linear-gradient(bottom, rgb(246, 246, 246) 39%, rgb(248, 248, 248) 85%);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.39, rgb(246, 246, 246)), color-stop(0.85, rgb(248, 248, 248)));
-    -moz-box-shadow: 0 3px 8px 0 #f8f8f8;
-    -webkit-box-shadow: 0 3px 8px 0 #f8f8f8;
-    box-shadow: 0 3px 8px 0 #f8f8f8;
+    background: #fff;
+    -moz-box-shadow: 0 3px 3px 0 #e7e7e7;
+    -webkit-box-shadow: 0 3px 3px 0 #e7e7e7;
+    box-shadow: 0 3px 3px 0 #e7e7e7;
+    -moz-transition: -moz-background 0.8s linear;
+    -o-transition: -o-background 0.8s linear;
+    -webkit-transition: -webkit-background 0.8s linear;
+    transition: background 0.8s linear;
+}
+div.gkTweet > div:hover { background: #d5ecf5 }
+p.gkTweetContent {
+    font-size: 15px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    margin: 10px 10px 5px 10px;
+    line-height: 20px;
 }
 div.gkTweet > div > img {
     height: 100%;
     float: left;
-    width: 50px;
-    height: 50px;
-    margin: 15px 15px 15px 10px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    width: 32px;
+    height: 32px;
+    margin: 0 15px 0 10px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
 }
 span.gkTweetName a {
-    color: #1686cf;
+    color: #333;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 13px;
+    display: block;
+    line-height: 12px;
 }
 span.gkTweetName small {
-    font-size: 10px;
-    color: #a3a3a3;
-}
-div.gkTweet > div a { color: #208bd0 }
-div.gkTweet > div a:hover { color: #135e8e }
-div.gkTweet > div p {
-    margin: 0;
-    line-height: 17px;
     font-size: 11px;
-    word-wrap: break-word;
+    color: #999;
 }
+div.gkTweet > div a:hover { color: #135e8e }
+p.gkTweetContent a { color: #000 }
+div.gkTweet > div p { word-wrap: break-word }
 div.gkTweet > div > span.gkTweetInfo {
     font-size: 10px;
-    background: url(../../images/bird_blue.png) no-repeat 0 -2px transparent;
-    padding-left: 24px;
+    margin-left: 11px;
 }
+div.gkTweet > div > span.gkTweetInfo a:first-child { padding-right: 10px }
 div.gkTweet > div > span.gkTweetInfo a {
     padding-left: 20px;
     background: url(../../images/twitterSprite.png) no-repeat 0 -1px transparent;
     margin-left: 8px;
+    float: right;
+    line-height: 14px;
 }
+span.gkTweetInfo,
+span.gkTweetInfo a { color: #999 }
 div.gkTweet > div > span.gkTweetInfo a:first-child { margin-left: 5px }
 div.gkTweet > div > span.gkTweetInfo a.reply { background-position: 0 -1px }
 div.gkTweet > div > span.gkTweetInfo a.reply:hover { background-position: 0 -18px }
@@ -75,3 +82,7 @@ div.gkTweet > div > span.gkTweetInfo a.retweet { background-position: 0 -66px }
 div.gkTweet > div > span.gkTweetInfo a.retweet:hover { background-position: 0 -81px }
 div.gkTweet > div > span.gkTweetInfo a.favorite { background-position: 0 -34px }
 div.gkTweet > div > span.gkTweetInfo a.favorite:hover { background-position: 0 -50px }
+div.separator {
+    width: 100%;
+    clear: both;
+}

@@ -18,7 +18,7 @@
 			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
 		</style>
 		
-		<span class="readonly"><h1>Social GK5<small>ver. 1.0</small></h1><p>GK5 is one product of the next generation of GavickPro extensions designed exclusively for Joomla 2.5+.</p><p>Curabitur blandit tempus porttitor. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit.</a></p><p class='license'>Social GK5 is released under the <a target="_blank" href="http://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL v2 license.</a></p></span>
+		<span class="readonly"><h1>Social GK5<small>ver. 1.0</small></h1><p>GK5 is one product of the next generation of GavickPro extensions designed exclusively for Joomla 2.5+.</p><p>Social GK5 combines functionalities from FB GK4, Gplus GK4 and completely new support for data source from a Twitter portal. Social GK5 supports the most popular services like: Facebook, Google+ and Twitter. This module allows visitors to connect directly and to promote your brand on the most popular social portals.</p> <p class="homepage"><a target="_blank" href="https://www.gavick.com/social-gk5.html">Learn more at the Social GK5 project website.</a></p><p class="license">Social GK5 is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU/GPL v2 license.</a></p></span></span>
 	]]></description>
 	<files>
 		<filename module="mod_social_gk5">mod_social_gk5.php</filename>
@@ -151,7 +151,7 @@
 			
 			<!-- google plus options -->
 			<fieldset name="SOCIAL_GPLUS_BASIC">
-				<field name="gplus_id" type="text" default="123456789012345678901" size="30" class="input-gplus-url" label="MOD_SOCIAL_GPLUS_GK4_ID" description="MOD_SOCIAL_GPLUS_GK4_ID_DESC"/>	
+				<field name="gplus_id" type="text" default="110937149959405490547" size="30" class="input-gplus-url" label="MOD_SOCIAL_GPLUS_GK4_ID" description="MOD_SOCIAL_GPLUS_GK4_ID_DESC"/>	
 				<field name="gplus_badge_style" type="list" default="standard_badge" label="MOD_SOCIAL_GPLUS_BADGE_STYLE" description="MOD_SOCIAL_GPLUS_BADGE_STYLE_DESC">
 							<option value="standard_badge">MOD_SOCIAL_GPLUS_STANDARD_BADGE</option>
 							<option value="small_icon">MOD_SOCIAL_GPLUS_SMALL_ICON</option>

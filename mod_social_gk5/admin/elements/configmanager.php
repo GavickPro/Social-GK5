@@ -16,7 +16,7 @@ class JFormFieldConfigManager extends JFormField {
 		$mod_id = $uri->getVar('id', 'none');
 		$task = $uri->getVar('gk_module_task', 'none');
 		$file = $uri->getVar('gk_module_file', 'none');
-		$base_path = str_replace('admin/elements', '', dirname(__FILE__)).'config/';
+		$base_path = str_replace('admin'.DS.'elements', '', dirname(__FILE__)).'config'.DS;
 		// helping variables
 		$msg = '';
 		// if the URL contains proper variables
@@ -80,17 +80,31 @@ class JFormFieldConfigManager extends JFormField {
 				} else {
 					$msg = '<div class="gk_error">'.JText::_('MOD_SOCIAL_GK5_CONFIG_FILE_WASNT_SAVED_PLEASE_CHECK_PERM') .'</div>';
 				}
+			} else if($task == 'delete') {
+				// Check if file exists before deleting
+				if(JFile::exists($base_path . $file)) {
+					if(JFile::delete($base_path . $file)) {
+						$msg = '<div class="gk_ok">'. $file . ' ' . JText::_('MOD_SOCIAL_GK5_CONFIG_FILE_DELETED_AS') .'</div>';
+					} else {
+						$msg = '<div class="gk_error">'. $file . ' ' . JText::_('MOD_SOCIAL_GK5_CONFIG_FILE_WASNT_DELETED_PLEASE_CHECK_PERM') .'</div>';
+					}
+				} else {
+					$msg = '<div class="gk_error">'. $file . ' ' . JText::_('MOD_SOCIAL_GK5_CONFIG_FILE_WASNT_DELETED_PLEASE_CHECK_FILE') .'</div>';
+				}	
 			}
 		}
 		// generate the select list
 		$options = (array) $this->getOptions();
 		$file_select = JHtml::_('select.genericlist', $options, 'name', '', 'value', 'text', 'default', 'config_manager_load_filename');
+		$file_delete = JHtml::_('select.genericlist', $options, 'name', '', 'value', 'text', 'default', 'config_manager_delete_filename');
 		// return the standard formfield output
 		$html = '';
 		$html .= '<div id="config_manager_form">';
 		$html .= $msg;
 		$html .= '<div><label>'.JText::_('MOD_SOCIAL_GK5_CONFIG_LOAD').'</label>'.$file_select.'<button id="config_manager_load">'.JText::_('MOD_SOCIAL_GK5_CONFIG_LOAD_BTN').'</button></div>';
 		$html .= '<div><label>'.JText::_('MOD_SOCIAL_GK5_CONFIG_SAVE').'</label><input type="text" id="config_manager_save_filename" /><span>.json</span><button id="config_manager_save">'.JText::_('MOD_SOCIAL_GK5_CONFIG_SAVE_BTN').'</button></div>';
+		$html .= '<div><label>'.JText::_('MOD_SOCIAL_GK5_CONFIG_DELETE').'</label>'.$file_delete.'<button id="config_manager_delete">'.JText::_('MOD_SOCIAL_GK5_CONFIG_DELETE_BTN').'</button></div>';
+		$html .= '<div><label>'.JText::_('MOD_SOCIAL_GK4_CONFIG_DIRECTORY').'</label><span>'.$base_path.'</span></div>';
 		$html .= '</div>';
 		// finish the output
 		return $html;

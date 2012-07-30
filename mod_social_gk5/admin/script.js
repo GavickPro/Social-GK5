@@ -427,6 +427,10 @@ var SocialGK5ConfigManager = new Class({
 			e.stop();
 		   	$obj_c.operation('save');
 		});
+		document.id('config_manager_delete').addEvent('click', function(e) {
+			e.stop();
+		   	$obj_c.operation('delete');
+		});
 	},
 	// operation made by the class
 	operation: function(type) {

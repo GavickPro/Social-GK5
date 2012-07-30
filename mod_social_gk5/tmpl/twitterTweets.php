@@ -26,12 +26,12 @@ defined('_JEXEC') or die('Restricted access');
 			
 			<div class="gkTweet" style="width: <?php echo 100/$this->config['twitter_columns']."%!important"; ?>">
 				<div>
-				<!-- avatar -->
+				
 				<?php if($this->config['twitter_show_avatar']) : ?>
 						<img src="<?php echo $this->pData[$i]->avatar; ?>" alt="<?php echo $this->pData[$i]->name; ?>" />
 				<?php endif; ?>
 			
-				<!-- username and fullname -->
+				
 				<?php if($this->config['twitter_show_uname'] || $this->config['twitter_show_fname']) : ?>
 				<span class="gkTweetName">
 						<?php if($this->config['twitter_show_uname']) : ?>
@@ -43,19 +43,17 @@ defined('_JEXEC') or die('Restricted access');
 				</span>
 				<?php endif; ?>
 				
-				<!-- tweet content -->
+				
 				<p class="gkTweetContent"><?php echo $this->pData[$i]->text; ?></p>
 				
 				
 				<span class="gkTweetInfo">
-				<!-- publish date -->
 				<?php if($this->config['twitter_time_mode'] == 'cdate') : ?>
 					<?php echo $this->pData[$i]->time_diff.' '.JText::_( 'MOD_SOCIAL_AGO' ); ?>
 				<?php else : ?>
 					<?php echo $this->pData[$i]->time; ?>
 				<?php endif; ?>
 				
-				<!-- actions -->
 				<?php if($this->config['twitter_show_actions']) : ?>
 					<a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $this->pData[$i]->id; ?>"><?php echo JText::_( 'MOD_SOCIAL_REPLY' ) ?></a>
 					<a class="retweet" href="https://twitter.com/intent/retweet?tweet_id=<?php echo $this->pData[$i]->id; ?>"><?php echo JText::_( 'MOD_SOCIAL_RETWEET' ) ?></a>
@@ -67,7 +65,7 @@ defined('_JEXEC') or die('Restricted access');
 				</div>
 				
 				<?php if(($i+1) % ($this->config['twitter_columns']) == 0) : ?>
-					<div syle="clear: both"></div>
+					<div style="clear: both; width: 100%"></div>
 				<?php endif; ?>
 		
 		<?php endfor; ?>

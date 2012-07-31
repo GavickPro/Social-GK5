@@ -65,7 +65,7 @@ defined('_JEXEC') or die('Restricted access');
 				</div>
 				
 				<?php if(($i+1) % ($this->config['twitter_columns']) == 0) : ?>
-					<div style="clear: both; width: 100%"></div>
+					<div class="gkDivider"></div>
 				<?php endif; ?>
 		
 		<?php endfor; ?>

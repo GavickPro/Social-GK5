@@ -15,7 +15,9 @@ window.addEvent("domready",function(){
 	// initialize the main class
 	var settings = new SocialGK5Settings();
 	// get the updates
-	settings.getUpdates();
+	document.id('SOCIAL_UPDATES-options').addEvent('click', function(){
+		settings.getUpdates();
+	 });
 	// intialize color picker
 	DynamicColorPicker.auto(".color-field");
 	

@@ -138,8 +138,8 @@
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
 				<field name="twitter_time_mode" type="list" default="cdate" label="MOD_SOCIAL_TWITTER_TIME" description="MOD_SOCIAL_TWITTER_TIME_DESC">
-				        <option value="cdate">MOD_SOCIAL_TWITTER_CDATE</option>
-				        <option value="tdate">MOD_SOCIAL_TWITTER_TIMESTAMP</option>
+				        <option value="tdate">MOD_SOCIAL_TWITTER_CDATE</option>
+				        <option value="cdate">MOD_SOCIAL_TWITTER_TIMESTAMP</option>
 				</field>
 				<field name="twitter_cache" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_CACHE" description="MOD_SOCIAL_TWITTER_CACHE_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>

@@ -104,7 +104,7 @@ class JFormFieldConfigManager extends JFormField {
 		$html .= '<div><label>'.JText::_('MOD_SOCIAL_GK5_CONFIG_LOAD').'</label>'.$file_select.'<button id="config_manager_load">'.JText::_('MOD_SOCIAL_GK5_CONFIG_LOAD_BTN').'</button></div>';
 		$html .= '<div><label>'.JText::_('MOD_SOCIAL_GK5_CONFIG_SAVE').'</label><input type="text" id="config_manager_save_filename" /><span>.json</span><button id="config_manager_save">'.JText::_('MOD_SOCIAL_GK5_CONFIG_SAVE_BTN').'</button></div>';
 		$html .= '<div><label>'.JText::_('MOD_SOCIAL_GK5_CONFIG_DELETE').'</label>'.$file_delete.'<button id="config_manager_delete">'.JText::_('MOD_SOCIAL_GK5_CONFIG_DELETE_BTN').'</button></div>';
-		$html .= '<div><label>'.JText::_('MOD_SOCIAL_GK5_CONFIG_DIRECTORY').'</label><span>'.$base_path.'</span></div>';
+		$html .= '<div><label>'.JText::_('MOD_SOCIAL_GK4_CONFIG_DIRECTORY').'</label><span>'.$base_path.'</span></div>';
 		$html .= '</div>';
 		// finish the output
 		return $html;

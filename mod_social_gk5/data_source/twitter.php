@@ -130,6 +130,7 @@ class SocialGK5TwitterHelper
 					$this->pData[$i]['avatar'] = $decode['results'][$i]['profile_image_url'];
                  	$this->pData[$i]['name'] = $decode['results'][$i]['from_user_name'];
                 	$this->pData[$i]['time'] = date("d M", strtotime($decode['results'][$i]['created_at']));
+					$this->pData[$i]['timestamp'] = $decode['results'][$i]['created_at'];
                 	$this->pData[$i]['time_diff'] = $this->dateDifference($decode['results'][$i]['created_at']);
                  	$this->pData[$i]['url'] = $decode['results'][$i]['from_user'];
 					
@@ -155,12 +156,14 @@ class SocialGK5TwitterHelper
 							$this->pData[$i]['text'] = str_replace($m, "<a href='".$m."'>".$m."</a>", $this->pData[$i]['text']);
 						}
 					}
+					
+					//$this->pData = array_reverse($this->pData);
                 }
      						
                 function cmp($a, $b)
                 {
-                    $a = $a['time'];
-                    $b = $b['time'];
+                    $a = strtotime($a['timestamp']);
+                    $b = strtotime($b['timestamp']);
                     return ($a == $b) ? 0 : ($a > $b ? -1 : 1);
                 }
                 if($this->config['twitter_search_query'] == '' || $this->pData=='') {

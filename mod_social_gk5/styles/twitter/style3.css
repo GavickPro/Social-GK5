@@ -82,7 +82,4 @@ div.gkTweet > div > span.gkTweetInfo a.retweet { background-position: 0 -66px }
 div.gkTweet > div > span.gkTweetInfo a.retweet:hover { background-position: 0 -81px }
 div.gkTweet > div > span.gkTweetInfo a.favorite { background-position: 0 -34px }
 div.gkTweet > div > span.gkTweetInfo a.favorite:hover { background-position: 0 -50px }
-div.separator {
-    width: 100%;
-    clear: both;
-}
+div.gkDivider { clear: both; width: 100% }

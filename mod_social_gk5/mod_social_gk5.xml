@@ -151,7 +151,7 @@
 			
 			<!-- google plus options -->
 			<fieldset name="SOCIAL_GPLUS_BASIC">
-				<field name="gplus_id" type="text" default="110937149959405490547" size="30" class="input-gplus-url" label="MOD_SOCIAL_GPLUS_GK4_ID" description="MOD_SOCIAL_GPLUS_GK4_ID_DESC"/>	
+				<field name="gplus_id" type="text" default="110937149959405490547" size="30" class="input-gplus-url" label="MOD_SOCIAL_GPLUS_GK5_ID" description="MOD_SOCIAL_GPLUS_GK5_ID_DESC"/>	
 				<field name="gplus_badge_style" type="list" default="standard_badge" label="MOD_SOCIAL_GPLUS_BADGE_STYLE" description="MOD_SOCIAL_GPLUS_BADGE_STYLE_DESC">
 							<option value="standard_badge">MOD_SOCIAL_GPLUS_STANDARD_BADGE</option>
 							<option value="small_icon">MOD_SOCIAL_GPLUS_SMALL_ICON</option>

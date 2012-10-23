@@ -15,41 +15,35 @@ window.addEvent("domready",function(){
 	// initialize the main class
 	var settings = new SocialGK5Settings();
 	// get the updates
-	document.id('SOCIAL_UPDATES-options').addEvent('click', function(){
+	$$('ul.nav a[href=#options-SOCIAL_UPDATES]').addEvent('click', function(){
 		settings.getUpdates();
 	 });
 	// intialize color picker
-	DynamicColorPicker.auto(".color-field");
+	//DynamicColorPicker.auto(".color-field");
 	
-	$$('.gk_switch').each(function(el){
-		el.setStyle('display','none');
-		var style = (el.value == 'true' || el.value == 1) ? 'on' : 'off';
-		var switcher = new Element('div',{'class' : 'switcher-'+style});
-		switcher.inject(el, 'after');
-		switcher.addEvent("click", function(){
-			if(el.value == 'true' || el.value=='false') {
-			if(el.value == 'true'){
-				switcher.setProperty('class','switcher-off');
-				el.value = 'false';
-			}else{
-				switcher.setProperty('class','switcher-on');
-				el.value = 'true';
-			}
-			} else {
-			if(el.value == 1){
-				switcher.setProperty('class','switcher-off');
-				el.value = 0;
-			}else{
-				switcher.setProperty('class','switcher-on');
-				el.value = 1;
-			}
-			}
-		});
-	});
-	$$('.px').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">px</span>"});
+	$$('.input-pixels').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\">" + el.getParent().innerHTML + "<span class=\"add-on\">px</span></div>"});
+	$$('.input-ms').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\">" + el.getParent().innerHTML + "<span class=\"add-on\">ms</span></div>"});
+	$$('.input-percents').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\">" + el.getParent().innerHTML + "<span class=\"add-on\">%</span></div>"});
+	$$('.input-minutes').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\">" + el.getParent().innerHTML + "<span class=\"add-on\">minutes</span></div>"});
+	$$('.input-gplus').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\"><span class=\"add-on\">http://plus.google.com/</span>" + el.getParent().innerHTML + "</div>"});
+	
+	
+	
+	$$('.gkFormLine').each(function(el){el.getParent().setStyle('margin-left', '5px') });
 	document.id('jform_params_required_field').getParent().innerHTML = "<span class=\"required\">APP ID is required for this plugin</span>";
+	document.id('config_manager_form').getParent().setStyle('margin-left', '10px');
+	document.id('gk_module_updates').getParent().setStyle('margin-left', '10px');
+	document.id('gk_about_us').getParent().setStyle('margin-left', '10px');
+	
 	hideTwitterOptions();
 	
+		/*
+	['jform_params_twitter_widget_color', 'jform_params_twitter_tweet_color', 'jform_params_twitter_link_color', 'jform_params_twitter_widget_text_color', 'jform_params_twitter_tweet_text_color'].each(function(el) {
+		el.addEvent('change', function() {
+		this.updateTwitterSet();
+		
+		});
+	});*/
 	
 	
 });
@@ -65,6 +59,7 @@ var SocialGK5Settings = new Class({
 		// helper handler
 		$this = this;
 		this.formInit();
+		updateTwitterSet();
 		// columns/rows view
 		var merge = document.id('jform_params_twitter_columns-lbl').getParent();
 		var rows = document.id('jform_params_twitter_rows-lbl').getParent();
@@ -73,15 +68,23 @@ var SocialGK5Settings = new Class({
 		rows.innerHTML = rows.innerHTML + columns;
 		merge.destroy();
 		
-		//minutes in cache
-		document.id('jform_params_twitter_cache_time-lbl').getParent().innerHTML = document.id('jform_params_twitter_cache_time-lbl').getParent().innerHTML + '<span class="minutes">minutes</span>';
+		['jform_params_twitter_widget_text_color','jform_params_twitter_widget_text_color', 'jform_params_twitter_widget_text_color', 'jform_params_twitter_widget_color', 'jform_params_twitter_tweet_color', 'jform_params_twitter_link_color', 'jform_params_twitter_tweet_text_color' ].each(function(el) {
+			document.id(el).addEvent('blur', function() {
+				updateTwitterSet();
+			});
+			document.id(el).addEvent('change', function() {
+				updateTwitterSet();
+			});
+			
+			
+		});
 		
 		// current mode
 		var sourceMode = document.id('jform_params_module_data_source').get('value');
 				if(sourceMode == 'fb') {
 					document.id('jform_params_module_data_source').addClass('fb');
-					$$('.panel h3').each(function(item, index){
-						if(String.from(item.get('id')).contains('TWITTER')==true || String.from(item.get('id')).contains('GPLUS')==true){
+					$$('ul.nav li a').each(function(item, index){
+						if(String.from(item.get('href')).contains('TWITTER')==true || String.from(item.get('href')).contains('GPLUS')==true){
 							item.getParent().addClass('hidden');
 						} else {
 							item.getParent().removeClass('hidden');
@@ -89,8 +92,8 @@ var SocialGK5Settings = new Class({
 					});
 				} else if (sourceMode == 'gplus') {
 					document.id('jform_params_module_data_source').addClass('gplus');
-					$$('.panel h3').each(function(item, index){
-						if(String.from(item.get('id')).contains('SOCIAL_FB')==true || String.from(item.get('id')).contains('TWITTER')==true){
+					$$('ul.nav li a').each(function(item, index){
+						if(String.from(item.get('href')).contains('SOCIAL_FB')==true || String.from(item.get('href')).contains('TWITTER')==true){
 							item.getParent().addClass('hidden');
 						} else {
 							item.getParent().removeClass('hidden');
@@ -98,8 +101,8 @@ var SocialGK5Settings = new Class({
 					});
 				} else {
 					document.id('jform_params_module_data_source').addClass('twitter');
-					$$('.panel h3').each(function(item, index){
-						if(String.from(item.get('id')).contains('SOCIAL_FB')==true || String.from(item.get('id')).contains('GPLUS')==true){
+					$$('ul.nav li a').each(function(item, index){
+						if(String.from(item.get('href')).contains('SOCIAL_FB')==true || String.from(item.get('href')).contains('GPLUS')==true){
 							item.getParent().addClass('hidden');
 						} else {
 							item.getParent().removeClass('hidden');
@@ -110,13 +113,15 @@ var SocialGK5Settings = new Class({
 		document.id('jform_params_twitter_preview-lbl').setStyle('display', 'none');
 	
 		// hide one of unnecessary tabs
+		
+		
 		document.id('jform_params_module_data_source').addEvent('change', function() {
 				sourceMode = document.id('jform_params_module_data_source').get('value');
 				if(sourceMode == 'fb') {
 					document.id('jform_params_module_data_source').removeAttribute('class');
 					document.id('jform_params_module_data_source').addClass('fb');
-					$$('.panel h3').each(function(item, index){
-						if(String.from(item.get('id')).contains('TWITTER')==true || String.from(item.get('id')).contains('GPLUS')==true){
+					$$('ul.nav li a').each(function(item, index){
+						if(String.from(item.get('href')).contains('TWITTER')==true || String.from(item.get('href')).contains('GPLUS')==true){
 							item.getParent().addClass('hidden');
 						} else {
 							item.getParent().removeClass('hidden');
@@ -125,8 +130,8 @@ var SocialGK5Settings = new Class({
 				} else if (sourceMode == 'gplus') {
 					document.id('jform_params_module_data_source').removeAttribute('class');
 					document.id('jform_params_module_data_source').addClass('gplus');
-					$$('.panel h3').each(function(item, index){
-						if(String.from(item.get('id')).contains('SOCIAL_FB')==true || String.from(item.get('id')).contains('TWITTER')==true){
+					$$('ul.nav li a').each(function(item, index){
+						if(String.from(item.get('href')).contains('SOCIAL_FB')==true || String.from(item.get('href')).contains('TWITTER')==true){
 							item.getParent().addClass('hidden');
 						} else {
 							item.getParent().removeClass('hidden');
@@ -135,8 +140,8 @@ var SocialGK5Settings = new Class({
 				} else {
 					document.id('jform_params_module_data_source').removeAttribute('class');
 					document.id('jform_params_module_data_source').addClass('twitter');
-					$$('.panel h3').each(function(item, index){
-						if(String.from(item.get('id')).contains('SOCIAL_FB')==true || String.from(item.get('id')).contains('GPLUS')==true){
+					$$('ul.nav li a').each(function(item, index){
+						if(String.from(item.get('href')).contains('SOCIAL_FB')==true || String.from(item.get('href')).contains('GPLUS')==true){
 							item.getParent().addClass('hidden');
 						} else {
 							item.getParent().removeClass('hidden');
@@ -157,14 +162,8 @@ var SocialGK5Settings = new Class({
 			
 		});
 		
-		// set colors for tweeter preview
-		$$('.twtr-hd h3').setStyle('color', document.id('jform_params_twitter_widget_text_color').get('value'));
-		$$('.twtr-hd h4 a').setStyle('color', document.id('jform_params_twitter_widget_text_color').get('value'));
-		$$('a.twtr-join-conv').setStyle('color',  document.id('jform_params_twitter_widget_text_color').get('value'));
-		$$('.twtr-doc').setStyle('background', document.id('jform_params_twitter_widget_color').get('value'));
-		$$('.twtr-timeline').setStyle('background', document.id('jform_params_twitter_tweet_color').get('value'));
-		$$('.twtr-tweet-text a').setStyle('color', document.id('jform_params_twitter_link_color').get('value'));
-		$$('.twtr-tweet-text > p').setStyle('color', document.id('jform_params_twitter_tweet_text_color').get('value'));
+		
+		
 		
 		// function used for changing data source to help if the onChange event doesn't fire
 		document.id('jform_params_module_data_source').addEvent('blur', function() {
@@ -174,126 +173,16 @@ var SocialGK5Settings = new Class({
 	
 	// function used to make other adjustments in the form
 	formInit: function() {
-		// fix the width of the options when the browser window is too small
-		document.id('module-sliders').getParent().setStyle('position','relative');
-		//
-		var baseW = document.id('module-sliders').getSize().x;
-		var minW = 540;
-		//
-		if(baseW < minW) {
-			document.id('module-sliders').setStyles({
-				"position": "absolute",
-				"background": "white",
-				"width": baseW + "px",
-				"padding": "8px",
-				"-webkit-box-shadow": "-8px 0 15px #aaa",
-				"-moz-box-shadow": "-8px 0 15px #aaa",
-				"box-shadow": "-8px 0 15px #aaa"
-			});
-	
-			var WidthFX = new Fx.Morph(document.id('module-sliders'), {duration: 150});
-			var mouseOver = false;
-	
-			document.id('module-sliders').addEvent('mouseenter', function() {
-				mouseOver = true;
-				WidthFX.start({
-					'width': minW,
-					'margin-left': (-1 * (minW - baseW))
-				});
-			});
-	
-			document.id('module-sliders').addEvent('mouseleave', function() {
-				mouseOver = false;
-				(function() {
-					if(!mouseOver) {
-						WidthFX.start({
-							'width': baseW,
-							'margin-left': 0
-						});
-					}
-				}).delay(750);
-			});
-		}
-		$$('.panel h3.title').each(function(panel) {
-			panel.addEvent('click', function(){
-				if(panel.hasClass('pane-toggler')) {
-					(function(){ 
-						panel.getParent().getElement('.pane-slider').setStyle('height', 'auto'); 
-					}).delay(750);
-				
-					(function() {
-						var myFx = new Fx.Scroll(window, { duration: 150 }).toElement(panel);
-					}).delay(250);
-				}	
-			});
-		});
-		
-		
+
 	},
 	
-	formInit: function() {
-		// fix the width of the options when the browser window is too small
-		document.id('module-sliders').getParent().setStyle('position','relative');
-		//
-		var baseW = document.id('module-sliders').getSize().x;
-		var minW = 540;
-		//
-		if(baseW < minW) {
-			document.id('module-sliders').setStyles({
-				"position": "absolute",
-				"background": "white",
-				"width": baseW + "px",
-				"padding": "8px",
-				"-webkit-box-shadow": "-8px 0 15px #aaa",
-				"-moz-box-shadow": "-8px 0 15px #aaa",
-				"box-shadow": "-8px 0 15px #aaa"
-			});
-	
-			var WidthFX = new Fx.Morph(document.id('module-sliders'), {duration: 150});
-			var mouseOver = false;
-	
-			document.id('module-sliders').addEvent('mouseenter', function() {
-				mouseOver = true;
-				WidthFX.start({
-					'width': minW,
-					'margin-left': (-1 * (minW - baseW))
-				});
-			});
-	
-			document.id('module-sliders').addEvent('mouseleave', function() {
-				mouseOver = false;
-				(function() {
-					if(!mouseOver) {
-						WidthFX.start({
-							'width': baseW,
-							'margin-left': 0
-						});
-					}
-				}).delay(750);
-			});
-		}
-		$$('.panel h3.title').each(function(panel) {
-			panel.addEvent('click', function(){
-				if(panel.hasClass('pane-toggler')) {
-					(function(){ 
-						panel.getParent().getElement('.pane-slider').setStyle('height', 'auto'); 
-					}).delay(750);
-				
-					(function() {
-						var myFx = new Fx.Scroll(window, { duration: 150 }).toElement(panel);
-					}).delay(250);
-				}	
-			});
-		});
 		
-	},
-	
 	// function used to generate the updates list
 	getUpdates: function() {
 		var update_url = 'https://www.gavick.com/component/gk2_update/?task=json&tmpl=json&query=product&product=mod_social_gk5';
 		var update_div = document.id('gk_module_updates');
 		// remove unnecesary label
-		document.id('jform_params_module_updates-lbl').destroy(); 
+		document.id('jform_params_module_updates-lbl').getParent().destroy(); 
 		// set the necessary content
 		update_div.innerHTML = '<div id="gk_update_div"><span id="gk_loader"></span>Loading update data from GavicPro Update service...</div>';
 		// get the data from the server
@@ -381,30 +270,43 @@ function getLists() {
 		document.id('jform_params_twitter_lists').set('value', document.id('jform_params_twitter_lists_data').value);
 }
 
+function updateTwitterSet() {
+	// set colors for tweeter preview
+	$$('.twtr-hd h3').setStyle('color', document.id('jform_params_twitter_widget_text_color').get('value'));
+	$$('.twtr-hd h4 a').setStyle('color', document.id('jform_params_twitter_widget_text_color').get('value'));
+	$$('a.twtr-join-conv').setStyle('color',  document.id('jform_params_twitter_widget_text_color').get('value'));
+	$$('.twtr-doc').setStyle('background', document.id('jform_params_twitter_widget_color').get('value'));
+	$$('.twtr-timeline').setStyle('background', document.id('jform_params_twitter_tweet_color').get('value'));
+	$$('.twtr-tweet-text a').setStyle('color', document.id('jform_params_twitter_link_color').get('value'));
+	$$('.twtr-tweet-text > p').setStyle('color', document.id('jform_params_twitter_tweet_text_color').get('value'));
+
+}
+
+
 function hideTwitterOptions() {
 	if(document.id('jform_params_twitter_widget').value == 'tweets') {
-						document.id('jform_params_twitter_username-lbl').getParent().addClass('hidden');
-						document.id('jform_params_twitter_title-lbl').getParent().addClass('hidden');
-						document.id('jform_params_twitter_desc-lbl').getParent().addClass('hidden');
-						document.id('jform_params_twitter_lists-lbl').getParent().addClass('hidden');
-						document.id('jform_params_twitter_preview-lbl').getParent().getAllPrevious().each(function(item, index) {
+						document.id('jform_params_twitter_username-lbl').getParent().getParent().addClass('hidden');
+						document.id('jform_params_twitter_title-lbl').getParent().getParent().addClass('hidden');
+						document.id('jform_params_twitter_desc-lbl').getParent().getParent().addClass('hidden');
+						document.id('jform_params_twitter_lists-lbl').getParent().getParent().addClass('hidden');
+						document.id('jform_params_twitter_preview-lbl').getParent().getParent().getAllPrevious().each(function(item, index) {
 							item.addClass('hidden');
-							document.id('jform_params_twitter_preview-lbl').getParent().addClass('hidden');
+							document.id('jform_params_twitter_preview-lbl').getParent().getParent().addClass('hidden');
 						});
-						document.id('jform_params_twitter_preview-lbl').getParent().getAllNext().each(function(item, index) {
+						document.id('jform_params_twitter_preview-lbl').getParent().getParent().getAllNext().each(function(item, index) {
 							item.removeClass('hidden');
 						});
 					} else {
-						document.id('jform_params_twitter_username-lbl').getParent().removeClass('hidden');
-						document.id('jform_params_twitter_title-lbl').getParent().removeClass('hidden');
-						document.id('jform_params_twitter_desc-lbl').getParent().removeClass('hidden');
-						document.id('jform_params_twitter_lists-lbl').getParent().removeClass('hidden');
-						document.id('jform_params_twitter_preview-lbl').getParent().getAllNext().each(function(item, index) {
+						document.id('jform_params_twitter_username-lbl').getParent().getParent().removeClass('hidden');
+						document.id('jform_params_twitter_title-lbl').getParent().getParent().removeClass('hidden');
+						document.id('jform_params_twitter_desc-lbl').getParent().getParent().removeClass('hidden');
+						document.id('jform_params_twitter_lists-lbl').getParent().getParent().removeClass('hidden');
+						document.id('jform_params_twitter_preview-lbl').getParent().getParent().getAllNext().each(function(item, index) {
 							item.addClass('hidden');
 						});
-						document.id('jform_params_twitter_preview-lbl').getParent().getAllPrevious().each(function(item, index) {
+						document.id('jform_params_twitter_preview-lbl').getParent().getParent().getAllPrevious().each(function(item, index) {
 							item.removeClass('hidden');
-							document.id('jform_params_twitter_preview-lbl').getParent().removeClass('hidden');
+							document.id('jform_params_twitter_preview-lbl').getParent().getParent().removeClass('hidden');
 						});
 					}
 }

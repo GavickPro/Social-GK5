@@ -245,10 +245,10 @@ DynamicColorPicker.generateId = (function() {
 
 DynamicColorPicker.auto = function(spec, options) {
     $$(spec).each(function(el) {
-        var cp = new DynamicColorPicker($extend(options || {}, { textField: el }));
+        var cp = new DynamicColorPicker(Object.append(options || {}, { textField: el }));
 
         var button = new Element("img", { src: cp.options.clientFilesPath + "/colorwheel.png", styles: { marginLeft: 3, marginBottom: -5, cursor: "pointer" }})
-            .injectAfter(el)
+            .inject(el, 'after')
             .addEvent('click', function() {
                 var p = el.getPosition();
                 cp.toggle(p.x, p.y + el.getSize().y);

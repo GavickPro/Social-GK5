@@ -14,7 +14,7 @@ class JFormFieldTwitterLists extends JFormField {
 		       '</select>';
 		// return the standard formfield output
 		$html = '';
-		$html .= $file_select.'<button id="twitter_load_lists">'.JText::_('MOD_SOCIAL_GK5_TWITTER_GET_LISTS_BUTTON').'</button>';
+		$html .= $file_select.'<button class="btn btn-info" id="twitter_load_lists">'.JText::_('MOD_SOCIAL_GK5_TWITTER_GET_LISTS_BUTTON').'</button>';
 		// finish the output
 		return $html;
 	}

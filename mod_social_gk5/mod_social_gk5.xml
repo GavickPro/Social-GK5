@@ -2,7 +2,7 @@
 <extension type="module" version="1.6.0" client="site" method="upgrade">
 	<name>Social GK5</name>
 	<author>GavickPro</author>
-	<creationDate>15/05/2012</creationDate>
+	<creationDate>19/10/2012</creationDate>
 	<copyright>Copyright (C) 2011-2012 GavickPro. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later</license>
 	<authorEmail>info@gavick.com</authorEmail>
@@ -42,13 +42,13 @@
 			<fieldset name="SOCIAL_BASIC">
 				<field type="asset" path="modules/mod_social_gk5/admin/" />
 				<field name="config_manager" type="configmanager" directory="modules/mod_social_gk5/config/" />
-				<field name="automatic_module_id" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_AUTOMATIC_MODULE_ID" description="MOD_SOCIAL_AUTOMATIC_MODULE_ID_DESC">
+				<field name="automatic_module_id" type="radio" class="btn-group" default="1" label="MOD_SOCIAL_AUTOMATIC_MODULE_ID" description="MOD_SOCIAL_AUTOMATIC_MODULE_ID_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
 				<field name="module_id" type="text" default="gk-social-1" label="MOD_SOCIAL_MODULE_ID" description="MOD_SOCIAL_MODULE_ID_DESC" />
 				<field name="moduleclass_sfx" type="text" default="" label="MOD_SOCIAL_MODCLASSSUFFIX" description="MOD_SOCIAL_MODCLASSSUFFIX_DESC" />
-				<field name="cookie_conset" type="list" class="gk_switch" default="0" label="MOD_SOCIAL_COOKIE_CONSET" description="MOD_SOCIAL_COOKIE_CONSET_DESC">
+				<field name="cookie_conset" type="radio" class="btn-group" default="0" label="MOD_SOCIAL_COOKIE_CONSET" description="MOD_SOCIAL_COOKIE_CONSET_DESC">
 				 		<option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
@@ -83,57 +83,57 @@
 			<!-- twitter layout -->
 			<fieldset name="SOCIAL_TWITTER_LAYOUT">
 				<!-- widget options -->
-				<field name="twitter_widget_color" type="text" default="#CECCCC" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_WIDGET_BG" description="MOD_SOCIAL_TWITTER_WIDGET_BG_DESC" />
-				<field name="twitter_tweet_color" type="text" default="#FFFFFF" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TWEET_BG" description="MOD_SOCIAL_TWITTER_TWEET_BG_DESC" />
-				<field name="twitter_link_color" type="text" default="#A51212" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_LINK_COLOR" description="MOD_SOCIAL_TWITTER_LINK_COLOR_DESC" />
-				<field name="twitter_widget_text_color" type="text" default="#474747" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_LINK_TEXT_COLOR_DESC" />
-				<field name="twitter_tweet_text_color" type="text" default="#444444" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR_DESC" />
-				<field name="twitter_auto_refresh" type="list" class="gk_switch" default="true" label="MOD_SOCIAL_TWITTER_AUTO_REFRESH" description="MOD_SOCIAL_TWITTER_AUTO_REFRESH_DESC">
+				<field name="twitter_widget_color" type="text" default="#CECCCC" class="input-small color-field" size="8" label="MOD_SOCIAL_TWITTER_WIDGET_BG" description="MOD_SOCIAL_TWITTER_WIDGET_BG_DESC" />
+				<field name="twitter_tweet_color" type="text" default="#FFFFFF" class="input-small color-field" size="8" label="MOD_SOCIAL_TWITTER_TWEET_BG" description="MOD_SOCIAL_TWITTER_TWEET_BG_DESC" />
+				<field name="twitter_link_color" type="text" default="#A51212" class="input-small color-field" size="8" label="MOD_SOCIAL_TWITTER_LINK_COLOR" description="MOD_SOCIAL_TWITTER_LINK_COLOR_DESC" />
+				<field name="twitter_widget_text_color" type="text" default="#474747" class="input-small color-field" size="8" label="MOD_SOCIAL_TWITTER_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_LINK_TEXT_COLOR_DESC" />
+				<field name="twitter_tweet_text_color" type="text" default="#444444" class="input-small color-field" size="8" label="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR_DESC" />
+				<field name="twitter_auto_refresh" type="radio" class="btn-group" default="true" label="MOD_SOCIAL_TWITTER_AUTO_REFRESH" description="MOD_SOCIAL_TWITTER_AUTO_REFRESH_DESC">
 				        <option value="false">MOD_SOCIAL_DISABLED</option>
 				        <option value="true">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_loop" type="list" class="gk_switch" default="true" label="MOD_SOCIAL_TWITTER_LOOP" description="MOD_SOCIAL_TWITTER_AUTO_LOOP_DESC">
+				<field name="twitter_loop" type="radio" class="btn-group" default="true" label="MOD_SOCIAL_TWITTER_LOOP" description="MOD_SOCIAL_TWITTER_AUTO_LOOP_DESC">
 				        <option value="false">MOD_SOCIAL_DISABLED</option>
 				        <option value="true">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_behaviour" type="list" default="default" label="MOD_SOCIAL_TWITTER_BEHAVIOUR" description="MOD_SOCIAL_TWITTER_BEHAVIOUR_DESC">
+				<field name="twitter_behaviour" type="list" default="default" class="input-medium" label="MOD_SOCIAL_TWITTER_BEHAVIOUR" description="MOD_SOCIAL_TWITTER_BEHAVIOUR_DESC">
 					<option value="default">MOD_SOCIAL_TWITTER_INTERVAL</option>
 					<option value="all">MOD_SOCIAL_TWITTER_ALL</option>
 				 </field>
-				<field name="twitter_include_scrollbar" type="list" class="gk_switch" default="false" label="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR" description="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR_DESC">
+				<field name="twitter_include_scrollbar" type="radio" class="btn-group" default="false" label="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR" description="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR_DESC">
 				        <option value="false">MOD_SOCIAL_DISABLED</option>
 				        <option value="true">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_interval" type="text" default="30000" size="5" label="MOD_SOCIAL_TWITTER_INTERVAL_TIME" description="MOD_SOCIAL_TWITTER_INTERVAL_TIME_DESC" />
-				<field name="twitter_height" type="text" default="250" size="5" label="MOD_SOCIAL_TWITTER_HEIGHT" description="MOD_SOCIAL_TWITTER_HEIGHT_DESC" />
+				<field name="twitter_interval" type="text" default="30000" class="input-small" size="5" label="MOD_SOCIAL_TWITTER_INTERVAL_TIME" description="MOD_SOCIAL_TWITTER_INTERVAL_TIME_DESC" />
+				<field name="twitter_height" type="text" class="input-small" default="250" size="5" label="MOD_SOCIAL_TWITTER_HEIGHT" description="MOD_SOCIAL_TWITTER_HEIGHT_DESC" />
 				
 				<field name="twitter_preview" type="twitterpreview" label="MOD_SOCIAL_TWITTER_LISTS" />
 				<!-- tweets options -->
-				<field name="twitter_tweet_style" type="list" default="search" label="MOD_SOCIAL_TWITTER_STYLE" description="MOD_SOCIAL_TWITTER_STYLE_DESC">
+				<field name="twitter_tweet_style" type="list" class="input-small" default="search" label="MOD_SOCIAL_TWITTER_STYLE" description="MOD_SOCIAL_TWITTER_STYLE_DESC">
 					<option value="style1">style1</option>
 					<option value="style2">style2</option>
 					<option value="style3">style3</option>
 				 </field>
-				 <field name="twitter_rows" size="2" type="text" default="5" label="MOD_SOCIAL_TWITTER_ROWS" description="MOD_SOCIAL_TWITTER_ROWS_DESC" />
-				 <field name="twitter_columns" size="2" type="text" default="1" label="MOD_SOCIAL_TWITTER_COLS" description="MOD_SOCIAL_TWITTER_COLS_DESC" />
+				 <field name="twitter_rows" size="2" type="text" class="input-small" default="5" label="MOD_SOCIAL_TWITTER_ROWS" description="MOD_SOCIAL_TWITTER_ROWS_DESC" />
+				 <field name="twitter_columns" size="2" type="text" class="input-small" default="1" label="MOD_SOCIAL_TWITTER_COLS" description="MOD_SOCIAL_TWITTER_COLS_DESC" />
 				 
-				 <field name="twitter_use_css" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_USECSS" description="MOD_SOCIAL_TWITTER_USECSS_DESC">
+				 <field name="twitter_use_css" type="radio" class="btn-group" default="1" label="MOD_SOCIAL_TWITTER_USECSS" description="MOD_SOCIAL_TWITTER_USECSS_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_show_uname" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_USERNAME" description="MOD_SOCIAL_TWITTER_USERNAME_DESC">
+				<field name="twitter_show_uname" type="radio" class="btn-group" default="1" label="MOD_SOCIAL_TWITTER_USERNAME" description="MOD_SOCIAL_TWITTER_USERNAME_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_show_fname" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_FNAME" description="MOD_SOCIAL_TWITTER_FNAME_DESC">
+				<field name="twitter_show_fname" type="radio" class="btn-group" default="1" label="MOD_SOCIAL_TWITTER_FNAME" description="MOD_SOCIAL_TWITTER_FNAME_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_show_actions" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_ACTIONS" description="MOD_SOCIAL_TWITTER_ACTIONS_DESC">
+				<field name="twitter_show_actions" type="radio" class="btn-group" default="1" label="MOD_SOCIAL_TWITTER_ACTIONS" description="MOD_SOCIAL_TWITTER_ACTIONS_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_show_avatar" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_AVATAR" description="MOD_SOCIAL_TWITTER_AVATAR_DESC">
+				<field name="twitter_show_avatar" type="radio" class="btn-group" default="1" label="MOD_SOCIAL_TWITTER_AVATAR" description="MOD_SOCIAL_TWITTER_AVATAR_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
@@ -141,17 +141,17 @@
 				        <option value="tdate">MOD_SOCIAL_TWITTER_CDATE</option>
 				        <option value="cdate">MOD_SOCIAL_TWITTER_TIMESTAMP</option>
 				</field>
-				<field name="twitter_cache" type="list" class="gk_switch" default="1" label="MOD_SOCIAL_TWITTER_CACHE" description="MOD_SOCIAL_TWITTER_CACHE_DESC">
+				<field name="twitter_cache" type="radio" class="btn-group" default="1" label="MOD_SOCIAL_TWITTER_CACHE" description="MOD_SOCIAL_TWITTER_CACHE_DESC">
 				        <option value="0">MOD_SOCIAL_DISABLED</option>
 				        <option value="1">MOD_SOCIAL_ENABLED</option>
 				</field>
-				<field name="twitter_cache_time" size="4" type="text" default="10" label="MOD_SOCIAL_CACHE_TIME" description="MOD_SOCIAL_CACHE_TIME_DESC" />
+				<field name="twitter_cache_time" class="input-small input-minutes" size="4" type="text" default="10" label="MOD_SOCIAL_CACHE_TIME" description="MOD_SOCIAL_CACHE_TIME_DESC" />
 			</fieldset>
 			
 			
 			<!-- google plus options -->
 			<fieldset name="SOCIAL_GPLUS_BASIC">
-				<field name="gplus_id" type="text" default="110937149959405490547" size="30" class="input-gplus-url" label="MOD_SOCIAL_GPLUS_GK5_ID" description="MOD_SOCIAL_GPLUS_GK5_ID_DESC"/>	
+				<field name="gplus_id" type="text" default="110937149959405490547" size="30" class="input-gplus" label="MOD_SOCIAL_GPLUS_GK5_ID" description="MOD_SOCIAL_GPLUS_GK5_ID_DESC"/>	
 				<field name="gplus_badge_style" type="list" default="standard_badge" label="MOD_SOCIAL_GPLUS_BADGE_STYLE" description="MOD_SOCIAL_GPLUS_BADGE_STYLE_DESC">
 							<option value="standard_badge">MOD_SOCIAL_GPLUS_STANDARD_BADGE</option>
 							<option value="small_icon">MOD_SOCIAL_GPLUS_SMALL_ICON</option>
@@ -159,23 +159,23 @@
 							<option value="large_icon">MOD_SOCIAL_GPLUS_LARGE_ICON</option>
 						</field>
 						<field name="gk_line_1" type="line" class="hasText" text="MOD_SOCIAL_GPLUS_BADGE_SETTINGS" />
-						<field name="gplus_lang_code" type="text" default="en" size="3" label="MOD_SOCIAL_GPLUS_LANG_CODE" description="MOD_SOCIAL_GPLUS_LANG_CODE_DESC" />
-						<field name="gplus_badge_width" type="text" default="300" class="px" size="5" label="MOD_SOCIAL_GPLUS_BADGE_WIDTH" description="MOD_SOCIAL_GPLUS_BADGE_WIDTH_DESC" />
-						<field name="gplus_badge_color" type="list" default="light" label="MOD_SOCIAL_GPLUS_BADGE_COLOR" description="MOD_SOCIAL_GPLUS_BADGE_COLOR_DESC">
+						<field name="gplus_lang_code" type="text" default="en" class="input-small" size="3" label="MOD_SOCIAL_GPLUS_LANG_CODE" description="MOD_SOCIAL_GPLUS_LANG_CODE_DESC" />
+						<field name="gplus_badge_width" type="text" default="300" class="input-pixels input-small" size="5" label="MOD_SOCIAL_GPLUS_BADGE_WIDTH" description="MOD_SOCIAL_GPLUS_BADGE_WIDTH_DESC" />
+						<field name="gplus_badge_color" type="list" default="light" class="input-small" label="MOD_SOCIAL_GPLUS_BADGE_COLOR" description="MOD_SOCIAL_GPLUS_BADGE_COLOR_DESC">
 							<option value="light">MOD_SOCIAL_GPLUS_LIGHT</option>
 							<option value="dark">MOD_SOCIAL_GPLUS_DARK</option>
 						</field>
-						<field name="gplus_async_script" class="gk_switch" type="list" default="1" label="MOD_SOCIAL_GPLUS_ASYNC" description="MOD_SOCIAL_GPLUS_ASYNC_DESC">
+						<field name="gplus_async_script" class="btn-group" type="radio" default="1" label="MOD_SOCIAL_GPLUS_ASYNC" description="MOD_SOCIAL_GPLUS_ASYNC_DESC">
 							<option value="1">MOD_SOCIAL_ENABLED</option>
 							<option value="0">MOD_SOCIAL_DISABLED</option>
 						</field>
-						<field name="gplus_html5_valid" class="gk_switch" type="list" default="1" label="MOD_SOCIAL_GPLUS_HTML5" description="MOD_SOCIAL_GPLUS_HTML5_DESC">
+						<field name="gplus_html5_valid" class="btn-group" type="radio" default="1" label="MOD_SOCIAL_GPLUS_HTML5" description="MOD_SOCIAL_GPLUS_HTML5_DESC">
 							<option value="1">MOD_SOCIAL_ENABLED</option>
 							<option value="0">MOD_SOCIAL_DISABLED</option>
 						</field>
 						<field name="gk_line_2" type="line" class="hasText" text="MOD_SOCIAL_GPLUS_BUTTON_SETTINGS" />
-						<field name="gplus_custom_name" type="text" default="" label="MOD_SOCIAL_GPLUS_CUSTOM_NAME" description="MOD_SOCIAL_GPLUS_CUSTOM_NAME_DESC" />
-						<field name="gplus_custom_name_pos" default="before" type="list" label="MOD_SOCIAL_GPLUS_CUSTOM_NAME_POS" description="MOD_SOCIAL_GPLUS_CUSTOM_NAME_POS_DESC" >
+						<field name="gplus_custom_name" type="text" default="" class="input-small" label="MOD_SOCIAL_GPLUS_CUSTOM_NAME" description="MOD_SOCIAL_GPLUS_CUSTOM_NAME_DESC" />
+						<field name="gplus_custom_name_pos" default="before" type="list" class="input-small" label="MOD_SOCIAL_GPLUS_CUSTOM_NAME_POS" description="MOD_SOCIAL_GPLUS_CUSTOM_NAME_POS_DESC" >
 							<option value="before">MOD_SOCIAL_GPLUS_BEFORE</option>
 							<option value="after">MOD_SOCIAL_GPLUS_AFTER</option>
 						</field>
@@ -183,7 +183,7 @@
 			
 			<!-- facebook settings -->
 			<fieldset name="SOCIAL_FB_BASIC">
-                <field name="fb_auto_url" type="list" default="true" class="gk_switch" label="MOD_SOCIAL_FB_AUTO_URL" description="MOD_SOCIAL_FB_AUTO_URL_DESC">
+                <field name="fb_auto_url" type="radio" default="true" class="btn-group" label="MOD_SOCIAL_FB_AUTO_URL" description="MOD_SOCIAL_FB_AUTO_URL_DESC">
 	                    <option value="true">MOD_SOCIAL_ENABLED</option>
 	                    <option value="false">MOD_SOCIAL_DISABLED</option>
 	            </field>
@@ -197,26 +197,26 @@
                     <option value="live_stream">MOD_SOCIAL_FB_LIVE_STREAM</option>
                     <option value="recommendations">MOD_SOCIAL_FB_RECOMMEDATIONS</option>
 	            </field>
-                <field name="fb_code_type" type="list" default="iframe" label="MOD_SOCIAL_FB_PLUGIN_CODE_TYPE" description="MOD_SOCIAL_FB_PLUGIN_CODE_TYPE_DESC">
+                <field name="fb_code_type" type="list" default="iframe" class="input-small" label="MOD_SOCIAL_FB_PLUGIN_CODE_TYPE" description="MOD_SOCIAL_FB_PLUGIN_CODE_TYPE_DESC">
                     <option value="iframe">MOD_SOCIAL_FB_IFRAME</option>
                     <option value="XFBML">MOD_SOCIAL_FB_XFBML</option>
                     <option value="HTML5">MOD_SOCIAL_FB_HTML5</option>
                 </field>
-                <field name="fb_language" type="text" default="en_US" size="4" label="MOD_SOCIAL_FB_LANGUAGE" description="MOD_SOCIAL_FB_LANGUAGE_DESC" />
+                <field name="fb_language" type="text" default="en_US" class="input-small" size="4" label="MOD_SOCIAL_FB_LANGUAGE" description="MOD_SOCIAL_FB_LANGUAGE_DESC" />
 			</fieldset>
 			
 			<fieldset name="SOCIAL_FB_ACITIVITY_FEED">
-                <field name="fb_width" type="text" default="300" class="px" size="5" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
-                <field name="fb_height" type="text" default="300" class="px" size="5" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
-                <field name="fb_header" type="list" default="true" class="gk_switch" label="MOD_SOCIAL_FB_SHOW_HEADER" description="MOD_SOCIAL_FB_SHOW_HEADER_DESC">
+                <field name="fb_width" type="text" default="300" class="input-small input-pixels" size="5" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
+                <field name="fb_height" type="text" default="300" class="input-small input-pixels" size="5" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
+                <field name="fb_header" type="radio" default="true" class="btn-group" label="MOD_SOCIAL_FB_SHOW_HEADER" description="MOD_SOCIAL_FB_SHOW_HEADER_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
-                <field name="fb_colorscheme" type="list" default="light" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_COLOR_SCHEME_DESC">
+                <field name="fb_colorscheme" type="list" default="light" class="input-small" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_COLOR_SCHEME_DESC">
                     <option value="light">MOD_SOCIAL_FB_LIGHT</option>
                     <option value="dark">MOD_SOCIAL_FB_DARK</option>
                 </field>
-                <field name="fb_font" type="list" default="light" label="MOD_SOCIAL_FB_FONT" description="MOD_SOCIAL_FB_FONT_DESC">
+                <field name="fb_font" type="list" default="light" class="input-small" label="MOD_SOCIAL_FB_FONT" description="MOD_SOCIAL_FB_FONT_DESC">
                     <option value="arial">MOD_SOCIAL_FB_ARIAL</option>
                     <option value="lucida+grande">MOD_SOCIAL_FB_LUCIDA</option>
                     <option value="segoe+ui">MOD_SOCIAL_FB_SEGOE</option>
@@ -224,12 +224,12 @@
                     <option value="trebuchet+ms">MOD_SOCIAL_FB_TREBUCHET</option>
                     <option value="verdana">MOD_SOCIAL_FB_VERDANA</option>
                 </field>
-                <field name="fb_border_color" type="text" default="#CECCCC" class="color-field" size="8" label="MOD_FB_BORDER_COLOR" description="MOD_FB_BORDER_COLOR_DESC" />
-                <field name="fb_recommendations" type="list" default="false" class="gk_switch" label="MOD_SOCIAL_FB_RECOMMEDATIONS" description="MOD_SOCIAL_FB_RECOMMENDATIONS_DESC">
+                <field name="fb_border_color" type="text" default="#CECCCC" class="input-small color-field" size="8" label="MOD_FB_BORDER_COLOR" description="MOD_FB_BORDER_COLOR_DESC" />
+                <field name="fb_recommendations" type="radio" default="false" class="btn-group" label="MOD_SOCIAL_FB_RECOMMEDATIONS" description="MOD_SOCIAL_FB_RECOMMENDATIONS_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
-                <field name="fb_link_target" type="list" default="_blank" label="MOD_SOCIAL_FB_LINK_TARGET" description="MOD_SOCIAL_FB_LINK_TARGET_DESC">
+                <field name="fb_link_target" type="list" class="input-small" default="_blank" label="MOD_SOCIAL_FB_LINK_TARGET" description="MOD_SOCIAL_FB_LINK_TARGET_DESC">
                     <option value="_blank">_blank</option>
                     <option value="_top">_top</option>
                     <option value="_parent">_parent</option>
@@ -237,18 +237,18 @@
             </fieldset>
 			
            	<fieldset name="SOCIAL_FB_ACITIVITY_FEED_COMMENTS">
-                <field name="fb_number_comments" type="text" default="10" size="4" label="MOD_SOCIAL_FB_NUMBER_COMMENTS" description="MOD_SOCIAL_FB_NUMBER_COMMENTS_DESC" />
-                <field name="fb_width_comments" type="text" default="500" size="5" class="px" label="MOD_SOCIAL_FB_WIDTH_COMMENTS" description="MOD_SOCIAL_FB_WIDTH_COMMENTS_DESC" />
-                <field name="fb_only_number" type="list" default="false" class="gk_switch" label="MOD_SOCIAL_FB_ONLY_NUMBER" description="MOD_SOCIAL_FB_ONLY_NUMBER_DESC">
+                <field name="fb_number_comments" type="text" default="10" class="input-small" size="4" label="MOD_SOCIAL_FB_NUMBER_COMMENTS" description="MOD_SOCIAL_FB_NUMBER_COMMENTS_DESC" />
+                <field name="fb_width_comments" type="text" default="500" size="5" class="input-small input-pixels" label="MOD_SOCIAL_FB_WIDTH_COMMENTS" description="MOD_SOCIAL_FB_WIDTH_COMMENTS_DESC" />
+                <field name="fb_only_number" type="radio" default="false" class="btn-group" label="MOD_SOCIAL_FB_ONLY_NUMBER" description="MOD_SOCIAL_FB_ONLY_NUMBER_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
-                <field name="fb_comments_colorscheme" type="list" default="light" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_PLUGIN_COLOR_SCHEME_DESC">
+                <field name="fb_comments_colorscheme" type="list" default="light" class="input-small" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_PLUGIN_COLOR_SCHEME_DESC">
                     <option value="light">MOD_SOCIAL_FB_LIGHT</option>
                     <option value="dark">MOD_SOCIAL_FB_DARK</option>
                 </field>
                 <field name="fb_only_number_add" type="text" default="awesome comments" label="MOD_SOCIAL_FB_ONLY_NUMBER_ADD" description="MOD_SOCIAL_FB_ONLY_NUMBER_ADD_DESC" />
-                <field name="fb_only_number_url" type="list" default="false" class="gk_switch" label="MOD_SOCIAL_FB_ONLY_NUMBER_URL" description="MOD_SOCIAL_FB_ONLY_NUMBER_URL_DESC">
+                <field name="fb_only_number_url" type="radio" default="false" class="btn-group" label="MOD_SOCIAL_FB_ONLY_NUMBER_URL" description="MOD_SOCIAL_FB_ONLY_NUMBER_URL_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
@@ -256,62 +256,62 @@
             </fieldset>
 			
             <fieldset name="SOCIAL_FB_FACEPILE">
-                <field name="fb_facepile_width" type="text" default="200" size="5" class="px" label="MOD_SOCIAL_FB_FACEPILE_WIDTH" description="MOD_SOCIAL_FB_FACEPILE_WIDTH_DESC" />
-                <field name="fb_facepile_num_rows" type="text" default="2" size="2" label="MOD_SOCIAL_FB_FACEPILE_NUM_ROWS" description="MOD_SOCIAL_FB_FACEPILE_NUM_ROWS_DESC" />
-                <field name="fb_facepile_colorscheme" type="list" default="light" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_PLUGIN_COLOR_SCHEME_DESC">
+                <field name="fb_facepile_width" type="text" default="200" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_FACEPILE_WIDTH" description="MOD_SOCIAL_FB_FACEPILE_WIDTH_DESC" />
+                <field name="fb_facepile_num_rows" type="text" default="2" class="input-small" size="2" label="MOD_SOCIAL_FB_FACEPILE_NUM_ROWS" description="MOD_SOCIAL_FB_FACEPILE_NUM_ROWS_DESC" />
+                <field name="fb_facepile_colorscheme" type="list" default="light" class="input-small" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_PLUGIN_COLOR_SCHEME_DESC">
                     <option value="light">MOD_SOCIAL_FB_LIGHT</option>
                     <option value="dark">MOD_SOCIAL_FB_DARK</option>
                 </field>
-                <field name="fb_facepile_size" type="list" default="small" label="MOD_SOCIAL_FB_FACEPILE_SIZE" description="MOD_SOCIAL_FB_FACEPILE_SIZE_DESC">
+                <field name="fb_facepile_size" type="list" default="small" class="input-small" label="MOD_SOCIAL_FB_FACEPILE_SIZE" description="MOD_SOCIAL_FB_FACEPILE_SIZE_DESC">
                         <option value="small">MOD_SOCIAL_FB_SMALL</option>
                         <option value="large">MOD_SOCIAL_FB_LARGE</option>
                 </field>
             </fieldset>
 			
             <fieldset name="SOCIAL_FB_LIKEBOX">
-                <field name="fb_likebox_width" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
-                <field name="fb_likebox_height" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
-                <field name="fb_likebox_header" type="list" default="true" class="gk_switch"  label="MOD_SOCIAL_FB_SHOW_HEADER" description="MOD_SOCIAL_FB_PLUGIN_SHOW_HEADER_DESC">
+                <field name="fb_likebox_width" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
+                <field name="fb_likebox_height" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
+                <field name="fb_likebox_header" type="radio" default="true" class="btn-group"  label="MOD_SOCIAL_FB_SHOW_HEADER" description="MOD_SOCIAL_FB_PLUGIN_SHOW_HEADER_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
-                <field name="fb_likebox_colorscheme" type="list" default="light" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_PLUGIN_COLOR_SCHEME_DESC">
+                <field name="fb_likebox_colorscheme" type="list" default="light" class="input-small" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_PLUGIN_COLOR_SCHEME_DESC">
                     <option value="light">MOD_SOCIAL_FB_LIGHT</option>
                     <option value="dark">MOD_SOCIAL_FB_DARK</option>
                 </field>
-                <field name="fb_likebox_faces" type="list" default="true"  class="gk_switch" label="MOD_SOCIAL_FB_LIKEBOX_SHOW_FACES" description="MOD_SOCIAL_FB_LIKEBOX_SHOW_FACES_DESC">
+                <field name="fb_likebox_faces" type="radio" default="true"  class="btn-group" label="MOD_SOCIAL_FB_LIKEBOX_SHOW_FACES" description="MOD_SOCIAL_FB_LIKEBOX_SHOW_FACES_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
-                <field name="fb_likebox_stream" type="list" default="true"  class="gk_switch" label="MOD_SOCIAL_FB_LIKEBOX_STREAM" description="MOD_SOCIAL_FB_LIKEBOX_STREAM_DESC">
+                <field name="fb_likebox_stream" type="radio" default="true"  class="btn-group" label="MOD_SOCIAL_FB_LIKEBOX_STREAM" description="MOD_SOCIAL_FB_LIKEBOX_STREAM_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
             </fieldset>
             <fieldset name="SOCIAL_FB_LIKEBOX_LIVESTREAM">
                 <field type="required" name="required_field" />
-                <field name="fb_livestream_width" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
-                <field name="fb_livestream_height" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
-                <field name="fb_livestream_xid" type="text" default="" label="MOD_SOCIAL_FB_LIVESTREAM_XID" description="MOD_SOCIAL_FB_LIVESTREAM_XID_DESC" />
-                <field name="fb_livestream_url" type="text" default="" label="MOD_SOCIAL_FB_LIVESTREAM_URL" description="MOD_SOCIAL_FB_LIVESTREAM_URL_DESC" />
-                <field name="fb_livestream_friends" type="list" default="true"  class="gk_switch" label="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS" description="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS_DESC">
+                <field name="fb_livestream_width" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
+                <field name="fb_livestream_height" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
+                <field name="fb_livestream_xid" type="text" default="" class="input-small" label="MOD_SOCIAL_FB_LIVESTREAM_XID" description="MOD_SOCIAL_FB_LIVESTREAM_XID_DESC" />
+                <field name="fb_livestream_url" type="text" class="input-small" default="" label="MOD_SOCIAL_FB_LIVESTREAM_URL" description="MOD_SOCIAL_FB_LIVESTREAM_URL_DESC" />
+                <field name="fb_livestream_friends" type="radio" default="true"  class="btn-group" label="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS" description="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
             </fieldset>
 			
             <fieldset name="SOCIAL_FB_RECOMMENDATIONS">
-                <field name="fb_rec_width" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
-                <field name="fb_rec_height" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
-                <field name="fb_rec_header" type="list" default="true"  class="gk_switch" label="MOD_SOCIAL_FB_SHOW_HEADER" description="MOD_SOCIAL_FB_PLUGIN_SHOW_HEADER_DESC">
+                <field name="fb_rec_width" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
+                <field name="fb_rec_height" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
+                <field name="fb_rec_header" type="radio" default="true"  class="btn-group" label="MOD_SOCIAL_FB_SHOW_HEADER" description="MOD_SOCIAL_FB_PLUGIN_SHOW_HEADER_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
-                <field name="fb_rec_colorscheme" type="list" default="light" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_PLUGIN_COLOR_SCHEME_DESC">
+                <field name="fb_rec_colorscheme" type="list" default="light" class="input-small" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_PLUGIN_COLOR_SCHEME_DESC">
                     <option value="light">MOD_SOCIAL_FB_LIGHT</option>
                     <option value="dark">MOD_SOCIAL_FB_DARK</option>
                 </field>
-                <field name="fb_rec_font" type="list" default="light" label="MOD_SOCIAL_FB_FONT" description="MOD_SOCIAL_FB_PLUGIN_FONT_DESC">
+                <field name="fb_rec_font" type="list" default="light" class="input-small" label="MOD_SOCIAL_FB_FONT" description="MOD_SOCIAL_FB_PLUGIN_FONT_DESC">
                     <option value="arial">MOD_SOCIAL_FB_ARIAL</option>
                     <option value="lucida+grande">MOD_SOCIAL_FB_LUCIDA</option>
                     <option value="segoe+ui">MOD_SOCIAL_FB_SEGOE</option>
@@ -319,12 +319,12 @@
                     <option value="trebuchet+ms">MOD_SOCIAL_FB_TREBUCHET</option>
                    <option value="verdana">MOD_SOCIAL_FB_VERDANA</option>
                 </field>
-                <field name="fb_rec_link_target" type="list" default="_blank" label="MOD_SOCIAL_FB_LINK_TARGET" description="MOD_SOCIAL_FB_LINK_TARGET_DESC">
+                <field name="fb_rec_link_target" type="list" default="_blank" class="input-small" label="MOD_SOCIAL_FB_LINK_TARGET" description="MOD_SOCIAL_FB_LINK_TARGET_DESC">
                     <option value="_blank">_blank</option>
                     <option value="_top">_top</option>
                     <option value="_parent">_parent</option>
                 </field>
-                <field name="fb_rec_border_color" type="text" default="#CECCCC" class="color-field" size="8" label="MOD_FB_BORDER_COLOR" description="MOD_FB_BORDER_COLOR_DESC" />
+                <field name="fb_rec_border_color" type="text" default="#CECCCC" class="input-small color-field" size="8" label="MOD_FB_BORDER_COLOR" description="MOD_FB_BORDER_COLOR_DESC" />
             </fieldset>
 			
 			

@@ -1,0 +1,85 @@
+/**
+* Social GK5 - style 3
+* @package Joomla!
+* @Copyright (C) 2009-2012 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
+* @version $Revision: GK5 1.0 $
+**/
+div.gkTweet {
+    float: left;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    font-size: 11px;
+}
+div.gkTweet > div {
+    border: 1px solid #bbb;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 6px;
+    padding: 8px;
+    background: #fff;
+    -moz-box-shadow: 0 3px 3px 0 #e7e7e7;
+    -webkit-box-shadow: 0 3px 3px 0 #e7e7e7;
+    box-shadow: 0 3px 3px 0 #e7e7e7;
+    -moz-transition: -moz-background 0.8s linear;
+    -o-transition: -o-background 0.8s linear;
+    -webkit-transition: -webkit-background 0.8s linear;
+    transition: background 0.8s linear;
+}
+div.gkTweet > div:hover { background: #d5ecf5 }
+p.gkTweetContent {
+    font-size: 15px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    margin: 10px 10px 5px 10px;
+    line-height: 20px;
+}
+div.gkTweet > div > img {
+    height: 100%;
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin: 0 15px 0 10px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+span.gkTweetName a {
+    color: #333;
+    font-weight: bold;
+    font-size: 13px;
+    display: block;
+    line-height: 12px;
+}
+span.gkTweetName small {
+    font-size: 11px;
+    color: #999;
+}
+div.gkTweet > div a:hover { color: #135e8e }
+p.gkTweetContent a { color: #000 }
+div.gkTweet > div p { word-wrap: break-word }
+div.gkTweet > div > span.gkTweetInfo {
+    font-size: 10px;
+    margin-left: 11px;
+}
+div.gkTweet > div > span.gkTweetInfo a:first-child { padding-right: 10px }
+div.gkTweet > div > span.gkTweetInfo a {
+    padding-left: 20px;
+    background: url(../../images/twitterSprite.png) no-repeat 0 -1px transparent;
+    margin-left: 8px;
+    float: right;
+    line-height: 14px;
+}
+span.gkTweetInfo,
+span.gkTweetInfo a { color: #999 }
+div.gkTweet > div > span.gkTweetInfo a:first-child { margin-left: 5px }
+div.gkTweet > div > span.gkTweetInfo a.reply { background-position: 0 -1px }
+div.gkTweet > div > span.gkTweetInfo a.reply:hover { background-position: 0 -18px }
+div.gkTweet > div > span.gkTweetInfo a.retweet { background-position: 0 -66px }
+div.gkTweet > div > span.gkTweetInfo a.retweet:hover { background-position: 0 -81px }
+div.gkTweet > div > span.gkTweetInfo a.favorite { background-position: 0 -34px }
+div.gkTweet > div > span.gkTweetInfo a.favorite:hover { background-position: 0 -50px }
+div.gkDivider { clear: both; width: 100% }

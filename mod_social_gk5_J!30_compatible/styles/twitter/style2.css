@@ -1,0 +1,121 @@
+/**
+* Social GK5 - style 2
+* @package Joomla!
+* @Copyright (C) 2009-2012 Gavick.com
+* @ All rights reserved
+* @ Joomla! is Free Software
+* @ Released under GNU/GPL License : http://www.gnu.org/copyleft/gpl.html
+* @version $Revision: GK5 1.0 $
+**/
+div.gkTweet {
+    float: left;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #666;
+    font-size: 11px;
+    padding-bottom: 14px;
+    background: url(../../images/bubble.png) no-repeat 25px bottom #fff;
+    text-shadow: 1px 1px #fff
+    }
+div.gkTweet > div {
+    margin: 6px;
+    padding: 8px;
+    background: url(../../images/bgbird.png) no-repeat right bottom #fafafa
+    }
+p.gkTweetContent {
+    font-size: 15px;
+    font-family: Tahoma, Tahoma, Geneva, sans-serif;
+    margin: 10px 10px 5px 10px;
+    line-height: 20px
+    }
+div.gkTweet > div > img {
+    height: 100%;
+    float: left;
+    width: 48px;
+    height: 48px;
+    margin: 0 15px 0 10px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    border: 4px solid #fff;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease
+    }
+div.gkTweet > div > img:hover {
+    -moz-transform: scale(1.15) rotate(-5deg);
+    -ms-transform: scale(1.15) rotate(-5deg);
+    -o-transform: scale(1.15) rotate(-5deg);
+    -webkit-transform: scale(1.15) rotate(-5deg);
+    transform: scale(1.15) rotate(-5deg)
+    }
+span.gkTweetName a {
+    color: #000;
+    font-weight: bold;
+    font-size: 13px;
+    display: inline-block;
+    line-height: 12px;
+    text-shadow: 1px 1px #fff
+    }
+span.gkTweetName small {
+    font-size: 11px;
+    color: #999;
+    margin-left: 5px;
+    padding-left: 5px;
+    border-left: 1px solid #ddd
+    }
+div.gkTweet > div a:hover {
+    color: #135e8e
+    }
+p.gkTweetContent a {
+    color: #000
+    }
+div.gkTweet > div p {
+    word-wrap: break-word
+    }
+div.gkTweet > div > span.gkTweetInfo {
+    font-size: 10px;
+    padding: 3px 5px;
+    background: #fff;
+    border: 1px solid #eee
+    }
+div.gkTweet > div > span.gkTweetInfo a:first-child {
+    padding-right: 10px
+    }
+div.gkTweet > div > span.gkTweetInfo a {
+    padding-left: 20px;
+    background: url(../../images/twitterSprite.png) no-repeat 0 -1px transparent;
+    margin-left: 8px;
+    float: right;
+    line-height: 14px
+    }
+span.gkTweetInfo, span.gkTweetInfo a {
+    color: #999
+    }
+div.gkTweet > div > span.gkTweetInfo a:first-child {
+    margin-left: 5px
+    }
+div.gkTweet > div > span.gkTweetInfo a.reply {
+    background-position: 0 -1px
+    }
+div.gkTweet > div > span.gkTweetInfo a.reply:hover {
+    background-position: 0 -18px
+    }
+div.gkTweet > div > span.gkTweetInfo a.retweet {
+    background-position: 0 -66px
+    }
+div.gkTweet > div > span.gkTweetInfo a.retweet:hover {
+    background-position: 0 -81px
+    }
+div.gkTweet > div > span.gkTweetInfo a.favorite {
+    background-position: 0 -34px
+    }
+div.gkTweet > div > span.gkTweetInfo a.favorite:hover {
+    background-position: 0 -50px
+    }
+div.separator {
+    width: 100%;
+    clear: both
+    }
+div.gkDivider { clear: both; width: 100% }

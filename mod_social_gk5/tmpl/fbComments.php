@@ -10,11 +10,20 @@
  * @version $Revision: GK4 1.0 $
  **/
 
-defined('_JEXEC') or die('Restricted access');?>
+defined('_JEXEC') or die('Restricted access');
+
+// check for SSL connection
+$uri = JFactory::getURI();
+if($uri->isSSL()) {
+	$prefix = 'https';
+} else {
+	$prefix = 'http';
+}
+?>
 
 <?php if($this->config['fb_only_number_url'] == 'true') : ?>
 
-<iframe src="http://www.facebook.com/plugins/comments.php?href=<?php echo urlencode($this->config['fb_site']); ?>&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowtransparency="true" ></iframe> 
+<iframe src="<?php echo $prefix; ?>://www.facebook.com/plugins/comments.php?href=<?php echo urlencode($this->config['fb_site']); ?>&permalink=1" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:16px;" allowtransparency="true" ></iframe> 
 
 <?php elseif($this->config['fb_only_number'] == 'true') : ?>
 

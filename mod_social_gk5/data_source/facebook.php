@@ -73,7 +73,6 @@ class SocialGK5FacebookHelper
             }
             case 'facepile'      :  require(JModuleHelper::getLayoutPath('mod_social_gk5', 'fbFacepile')); break;
             case 'like_box'      :  require(JModuleHelper::getLayoutPath('mod_social_gk5', 'fbLikebox')); break;
-            case 'live_stream'    :  require(JModuleHelper::getLayoutPath('mod_social_gk5', 'fbLivestream')); break;
             case 'recommendations': require(JModuleHelper::getLayoutPath('mod_social_gk5', 'fbRecommendations')); break;
             default              :  break;
         }

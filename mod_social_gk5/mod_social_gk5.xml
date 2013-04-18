@@ -167,7 +167,6 @@
 		            <option value="comments">MOD_SOCIAL_FB_COMMENTS</option>
 		            <option value="facepile">MOD_SOCIAL_FB_FACEPILE</option>
                     <option value="like_box">MOD_SOCIAL_FB_LIKE_BOX</option>
-                    <option value="live_stream">MOD_SOCIAL_FB_LIVE_STREAM</option>
                     <option value="recommendations">MOD_SOCIAL_FB_RECOMMEDATIONS</option>
 	            </field>
                 <field name="fb_code_type" type="list" default="iframe" class="input-small" label="MOD_SOCIAL_FB_PLUGIN_CODE_TYPE" description="MOD_SOCIAL_FB_PLUGIN_CODE_TYPE_DESC">
@@ -261,18 +260,7 @@
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
             </fieldset>
-            <fieldset name="SOCIAL_FB_LIKEBOX_LIVESTREAM">
-                <field type="required" name="required_field" />
-                <field name="fb_livestream_width" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
-                <field name="fb_livestream_height" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
-                <field name="fb_livestream_xid" type="text" default="" class="input-small" label="MOD_SOCIAL_FB_LIVESTREAM_XID" description="MOD_SOCIAL_FB_LIVESTREAM_XID_DESC" />
-                <field name="fb_livestream_url" type="text" class="input-small" default="" label="MOD_SOCIAL_FB_LIVESTREAM_URL" description="MOD_SOCIAL_FB_LIVESTREAM_URL_DESC" />
-                <field name="fb_livestream_friends" type="radio" default="true"  class="btn-group" label="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS" description="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS_DESC">
-                    <option value="true">MOD_SOCIAL_ENABLED</option>
-                    <option value="false">MOD_SOCIAL_DISABLED</option>
-                </field>
-            </fieldset>
-			
+           
             <fieldset name="SOCIAL_FB_RECOMMENDATIONS">
                 <field name="fb_rec_width" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
                 <field name="fb_rec_height" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />

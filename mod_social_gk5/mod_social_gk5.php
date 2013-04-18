@@ -42,9 +42,4 @@ if($config['module_data_source'] == 'twitter') {
 // creating HTML code	
 $helper->render();
 
-// EOF}
-
-// creating HTML code	
-$helper->render();
-
 // EOF

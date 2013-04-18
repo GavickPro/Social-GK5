@@ -21,7 +21,6 @@ window.addEvent("domready",function(){
 	
 	
 	$$('.gkFormLine').each(function(el){el.getParent().setStyle('margin-left', '5px') });
-	document.id('jform_params_required_field').getParent().innerHTML = "<span class=\"required\">APP ID is required for this plugin</span>";
 	document.id('config_manager_form').getParent().setStyle('margin-left', '10px');
 	document.id('gk_about_us').getParent().setStyle('margin-left', '10px');
 

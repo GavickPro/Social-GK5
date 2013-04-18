@@ -251,6 +251,7 @@
                     <option value="light">MOD_SOCIAL_FB_LIGHT</option>
                     <option value="dark">MOD_SOCIAL_FB_DARK</option>
                 </field>
+                <field name="fb_likebox_border_color" type="text" default="#CECCCC" class="input-small color-field" size="8" label="MOD_FB_BORDER_COLOR" description="MOD_FB_BORDER_COLOR_DESC" />
                 <field name="fb_likebox_faces" type="radio" default="true"  class="btn-group" label="MOD_SOCIAL_FB_LIKEBOX_SHOW_FACES" description="MOD_SOCIAL_FB_LIKEBOX_SHOW_FACES_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>

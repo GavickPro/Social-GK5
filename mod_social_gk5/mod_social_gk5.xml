@@ -2,12 +2,12 @@
 <extension type="module" version="1.6.0" client="site" method="upgrade">
 	<name>Social GK5</name>
 	<author>GavickPro</author>
-	<creationDate>19/10/2012</creationDate>
-	<copyright>Copyright (C) 2011-2012 GavickPro. All rights reserved.</copyright>
+	<creationDate>18/04/2013</creationDate>
+	<copyright>Copyright (C) 2011-2013 GavickPro. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later</license>
 	<authorEmail>info@gavick.com</authorEmail>
 	<authorUrl>www.gavickpro.com</authorUrl>
-	<version>GK5 1.0</version>
+	<version>GK5 1.1</version>
 	<description><![CDATA[
 		<style type="text/css">
 			span.readonly { padding: 10px; font-family: Arial; font-size:13px !important; font-weight: normal !important; text-align: justify; color: #4d4d4d; line-height: 24px; }
@@ -18,7 +18,7 @@
 			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
 		</style>
 		
-		<span class="readonly"><h1>Social GK5<small>ver. 1.0</small></h1><p>GK5 is one product of the next generation of GavickPro extensions designed exclusively for Joomla 2.5+.</p><p>Social GK5 combines functionalities from FB GK4, Gplus GK4 and completely new support for data source from a Twitter portal. Social GK5 supports the most popular services like: Facebook, Google+ and Twitter. This module allows visitors to connect directly and to promote your brand on the most popular social portals.</p> <p class="homepage"><a target="_blank" href="https://www.gavick.com/social-gk5.html">Learn more at the Social GK5 project website.</a></p><p class="license">Social GK5 is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU/GPL v2 license.</a></p></span></span>
+		<span class="readonly"><h1>Social GK5<small>ver. 1.1</small></h1><p>GK5 is one product of the next generation of GavickPro extensions designed exclusively for Joomla 2.5+.</p><p>Social GK5 combines functionalities from FB GK4, Gplus GK4 and completely new support for data source from a Twitter portal. Social GK5 supports the most popular services like: Facebook, Google+ and Twitter. This module allows visitors to connect directly and to promote your brand on the most popular social portals.</p> <p class="homepage"><a target="_blank" href="https://www.gavick.com/social-gk5.html">Learn more at the Social GK5 project website.</a></p><p class="license">Social GK5 is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU/GPL v2 license.</a></p></span></span>
 	]]></description>
 	<files>
 		<filename module="mod_social_gk5">mod_social_gk5.php</filename>
@@ -32,6 +32,12 @@
 		<folder>styles</folder>
 		<folder>tmpl</folder>
 	</files>
+	
+	<updateservers>
+       <server type="extension" priority="1" name="Social GK5 Updates">https://www.gavick.com/update_server/joomla30/social_gk5.xml</server>
+   </updateservers>
+	
+	
 	<languages>
 		<language tag="en-GB">language/en-GB.mod_social_gk5.ini</language>
 	</languages>
@@ -294,52 +300,6 @@
                 <field name="fb_rec_border_color" type="text" default="#CECCCC" class="input-small color-field" size="8" label="MOD_FB_BORDER_COLOR" description="MOD_FB_BORDER_COLOR_DESC" />
             </fieldset>
 
-			<!-- about us -->
-			<fieldset name="SOCIAL_ABOUT_US" addfieldpath="/modules/mod_social_gk5/admin/elements">
-			    <field type="about" name="about_us" /> 
-			</fieldset>
-		</fields>
-	</config>
-</extension>
-="MOD_SOCIAL_FB_LIVESTREAM_URL_DESC" />
-                <field name="fb_livestream_friends" type="radio" default="true"  class="btn-group" label="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS" description="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS_DESC">
-                    <option value="true">MOD_SOCIAL_ENABLED</option>
-                    <option value="false">MOD_SOCIAL_DISABLED</option>
-                </field>
-            </fieldset>
-			
-            <fieldset name="SOCIAL_FB_RECOMMENDATIONS">
-                <field name="fb_rec_width" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
-                <field name="fb_rec_height" type="text" default="300" size="5" class="input-pixels input-small" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
-                <field name="fb_rec_header" type="radio" default="true"  class="btn-group" label="MOD_SOCIAL_FB_SHOW_HEADER" description="MOD_SOCIAL_FB_PLUGIN_SHOW_HEADER_DESC">
-                    <option value="true">MOD_SOCIAL_ENABLED</option>
-                    <option value="false">MOD_SOCIAL_DISABLED</option>
-                </field>
-                <field name="fb_rec_colorscheme" type="list" default="light" class="input-small" label="MOD_SOCIAL_FB_COLOR_SCHEME" description="MOD_SOCIAL_FB_PLUGIN_COLOR_SCHEME_DESC">
-                    <option value="light">MOD_SOCIAL_FB_LIGHT</option>
-                    <option value="dark">MOD_SOCIAL_FB_DARK</option>
-                </field>
-                <field name="fb_rec_font" type="list" default="light" class="input-small" label="MOD_SOCIAL_FB_FONT" description="MOD_SOCIAL_FB_PLUGIN_FONT_DESC">
-                    <option value="arial">MOD_SOCIAL_FB_ARIAL</option>
-                    <option value="lucida+grande">MOD_SOCIAL_FB_LUCIDA</option>
-                    <option value="segoe+ui">MOD_SOCIAL_FB_SEGOE</option>
-                    <option value="tahoma">MOD_SOCIAL_FB_TAHOMA</option>
-                    <option value="trebuchet+ms">MOD_SOCIAL_FB_TREBUCHET</option>
-                   <option value="verdana">MOD_SOCIAL_FB_VERDANA</option>
-                </field>
-                <field name="fb_rec_link_target" type="list" default="_blank" class="input-small" label="MOD_SOCIAL_FB_LINK_TARGET" description="MOD_SOCIAL_FB_LINK_TARGET_DESC">
-                    <option value="_blank">_blank</option>
-                    <option value="_top">_top</option>
-                    <option value="_parent">_parent</option>
-                </field>
-                <field name="fb_rec_border_color" type="text" default="#CECCCC" class="input-small color-field" size="8" label="MOD_FB_BORDER_COLOR" description="MOD_FB_BORDER_COLOR_DESC" />
-            </fieldset>
-			
-			
-			<!-- updates -->
-			<fieldset name="SOCIAL_UPDATES" addfieldpath="/modules/mod_social_gk5/admin/elements">
-			    <field type="update" name="module_updates" /> 
-			</fieldset>
 			<!-- about us -->
 			<fieldset name="SOCIAL_ABOUT_US" addfieldpath="/modules/mod_social_gk5/admin/elements">
 			    <field type="about" name="about_us" /> 

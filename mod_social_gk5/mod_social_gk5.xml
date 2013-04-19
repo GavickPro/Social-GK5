@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="1.6.0" client="site" method="upgrade">
+<extension type="module" version="3.0" client="site" method="upgrade">
 	<name>Social GK5</name>
 	<author>GavickPro</author>
-	<creationDate>18/04/2013</creationDate>
+	<creationDate>19/04/2013</creationDate>
 	<copyright>Copyright (C) 2011-2013 GavickPro. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later</license>
 	<authorEmail>info@gavick.com</authorEmail>

@@ -8,16 +8,8 @@
 window.addEvent("domready",function(){
 	// initialize the configuration manager
 	var configManager = new SocialGK5ConfigManager();
-	// get lists
-	getLists();
-	// initialize twitter lists 
-	var twitterLists = new SocialGK5TwitterList();
 	// initialize the main class
 	var settings = new SocialGK5Settings();
-	// get the updates
-	document.id('SOCIAL_UPDATES-options').addEvent('click', function(){
-		settings.getUpdates();
-	 });
 	// intialize color picker
 	DynamicColorPicker.auto(".color-field");
 	
@@ -46,12 +38,7 @@ window.addEvent("domready",function(){
 			}
 		});
 	});
-	$$('.px').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">px</span>"});
-	document.id('jform_params_required_field').getParent().innerHTML = "<span class=\"required\">APP ID is required for this plugin</span>";
-	hideTwitterOptions();
-	
-	
-	
+	$$('.px').each(function(el){el.getParent().innerHTML = el.getParent().innerHTML + "<span class=\"unit\">px</span>"});	
 });
 
 /*
@@ -106,9 +93,6 @@ var SocialGK5Settings = new Class({
 						}
 					});
 				}
-			
-		document.id('jform_params_twitter_preview-lbl').setStyle('display', 'none');
-	
 		// hide one of unnecessary tabs
 		document.id('jform_params_module_data_source').addEvent('change', function() {
 				sourceMode = document.id('jform_params_module_data_source').get('value');
@@ -144,27 +128,6 @@ var SocialGK5Settings = new Class({
 					});
 				}
 		});
-		
-		document.id('jform_params_twitter_widget').addEvent('change', function() {
-				// now hide part of layout options
-				hideTwitterOptions();	
-		});
-		
-		var listSource =  document.id('jform_params_twitter_lists').value;
-		document.id('jform_params_twitter_lists').addEvent('change', function() {
-			listSource =  document.id('jform_params_twitter_lists').value;
-			document.id('jform_params_twitter_lists_data').set('value', listSource);
-			
-		});
-		
-		// set colors for tweeter preview
-		$$('.twtr-hd h3').setStyle('color', document.id('jform_params_twitter_widget_text_color').get('value'));
-		$$('.twtr-hd h4 a').setStyle('color', document.id('jform_params_twitter_widget_text_color').get('value'));
-		$$('a.twtr-join-conv').setStyle('color',  document.id('jform_params_twitter_widget_text_color').get('value'));
-		$$('.twtr-doc').setStyle('background', document.id('jform_params_twitter_widget_color').get('value'));
-		$$('.twtr-timeline').setStyle('background', document.id('jform_params_twitter_tweet_color').get('value'));
-		$$('.twtr-tweet-text a').setStyle('color', document.id('jform_params_twitter_link_color').get('value'));
-		$$('.twtr-tweet-text > p').setStyle('color', document.id('jform_params_twitter_tweet_text_color').get('value'));
 		
 		// function used for changing data source to help if the onChange event doesn't fire
 		document.id('jform_params_module_data_source').addEvent('blur', function() {
@@ -287,33 +250,6 @@ var SocialGK5Settings = new Class({
 		});
 		
 	},
-	
-	// function used to generate the updates list
-	getUpdates: function() {
-		var update_url = 'https://www.gavick.com/component/gk2_update/?task=json&tmpl=json&query=product&product=mod_social_gk5';
-		var update_div = document.id('gk_module_updates');
-		// remove unnecesary label
-		document.id('jform_params_module_updates-lbl').destroy(); 
-		// set the necessary content
-		update_div.innerHTML = '<div id="gk_update_div"><span id="gk_loader"></span>Loading update data from GavicPro Update service...</div>';
-		// get the data from the server
-		new Asset.javascript(update_url,{
-			id: "new_script",
-			onload: function(){
-				content = '';
-				// read the update JSON data
-				$GK_UPDATE.each(function(el){
-					content += '<li><span class="gk_update_version"><strong>Version:</strong> ' + el.version + ' </span><span class="gk_update_data"><strong>Date:</strong> ' + el.date + ' </span><span class="gk_update_link"><a href="' + el.link + '" target="_blank">Download</a></span></li>';
-				});
-				// fill the container with it
-				update_div.innerHTML = '<ul class="gk_updates">' + content + '</ul>';
-				// if there is no updates - set the proper information
-				if(update_div.innerHTML == '<ul class="gk_updates"></ul>') {
-					update_div.innerHTML = '<p>There is no available updates for this module</p>';	
-				}
-			}
-		});
-	},
 	// function to encode chars
 	htmlspecialchars: function(string) {
 	    string = string.toString();
@@ -327,87 +263,6 @@ var SocialGK5Settings = new Class({
 		return string;
 	}
 });
-
-var SocialGK5TwitterList = new Class({
-	// constructor
-	initialize: function() {
-		// create additional variable to avoid problems with the scopes
-		$obj = this;
-		var selects = null;
-		var content = '';
-		// button load
-		document.id('twitter_load_lists').addEvent('click', function(e) {
-			e.stop();
-		    $obj.operation('load');
-		});
-	},
-	// operation made by the class
-	operation: function(type) {
-		// current username
-		getLists();
-		
-	} 
-});
-
-// get twitter lists for selected user
-function getLists() {
-	var username = document.id('jform_params_twitter_username').get('value');
-		var url = 'https://api.twitter.com/1/lists/all.json';
-		content = '';
-		new Request.JSONP({
-		  url: "https://api.twitter.com/1/lists/all.json",
-		  data: {
-			screen_name: username
-		  },
-		  onComplete: function(lists) {
-			if(lists.length > 0) {
-				var sel = document.id('jform_params_twitter_lists_data').value; 
-				Array.each(lists, function(list, index){
-					if(sel == list.slug) {
-					content+='<option value="'+list.slug+'" selected="selected">'+list.name+'</option>';
-					} else {
-					content+='<option value="'+list.slug+'">'+list.name+'</option>';
-					}
-				});
-			} else {
-					content+='<option value="error">No lists for specified username</option>';
-			}
-			document.id('jform_params_twitter_lists').innerHTML = '';
-			document.id('jform_params_twitter_lists').innerHTML = content;
-			
-		  }
-		}).send();
-		
-		document.id('jform_params_twitter_lists').set('value', document.id('jform_params_twitter_lists_data').value);
-}
-
-function hideTwitterOptions() {
-	if(document.id('jform_params_twitter_widget').value == 'tweets') {
-						document.id('jform_params_twitter_username-lbl').getParent().addClass('hidden');
-						document.id('jform_params_twitter_title-lbl').getParent().addClass('hidden');
-						document.id('jform_params_twitter_desc-lbl').getParent().addClass('hidden');
-						document.id('jform_params_twitter_lists-lbl').getParent().addClass('hidden');
-						document.id('jform_params_twitter_preview-lbl').getParent().getAllPrevious().each(function(item, index) {
-							item.addClass('hidden');
-							document.id('jform_params_twitter_preview-lbl').getParent().addClass('hidden');
-						});
-						document.id('jform_params_twitter_preview-lbl').getParent().getAllNext().each(function(item, index) {
-							item.removeClass('hidden');
-						});
-					} else {
-						document.id('jform_params_twitter_username-lbl').getParent().removeClass('hidden');
-						document.id('jform_params_twitter_title-lbl').getParent().removeClass('hidden');
-						document.id('jform_params_twitter_desc-lbl').getParent().removeClass('hidden');
-						document.id('jform_params_twitter_lists-lbl').getParent().removeClass('hidden');
-						document.id('jform_params_twitter_preview-lbl').getParent().getAllNext().each(function(item, index) {
-							item.addClass('hidden');
-						});
-						document.id('jform_params_twitter_preview-lbl').getParent().getAllPrevious().each(function(item, index) {
-							item.removeClass('hidden');
-							document.id('jform_params_twitter_preview-lbl').getParent().removeClass('hidden');
-						});
-					}
-}
 
 /*
  *

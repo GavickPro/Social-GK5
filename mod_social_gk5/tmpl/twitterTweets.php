@@ -20,7 +20,7 @@ defined('_JEXEC') or die('Restricted access');
 	<p><?php echo JText::_( 'MOD_SOCIAL_ANY_DATA' ); ?></p>
 <?php else : ?>
 
-	<?php if(($this->config['twitter_rows'] * $this->config['twitter_columns']) > 0 && count($this->pData) >= ($this->config['twitter_rows'] * $this->config['twitter_columns'])) : ?>
+	<?php if(($this->config['twitter_rows'] * $this->config['twitter_columns']) > 0 && $this->config['twitter_tweet_amount'] >= ($this->config['twitter_rows'] * $this->config['twitter_columns'])) : ?>
 				
 		<?php for($i = 0; $i < ($this->config['twitter_rows'] * $this->config['twitter_columns']); $i++) : ?>
 			

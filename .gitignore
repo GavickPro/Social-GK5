@@ -16,3 +16,5 @@ mod_social_gk5/config/facebookSample.json
 mod_social_gk5/config/googlesample.json
 
 mod_social_gk5/config/s1.json
+
+*.png

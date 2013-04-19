@@ -20,14 +20,12 @@ if($config['module_data_source'] == 'twitter') {
 	require_once (dirname(__FILE__).DS.'data_source'.DS.'twitter.php');
 	$helper = new SocialGK5TwitterHelper($module, $params); 
 	// try to parse the data
-	if($config['twitter_widget'] == 'tweets') {
-		try{
-			$helper->getData();
-			//$helper->parseData();    
-		} catch (Exception $e) {
-			// use backup
-			$helper->useBackup();
-		}
+	try{
+		$helper->getData();
+		//$helper->parseData();    
+	} catch (Exception $e) {
+		// use backup
+		$helper->useBackup();
 	}
 } else if ($config['module_data_source'] == 'fb') {
 	require_once (dirname(__FILE__).DS.'data_source'.DS.'facebook.php');

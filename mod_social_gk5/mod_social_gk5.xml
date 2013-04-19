@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="1.6.0" client="site" method="upgrade">
+<extension type="module" version="2.5" client="site" method="upgrade">
 	<name>Social GK5</name>
 	<author>GavickPro</author>
-	<creationDate>15/05/2012</creationDate>
-	<copyright>Copyright (C) 2011-2012 GavickPro. All rights reserved.</copyright>
+	<creationDate>19/04/2013</creationDate>
+	<copyright>Copyright (C) 2011-2013 GavickPro. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later</license>
 	<authorEmail>info@gavick.com</authorEmail>
 	<authorUrl>www.gavickpro.com</authorUrl>
-	<version>GK5 1.0</version>
+	<version>GK5 1.1</version>
 	<description><![CDATA[
 		<style type="text/css">
 			span.readonly { padding: 10px; font-family: Arial; font-size:13px !important; font-weight: normal !important; text-align: justify; color: #4d4d4d; line-height: 24px; }
@@ -18,7 +18,7 @@
 			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
 		</style>
 		
-		<span class="readonly"><h1>Social GK5<small>ver. 1.0</small></h1><p>GK5 is one product of the next generation of GavickPro extensions designed exclusively for Joomla 2.5+.</p><p>Social GK5 combines functionalities from FB GK4, Gplus GK4 and completely new support for data source from a Twitter portal. Social GK5 supports the most popular services like: Facebook, Google+ and Twitter. This module allows visitors to connect directly and to promote your brand on the most popular social portals.</p> <p class="homepage"><a target="_blank" href="https://www.gavick.com/social-gk5.html">Learn more at the Social GK5 project website.</a></p><p class="license">Social GK5 is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU/GPL v2 license.</a></p></span></span>
+		<span class="readonly"><h1>Social GK5<small>ver. 1.1</small></h1><p>GK5 is one product of the next generation of GavickPro extensions designed exclusively for Joomla 2.5+.</p><p>Social GK5 combines functionalities from FB GK4, Gplus GK4 and completely new support for data source from a Twitter portal. Social GK5 supports the most popular services like: Facebook, Google+ and Twitter. This module allows visitors to connect directly and to promote your brand on the most popular social portals.</p> <p class="homepage"><a target="_blank" href="https://www.gavick.com/social-gk5.html">Learn more at the Social GK5 project website.</a></p><p class="license">Social GK5 is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU/GPL v2 license.</a></p></span></span>
 	]]></description>
 	<files>
 		<filename module="mod_social_gk5">mod_social_gk5.php</filename>
@@ -32,6 +32,11 @@
 		<folder>styles</folder>
 		<folder>tmpl</folder>
 	</files>
+	
+	<updateservers>
+       <server type="extension" priority="1" name="Social GK5 Updates">https://www.gavick.com/update_server/joomla25/social_gk5.xml</server>
+   </updateservers>
+	
 	<languages>
 		<language tag="en-GB">language/en-GB.mod_social_gk5.ini</language>
 	</languages>
@@ -61,53 +66,18 @@
 			
 			<!-- twitter -->
 			<fieldset name="SOCIAL_TWITTER_BASIC">
-				<field name="twitter_widget" type="list" default="search" label="MOD_SOCIAL_TWITTER_WIDGET" description="MOD_SOCIAL_TWITTER_WIDGET_DESC">
-					<option value="search">MOD_SOCIAL_TWITTER_SEARCH</option>
-					<option value="tweets">MOD_SOCIAL_TWITTER_TWEETS</option>
-					<option value="profile">MOD_SOCIAL_TWITTER_PROFILE</option>
-					<option value="faves">MOD_SOCIAL_TWITTER_FAVORITE_TWEETS</option>
-					<option value="list">MOD_SOCIAL_TWITTER_USER_LIST_VIEW</option>
-				 </field>
-				 <!-- profile settings -->
-				 <field name="twitter_username" type="text" default="gavickpro" label="MOD_SOCIAL_TWITTER_PROFILE_USERNAME" description="MOD_SOCIAL_TWITTER_PROFILE_USERNAME_DESC" />
 				 <!-- search settings -->
+				  <field name="twitter_consumer_key" type="text" size="55" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_CONSUMER_KEY" description="MOD_SOCIAL_TWITTER_CONSUMER_KEY_DESC" />
+ 				  <field name="twitter_consumer_secret" type="text" size="55" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_CONSUMER_SECRET" description="MOD_SOCIAL_TWITTER_CONSUMER_SECRET_DESC" />
+ 				  <field name="twitter_user_token" type="text" size="55" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_USER_TOKEN" description="MOD_SOCIAL_TWITTER_USER_TOKEN_DESC" />
+ 				  <field name="twitter_user_secret" type="text" size="55" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_USER_SECRET" description="MOD_SOCIAL_TWITTER_USER_SECRET_DESC" />
+				 
 				 <field name="twitter_search_query" type="text" default="gavickpro" label="MOD_SOCIAL_TWITTER_SEARCH_QUERY" description="MOD_SOCIAL_TWITTER_SEARCH_QUERY_DESC" />
 				 <field name="twitter_tweet_amount" type="text" default="10" size="4" label="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT" description="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT_DESC" />
-				 <field name="twitter_title" type="text" default="Search tweets" label="MOD_SOCIAL_TWITTER_SEARCH_TITLE" description="MOD_SOCIAL_TWITTER_SEARCH_TITLE_DESC" />
-				 <field name="twitter_desc" type="text" default="by phrase..." label="MOD_SOCIAL_TWITTER_SEARCH_DESC" description="MOD_SOCIAL_TWITTER_SEARCH_DESC_DESC" />
-				 	<!-- user list settings -->
-					<field name="twitter_lists" type="twitterlists" directory="modules/mod_social_gk5/config/" label="MOD_SOCIAL_TWITTER_LISTS" />
-					<field name="twitter_lists_data" type="text" label="MOD_SOCIAL_TWITTER_LISTS" />
 			</fieldset>
 			
 			<!-- twitter layout -->
 			<fieldset name="SOCIAL_TWITTER_LAYOUT">
-				<!-- widget options -->
-				<field name="twitter_widget_color" type="text" default="#CECCCC" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_WIDGET_BG" description="MOD_SOCIAL_TWITTER_WIDGET_BG_DESC" />
-				<field name="twitter_tweet_color" type="text" default="#FFFFFF" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TWEET_BG" description="MOD_SOCIAL_TWITTER_TWEET_BG_DESC" />
-				<field name="twitter_link_color" type="text" default="#A51212" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_LINK_COLOR" description="MOD_SOCIAL_TWITTER_LINK_COLOR_DESC" />
-				<field name="twitter_widget_text_color" type="text" default="#474747" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_LINK_TEXT_COLOR_DESC" />
-				<field name="twitter_tweet_text_color" type="text" default="#444444" class="color-field" size="8" label="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR" description="MOD_SOCIAL_TWITTER_TWEET_TEXT_COLOR_DESC" />
-				<field name="twitter_auto_refresh" type="list" class="gk_switch" default="true" label="MOD_SOCIAL_TWITTER_AUTO_REFRESH" description="MOD_SOCIAL_TWITTER_AUTO_REFRESH_DESC">
-				        <option value="false">MOD_SOCIAL_DISABLED</option>
-				        <option value="true">MOD_SOCIAL_ENABLED</option>
-				</field>
-				<field name="twitter_loop" type="list" class="gk_switch" default="true" label="MOD_SOCIAL_TWITTER_LOOP" description="MOD_SOCIAL_TWITTER_AUTO_LOOP_DESC">
-				        <option value="false">MOD_SOCIAL_DISABLED</option>
-				        <option value="true">MOD_SOCIAL_ENABLED</option>
-				</field>
-				<field name="twitter_behaviour" type="list" default="default" label="MOD_SOCIAL_TWITTER_BEHAVIOUR" description="MOD_SOCIAL_TWITTER_BEHAVIOUR_DESC">
-					<option value="default">MOD_SOCIAL_TWITTER_INTERVAL</option>
-					<option value="all">MOD_SOCIAL_TWITTER_ALL</option>
-				 </field>
-				<field name="twitter_include_scrollbar" type="list" class="gk_switch" default="false" label="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR" description="MOD_SOCIAL_TWITTER_INCLUDE_SCROLLBAR_DESC">
-				        <option value="false">MOD_SOCIAL_DISABLED</option>
-				        <option value="true">MOD_SOCIAL_ENABLED</option>
-				</field>
-				<field name="twitter_interval" type="text" default="30000" size="5" label="MOD_SOCIAL_TWITTER_INTERVAL_TIME" description="MOD_SOCIAL_TWITTER_INTERVAL_TIME_DESC" />
-				<field name="twitter_height" type="text" default="250" size="5" label="MOD_SOCIAL_TWITTER_HEIGHT" description="MOD_SOCIAL_TWITTER_HEIGHT_DESC" />
-				
-				<field name="twitter_preview" type="twitterpreview" label="MOD_SOCIAL_TWITTER_LISTS" />
 				<!-- tweets options -->
 				<field name="twitter_tweet_style" type="list" default="search" label="MOD_SOCIAL_TWITTER_STYLE" description="MOD_SOCIAL_TWITTER_STYLE_DESC">
 					<option value="style1">style1</option>
@@ -194,7 +164,6 @@
 		            <option value="comments">MOD_SOCIAL_FB_COMMENTS</option>
 		            <option value="facepile">MOD_SOCIAL_FB_FACEPILE</option>
                     <option value="like_box">MOD_SOCIAL_FB_LIKE_BOX</option>
-                    <option value="live_stream">MOD_SOCIAL_FB_LIVE_STREAM</option>
                     <option value="recommendations">MOD_SOCIAL_FB_RECOMMEDATIONS</option>
 	            </field>
                 <field name="fb_code_type" type="list" default="iframe" label="MOD_SOCIAL_FB_PLUGIN_CODE_TYPE" description="MOD_SOCIAL_FB_PLUGIN_CODE_TYPE_DESC">
@@ -279,6 +248,7 @@
                     <option value="light">MOD_SOCIAL_FB_LIGHT</option>
                     <option value="dark">MOD_SOCIAL_FB_DARK</option>
                 </field>
+                <field name="fb_likebox_border_color" type="text" default="#CECCCC" class="input-small color-field" size="8" label="MOD_FB_BORDER_COLOR" description="MOD_FB_BORDER_COLOR_DESC" />
                 <field name="fb_likebox_faces" type="list" default="true"  class="gk_switch" label="MOD_SOCIAL_FB_LIKEBOX_SHOW_FACES" description="MOD_SOCIAL_FB_LIKEBOX_SHOW_FACES_DESC">
                     <option value="true">MOD_SOCIAL_ENABLED</option>
                     <option value="false">MOD_SOCIAL_DISABLED</option>
@@ -288,18 +258,7 @@
                     <option value="false">MOD_SOCIAL_DISABLED</option>
                 </field>
             </fieldset>
-            <fieldset name="SOCIAL_FB_LIKEBOX_LIVESTREAM">
-                <field type="required" name="required_field" />
-                <field name="fb_livestream_width" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
-                <field name="fb_livestream_height" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
-                <field name="fb_livestream_xid" type="text" default="" label="MOD_SOCIAL_FB_LIVESTREAM_XID" description="MOD_SOCIAL_FB_LIVESTREAM_XID_DESC" />
-                <field name="fb_livestream_url" type="text" default="" label="MOD_SOCIAL_FB_LIVESTREAM_URL" description="MOD_SOCIAL_FB_LIVESTREAM_URL_DESC" />
-                <field name="fb_livestream_friends" type="list" default="true"  class="gk_switch" label="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS" description="MOD_SOCIAL_FB_LIVESTREAM_FRIENDS_DESC">
-                    <option value="true">MOD_SOCIAL_ENABLED</option>
-                    <option value="false">MOD_SOCIAL_DISABLED</option>
-                </field>
-            </fieldset>
-			
+         	
             <fieldset name="SOCIAL_FB_RECOMMENDATIONS">
                 <field name="fb_rec_width" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_WIDTH" description="MOD_SOCIAL_FB_WIDTH_DESC" />
                 <field name="fb_rec_height" type="text" default="300" size="5" class="px" label="MOD_SOCIAL_FB_HEIGHT" description="MOD_SOCIAL_FB_HEIGHT_DESC" />
@@ -327,11 +286,6 @@
                 <field name="fb_rec_border_color" type="text" default="#CECCCC" class="color-field" size="8" label="MOD_FB_BORDER_COLOR" description="MOD_FB_BORDER_COLOR_DESC" />
             </fieldset>
 			
-			
-			<!-- updates -->
-			<fieldset name="SOCIAL_UPDATES" addfieldpath="/modules/mod_social_gk5/admin/elements">
-			    <field type="update" name="module_updates" /> 
-			</fieldset>
 			<!-- about us -->
 			<fieldset name="SOCIAL_ABOUT_US" addfieldpath="/modules/mod_social_gk5/admin/elements">
 			    <field type="about" name="about_us" /> 

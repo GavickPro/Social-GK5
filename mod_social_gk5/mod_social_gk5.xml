@@ -75,8 +75,6 @@
 				  
 				 <field name="twitter_search_query" type="text" default="gavickpro" label="MOD_SOCIAL_TWITTER_SEARCH_QUERY" description="MOD_SOCIAL_TWITTER_SEARCH_QUERY_DESC" />
 				 <field name="twitter_tweet_amount" type="text" default="10" size="4" label="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT" description="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT_DESC" />
-				 <field name="twitter_title" type="text" default="Search tweets" label="MOD_SOCIAL_TWITTER_SEARCH_TITLE" description="MOD_SOCIAL_TWITTER_SEARCH_TITLE_DESC" />
-				 <field name="twitter_desc" type="text" default="by phrase..." label="MOD_SOCIAL_TWITTER_SEARCH_DESC" description="MOD_SOCIAL_TWITTER_SEARCH_DESC_DESC" />
 			</fieldset>
 			
 			<!-- twitter layout -->

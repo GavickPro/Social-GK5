@@ -68,10 +68,10 @@
 			<!-- twitter -->
 			<fieldset name="SOCIAL_TWITTER_BASIC">
 				 <!-- search settings -->
-				  <field name="twitter_consumer_key" type="text" default="" label="MOD_SOCIAL_TWITTER_CONSUMER_KEY" description="MOD_SOCIAL_TWITTER_CONSUMER_KEY_DESC" required="true"/>
-				  <field name="twitter_consumer_secret" type="text" default="" label="MOD_SOCIAL_TWITTER_CONSUMER_SECRET" description="MOD_SOCIAL_TWITTER_CONSUMER_SECRET_DESC" required="true"/>
-				  <field name="twitter_user_token" type="text" default="" label="MOD_SOCIAL_TWITTER_USER_TOKEN" description="MOD_SOCIAL_TWITTER_USER_TOKEN_DESC" required="true"/>
-				  <field name="twitter_user_secret" type="text" default="" label="MOD_SOCIAL_TWITTER_USER_SECRET" description="MOD_SOCIAL_TWITTER_USER_SECRET_DESC" required="true"/>
+				  <field name="twitter_consumer_key" type="text" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_CONSUMER_KEY" description="MOD_SOCIAL_TWITTER_CONSUMER_KEY_DESC" />
+ 				  <field name="twitter_consumer_secret" type="text" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_CONSUMER_SECRET" description="MOD_SOCIAL_TWITTER_CONSUMER_SECRET_DESC" />
+ 				  <field name="twitter_user_token" type="text" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_USER_TOKEN" description="MOD_SOCIAL_TWITTER_USER_TOKEN_DESC" />
+ 				  <field name="twitter_user_secret" type="text" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_USER_SECRET" description="MOD_SOCIAL_TWITTER_USER_SECRET_DESC" />
 				  
 				 <field name="twitter_search_query" type="text" default="gavickpro" label="MOD_SOCIAL_TWITTER_SEARCH_QUERY" description="MOD_SOCIAL_TWITTER_SEARCH_QUERY_DESC" />
 				 <field name="twitter_tweet_amount" type="text" default="10" size="4" label="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT" description="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT_DESC" />

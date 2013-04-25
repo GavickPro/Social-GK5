@@ -2,12 +2,12 @@
 <extension type="module" version="3.0" client="site" method="upgrade">
 	<name>Social GK5</name>
 	<author>GavickPro</author>
-	<creationDate>19/04/2013</creationDate>
+	<creationDate>25/04/2013</creationDate>
 	<copyright>Copyright (C) 2011-2013 GavickPro. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later</license>
 	<authorEmail>info@gavick.com</authorEmail>
 	<authorUrl>www.gavickpro.com</authorUrl>
-	<version>GK5 1.1</version>
+	<version>GK5 1.1.1</version>
 	<description><![CDATA[
 		<style type="text/css">
 			span.readonly { padding: 10px; font-family: Arial; font-size:13px !important; font-weight: normal !important; text-align: justify; color: #4d4d4d; line-height: 24px; }
@@ -18,7 +18,7 @@
 			span.readonly p.license { border-top: 1px solid #eee; font-size: 11px; margin: 30px 26px 0; padding: 6px 0; }
 		</style>
 		
-		<span class="readonly"><h1>Social GK5<small>ver. 1.1</small></h1><p>GK5 is one product of the next generation of GavickPro extensions designed exclusively for Joomla 2.5+.</p><p>Social GK5 combines functionalities from FB GK4, Gplus GK4 and completely new support for data source from a Twitter portal. Social GK5 supports the most popular services like: Facebook, Google+ and Twitter. This module allows visitors to connect directly and to promote your brand on the most popular social portals.</p> <p class="homepage"><a target="_blank" href="https://www.gavick.com/social-gk5.html">Learn more at the Social GK5 project website.</a></p><p class="license">Social GK5 is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU/GPL v2 license.</a></p></span></span>
+		<span class="readonly"><h1>Social GK5<small>ver. 1.1.1</small></h1><p>GK5 is one product of the next generation of GavickPro extensions designed exclusively for Joomla 2.5+.</p><p>Social GK5 combines functionalities from FB GK4, Gplus GK4 and completely new support for data source from a Twitter portal. Social GK5 supports the most popular services like: Facebook, Google+ and Twitter. This module allows visitors to connect directly and to promote your brand on the most popular social portals.</p> <p class="homepage"><a target="_blank" href="https://www.gavick.com/social-gk5.html">Learn more at the Social GK5 project website.</a></p><p class="license">Social GK5 is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU/GPL v2 license.</a></p></span></span>
 	]]></description>
 	<files>
 		<filename module="mod_social_gk5">mod_social_gk5.php</filename>
@@ -68,13 +68,18 @@
 			<!-- twitter -->
 			<fieldset name="SOCIAL_TWITTER_BASIC">
 				 <!-- search settings -->
-				  <field name="twitter_consumer_key" type="text" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_CONSUMER_KEY" description="MOD_SOCIAL_TWITTER_CONSUMER_KEY_DESC" />
- 				  <field name="twitter_consumer_secret" type="text" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_CONSUMER_SECRET" description="MOD_SOCIAL_TWITTER_CONSUMER_SECRET_DESC" />
- 				  <field name="twitter_user_token" type="text" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_USER_TOKEN" description="MOD_SOCIAL_TWITTER_USER_TOKEN_DESC" />
- 				  <field name="twitter_user_secret" type="text" default="Please visit twitter.com to generate keys" label="MOD_SOCIAL_TWITTER_USER_SECRET" description="MOD_SOCIAL_TWITTER_USER_SECRET_DESC" />
+				  <field name="twitter_consumer_key" type="textplaceholder" placeholder="Please visit twitter.com to generate keys" size="55" default="" label="MOD_SOCIAL_TWITTER_CONSUMER_KEY" description="MOD_SOCIAL_TWITTER_CONSUMER_KEY_DESC" />
+				    <field name="twitter_consumer_secret" type="textplaceholder" placeholder="Please visit twitter.com to generate keys" size="55" default="" label="MOD_SOCIAL_TWITTER_CONSUMER_SECRET" description="MOD_SOCIAL_TWITTER_CONSUMER_SECRET_DESC" />
+				    <field name="twitter_user_token" type="textplaceholder" placeholder="Please visit twitter.com to generate keys" size="55" default="" label="MOD_SOCIAL_TWITTER_USER_TOKEN" description="MOD_SOCIAL_TWITTER_USER_TOKEN_DESC" />
+				    <field name="twitter_user_secret" type="textplaceholder" placeholder="Please visit twitter.com to generate keys" size="55" default="" label="MOD_SOCIAL_TWITTER_USER_SECRET" description="MOD_SOCIAL_TWITTER_USER_SECRET_DESC" />
 				  
-				 <field name="twitter_search_query" type="text" default="gavickpro" label="MOD_SOCIAL_TWITTER_SEARCH_QUERY" description="MOD_SOCIAL_TWITTER_SEARCH_QUERY_DESC" />
-				 <field name="twitter_tweet_amount" type="text" default="10" size="4" label="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT" description="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT_DESC" />
+				  <field name="twitter_search_query" type="text" default="gavickpro" label="MOD_SOCIAL_TWITTER_SEARCH_QUERY" description="MOD_SOCIAL_TWITTER_SEARCH_QUERY_DESC" />
+				  <field name="twitter_tweet_amount" type="text" default="10" size="4" label="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT" description="MOD_SOCIAL_TWITTER_TWEETS_AMOUNT_DESC" />
+				  
+				  <field name="twitter_use_ssl" type="radio" class="btn-group" default="0" label="MOD_SOCIAL_TWITTER_SSL" description="MOD_SOCIAL_TWITTER_SSL_DESC">
+				   		<option value="0">MOD_SOCIAL_DISABLED</option>
+				          <option value="1">MOD_SOCIAL_ENABLED</option>
+				  </field>
 			</fieldset>
 			
 			<!-- twitter layout -->

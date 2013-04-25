@@ -68,6 +68,8 @@ class SocialGK5TwitterHelper
             // get the data from twitter
 			$this->getTweets();
 			
+			
+			
             if($this->error == '') {
                 // saving cache
                 if($this->pData != '') {
@@ -103,92 +105,103 @@ class SocialGK5TwitterHelper
     }
 	
 	function getTweets() {
-			
-	      $url = 'https://api.twitter.com/1.1/search/tweets.json?q=' . $this->config['twitter_search_query'].'&amp;rpp=' . $this->config['twitter_tweet_amount'].'&amp;result_type=recent';
-
-		if (function_exists('curl_init') && ($this->config['twitter_search_query'] != '' || $this->config['twitter_tweet_amount'] > 0)) {                
-               	$tmhOAuth = new tmhOAuth(array(
-               	 'consumer_key' => $this->config['twitter_consumer_key'],
-               	 'consumer_secret' => $this->config['twitter_consumer_secret'],
-               	 'user_token' => $this->config['twitter_user_token'],
-               	 'user_secret' => $this->config['twitter_user_secret'],
-               	 'curl_ssl_verifypeer' => false
-               	));
-               
-               	$tmhOAuth->request(
-               	   'GET',
-               	   'https://api.twitter.com/1.1/search/tweets.json',
-               	   array(
-               	   	'q' => $this->config['twitter_search_query'],
-               	   	'count' => $this->config['twitter_tweet_amount'],
-               	   	'result_type' => 'recent'
-               	   )
-               	 );
-               
-                $decode = json_decode($tmhOAuth->response['response'], true); //getting the file content as array
-               
-                $count = count($decode['statuses']); //counting the number of status
-                
-               				
-				$save = json_encode($tmhOAuth->response['response']);
-				file_put_contents('results.json', $save);
-							
-                for ($i = 0; $i < $count; $i++) {       
-                	$this->pData[$i]['id'] = $decode['statuses'][$i]['id'];
-                	$this->pData[$i]['text'] = $decode['statuses'][$i]['text'];
-					$this->pData[$i]['username'] = $decode['statuses'][$i]['user']['screen_name'];
-					$this->pData[$i]['user_id'] = $decode['statuses'][$i]['user']['id'];
-					$this->pData[$i]['avatar'] = $decode['statuses'][$i]['user']['profile_image_url'];
-                 	$this->pData[$i]['name'] = $decode['statuses'][$i]['user']['name'];
-                	$this->pData[$i]['time'] = date("d M", strtotime($decode['statuses'][$i]['created_at']));
-					$this->pData[$i]['timestamp'] = $decode['statuses'][$i]['created_at'];
-                	$this->pData[$i]['time_diff'] = $this->dateDifference($decode['statuses'][$i]['created_at']);
-                 	$this->pData[$i]['url'] = $decode['statuses'][$i]['user']['screen_name'];
-					
-					preg_match_all('/#\w*/', $this->pData[$i]['text'], $matches, PREG_PATTERN_ORDER);
-					foreach($matches as $key => $match) {
-						foreach($match as $m) {
-							$m = substr($m, 1);
-							$this->pData[$i]['text'] = str_replace($m, "<a href='https://twitter.com/#!/search/".$m."'>".$m."</a>", $this->pData[$i]['text']);
-						}
-					}
-					
-					preg_match_all('/@\w*/', $this->pData[$i]['text'], $matches, PREG_PATTERN_ORDER);
-					foreach($matches as $key => $match) {
-						foreach($match as $m) {
-							$m = substr($m, 1);
-							$this->pData[$i]['text'] = str_replace($m, "<a href='https://twitter.com/#!/".$m."'>".$m."</a>", $this->pData[$i]['text']);
-						}
-					}
-					
-					preg_match_all('/http:\/\/\S*/', $this->pData[$i]['text'], $matches, PREG_PATTERN_ORDER);
-					foreach($matches as $key => $match) {
-						foreach($match as $m) {
-							$this->pData[$i]['text'] = str_replace($m, "<a href='".$m."'>".$m."</a>", $this->pData[$i]['text']);
-						}
-					}
-					
-					//$this->pData = array_reverse($this->pData);
-                }
-     						
-                function cmp($a, $b)
-                {
-                    $a = strtotime($a['timestamp']);
-                    $b = strtotime($b['timestamp']);
-                    return ($a == $b) ? 0 : ($a > $b ? -1 : 1);
-                }
-                if($this->config['twitter_search_query'] == '' || $this->pData=='') {
-                	$this->error = 'There is no feed to display';
-                } else {
-               		usort($this->pData, "cmp");
-                	// only way to get it working with cache properly
-                	$encoded = json_encode($this->pData);
-                	$this->pData = json_decode($encoded);
-				}
-            } else {
-                $this->error = 'cURL extension and file_get_content method is not available on your server';
-            }	
 		
+		if(($this->config['twitter_consumer_key'] != '') && ($this->config['twitter_consumer_secret'] != '') && ($this->config['twitter_user_token'] != '') && ($this->config['twitter_user_secret'] != '')) {
+				
+			if (function_exists('curl_init') && ($this->config['twitter_search_query'] != '' || $this->config['twitter_tweet_amount'] > 0)) {                
+	               	$tmhOAuth = new tmhOAuth(array(
+	               	 'consumer_key' => $this->config['twitter_consumer_key'],
+	               	 'consumer_secret' => $this->config['twitter_consumer_secret'],
+	               	 'user_token' => $this->config['twitter_user_token'],
+	               	 'user_secret' => $this->config['twitter_user_secret'],
+	               	 'curl_ssl_verifypeer' => false
+	               	));
+	               
+	               $prefix = $this->config['twitter_use_ssl'] ? 'https://' : 'http://';
+	               
+	               	$tmhOAuth->request(
+	               	   'GET',
+	               	   $prefix.'api.twitter.com/1.1/search/tweets.json',
+	               	   array(
+	               	   	'q' => $this->config['twitter_search_query'],
+	               	   	'count' => $this->config['twitter_tweet_amount'],
+	               	   	'result_type' => 'recent'
+	               	   )
+	               	 );
+	               
+	                $decode = json_decode($tmhOAuth->response['response'], true); //getting the file content as array
+	                $count = count($decode['statuses']); //counting the number of status
+	               
+	               // for cURL errors 
+	               if($tmhOAuth->response['response'] == '') {
+	               	echo $tmhOAuth->response['error'];
+	               }
+	               // for twitter API errors
+	               if($decode['errors'] != '') {
+	               	echo $decode['errors'][0]['message'];
+	               }
+	               				
+					$save = json_encode($tmhOAuth->response['response']);
+					file_put_contents('results.json', $save);
+								
+	                for ($i = 0; $i < $count; $i++) {       
+	                	$this->pData[$i]['id'] = $decode['statuses'][$i]['id'];
+	                	$this->pData[$i]['text'] = $decode['statuses'][$i]['text'];
+						$this->pData[$i]['username'] = $decode['statuses'][$i]['user']['screen_name'];
+						$this->pData[$i]['user_id'] = $decode['statuses'][$i]['user']['id'];
+						$this->pData[$i]['avatar'] = $decode['statuses'][$i]['user']['profile_image_url'];
+	                 	$this->pData[$i]['name'] = $decode['statuses'][$i]['user']['name'];
+	                	$this->pData[$i]['time'] = date("d M", strtotime($decode['statuses'][$i]['created_at']));
+						$this->pData[$i]['timestamp'] = $decode['statuses'][$i]['created_at'];
+	                	$this->pData[$i]['time_diff'] = $this->dateDifference($decode['statuses'][$i]['created_at']);
+	                 	$this->pData[$i]['url'] = $decode['statuses'][$i]['user']['screen_name'];
+						
+						preg_match_all('/#\w*/', $this->pData[$i]['text'], $matches, PREG_PATTERN_ORDER);
+						foreach($matches as $key => $match) {
+							foreach($match as $m) {
+								$m = substr($m, 1);
+								$this->pData[$i]['text'] = str_replace($m, "<a href='https://twitter.com/#!/search/".$m."'>".$m."</a>", $this->pData[$i]['text']);
+							}
+						}
+						
+						preg_match_all('/@\w*/', $this->pData[$i]['text'], $matches, PREG_PATTERN_ORDER);
+						foreach($matches as $key => $match) {
+							foreach($match as $m) {
+								$m = substr($m, 1);
+								$this->pData[$i]['text'] = str_replace($m, "<a href='https://twitter.com/#!/".$m."'>".$m."</a>", $this->pData[$i]['text']);
+							}
+						}
+						
+						preg_match_all('/http:\/\/\S*/', $this->pData[$i]['text'], $matches, PREG_PATTERN_ORDER);
+						foreach($matches as $key => $match) {
+							foreach($match as $m) {
+								$this->pData[$i]['text'] = str_replace($m, "<a href='".$m."'>".$m."</a>", $this->pData[$i]['text']);
+							}
+						}
+						
+						//$this->pData = array_reverse($this->pData);
+	                }
+	     						
+	                function cmp($a, $b)
+	                {
+	                    $a = strtotime($a['timestamp']);
+	                    $b = strtotime($b['timestamp']);
+	                    return ($a == $b) ? 0 : ($a > $b ? -1 : 1);
+	                }
+	                if($this->config['twitter_search_query'] == '' || $this->pData=='') {
+	                	$this->error = 'There is no feed to display';
+	                } else {
+	               		usort($this->pData, "cmp");
+	                	// only way to get it working with cache properly
+	                	$encoded = json_encode($this->pData);
+	                	$this->pData = json_decode($encoded);
+					}
+	            } else {
+	                $this->error = 'cURL extension and file_get_content method is not available on your server';
+	            }	
+		} else {
+			echo 'Please generate public and private keys on https://dev.twitter.com';
+		}
 	}
 	
     /*

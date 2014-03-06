@@ -9,22 +9,19 @@ window.addEvent("domready",function(){
 	// initialize the configuration manager
 	var configManager = new SocialGK5ConfigManager();
 	
+	// check Joomla! version and add suffix
+	if((jQuery('#gk_about_us').data('jversion')).substr(0,3) == '3.2') {
+		jQuery('#module-form').addClass('j32');
+	}
+	
 	// initialize the main class
 	var settings = new SocialGK5Settings();
-
-	$$('.input-pixels').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\">" + el.getParent().innerHTML + "<span class=\"add-on\">px</span></div>"});
-	$$('.input-ms').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\">" + el.getParent().innerHTML + "<span class=\"add-on\">ms</span></div>"});
-	$$('.input-percents').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\">" + el.getParent().innerHTML + "<span class=\"add-on\">%</span></div>"});
-	$$('.input-minutes').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\">" + el.getParent().innerHTML + "<span class=\"add-on\">minutes</span></div>"});
-	$$('.input-gplus').each(function(el){el.getParent().innerHTML = "<div class=\"input-prepend\"><span class=\"add-on\">http://plus.google.com/</span>" + el.getParent().innerHTML + "</div>"});
-	
-	
-	
-	$$('.gkFormLine').each(function(el){el.getParent().setStyle('margin-left', '5px') });
-	document.id('config_manager_form').getParent().setStyle('margin-left', '10px');
-	document.id('gk_about_us').getParent().setStyle('margin-left', '10px');
-
-	
+	jQuery('.input-pixels').each(function(i, el){el = jQuery(el); el.parent().html("<div class=\"input-prepend\">" + el.parent().html() + "<span class=\"add-on\">px</span></div>");});
+	jQuery('.input-ms').each(function(i, el){el = jQuery(el); el.parent().html("<div class=\"input-prepend\">" + el.parent().html() + "<span class=\"add-on\">ms</span></div>");});
+	jQuery('.input-percents').each(function(i, el){el = jQuery(el); el.parent().html("<div class=\"input-prepend\">" + el.parent().html() + "<span class=\"add-on\">%</span></div>");});
+	jQuery('.input-minutes').each(function(i, el){el = jQuery(el); el.parent().html("<div class=\"input-prepend\">" + el.parent().html() + "<span class=\"add-on\">minutes</span></div>");});
+	jQuery('.input-gplus').each(function(i, el){el = jQuery(el); el.parent().html("<div class=\"input-prepend\"><span class=\"add-on\">http://plus.google.com/</span>" + el.parent().html() + "</div>");});
+	jQuery('#config_manager_form').parent().css('margin-left', '0px');
 });
 
 /*
@@ -32,158 +29,139 @@ window.addEvent("domready",function(){
  * Main class
  *
  */
-var SocialGK5Settings = new Class({
-	// constructor
-	initialize: function() {
-		// helper handler
-		$this = this;
-		this.formInit();
-		// columns/rows view
-		var merge = document.id('jform_params_twitter_columns-lbl').getParent();
-		var rows = document.id('jform_params_twitter_rows-lbl').getParent();
-		var columns = merge.get('html');
-		merge.setStyle('display', 'none');
-		rows.innerHTML = rows.innerHTML + columns;
-		merge.destroy();
-		
+function SocialGK5Settings() {
+ 	this.init();
+}
 
-		// current mode
-		var sourceMode = document.id('jform_params_module_data_source').get('value');
-				if(sourceMode == 'fb') {
-					document.id('jform_params_module_data_source').removeAttribute('class');
-					document.id('jform_params_module_data_source').addClass('fb');
-					$$('#moduleOptions .accordion-group .accordion-heading a').each(function(item, index){
-						if(String.from(item.get('html')).contains('Twitter')==true || String.from(item.get('html')).contains('Google')==true){
-							item.getParent().getParent().getParent().addClass('hidden');
-						} else {
-							item.getParent().getParent().getParent().removeClass('hidden');
-						}
-					});
-				} else if (sourceMode == 'gplus') {
-					document.id('jform_params_module_data_source').removeAttribute('class');
-					document.id('jform_params_module_data_source').addClass('gplus');
-					$$('#moduleOptions .accordion-group .accordion-heading a').each(function(item, index){
-						if(String.from(item.get('html')).contains('Facebook')==true || String.from(item.get('html')).contains('Twitter')==true){
-							item.getParent().getParent().getParent().addClass('hidden');
-						} else {
-							item.getParent().getParent().getParent().removeClass('hidden');
-						}
-					});
-				} else {
-					document.id('jform_params_module_data_source').removeAttribute('class');
-					document.id('jform_params_module_data_source').addClass('twitter');
-					$$('#moduleOptions .accordion-group .accordion-heading a').each(function(item, index){
-						if(String.from(item.get('html')).contains('Facebook')==true || String.from(item.get('html')).contains('Google')==true){
-							item.getParent().getParent().getParent().addClass('hidden');
-						} else {
-							item.getParent().getParent().getParent().removeClass('hidden');
-						}
-					});
-				}
-				
-		// hide one of unnecessary tabs
-		document.id('jform_params_module_data_source').addEvent('change', function() {
-				sourceMode = document.id('jform_params_module_data_source').get('value');
-				if(sourceMode == 'fb') {
-					document.id('jform_params_module_data_source').removeAttribute('class');
-					document.id('jform_params_module_data_source').addClass('fb');
-					$$('#moduleOptions .accordion-group .accordion-heading a').each(function(item, index){
-						if(String.from(item.get('html')).contains('Twitter')==true || String.from(item.get('html')).contains('Google')==true){
-							item.getParent().getParent().getParent().addClass('hidden');
-						} else {
-							item.getParent().getParent().getParent().removeClass('hidden');
-						}
-					});
-				} else if (sourceMode == 'gplus') {
-					document.id('jform_params_module_data_source').removeAttribute('class');
-					document.id('jform_params_module_data_source').addClass('gplus');
-					$$('#moduleOptions .accordion-group .accordion-heading a').each(function(item, index){
-						if(String.from(item.get('html')).contains('Facebook')==true || String.from(item.get('html')).contains('Twitter')==true){
-							item.getParent().getParent().getParent().addClass('hidden');
-						} else {
-							item.getParent().getParent().getParent().removeClass('hidden');
-						}
-					});
-				} else {
-					document.id('jform_params_module_data_source').removeAttribute('class');
-					document.id('jform_params_module_data_source').addClass('twitter');
-					$$('#moduleOptions .accordion-group .accordion-heading a').each(function(item, index){
-						if(String.from(item.get('html')).contains('Facebook')==true || String.from(item.get('html')).contains('Google')==true){
-							item.getParent().getParent().getParent().addClass('hidden');
-						} else {
-							item.getParent().getParent().getParent().removeClass('hidden');
-						}
-					});
-				}
-		});
-		
-		// function used for changing data source to help if the onChange event doesn't fire
-		document.id('jform_params_module_data_source').addEvent('blur', function() {
-			document.id('jform_params_module_data_source').fireEvent('change');	
-		});
-	},
+SocialGK5Settings.prototype.init = function() {
+	// binding
+	var $this = this;
+	// columns/rows view
+	var merge = jQuery('#jform_params_twitter_columns-lbl').parent();
+	var rows = jQuery('#jform_params_twitter_rows-lbl').parent();
+	var columns = merge.html();
+	merge.css('display', 'none');
+	rows.html(rows.html() + columns);
+	merge.remove();
 	
-	// function used to make other adjustments in the form
-	formInit: function() {
-
-	},
-	
-		
-	// function to encode chars
-	htmlspecialchars: function(string) {
-	    string = string.toString();
-	    string = string.replace(/&/g, '[ampersand]').replace(/</g, '[leftbracket]').replace(/>/g, '[rightbracket]');
-	    return string;
-	},
-	// function to decode chars
-	htmlspecialchars_decode: function(string) {
-		string = string.toString();
-		string = string.replace(/\[ampersand\]/g, '&').replace(/\[leftbracket\]/g, '<').replace(/\[rightbracket\]/g, '>');
-		return string;
+	// current mode
+	var sourceMode = jQuery('#jform_params_module_data_source').val();
+	if(sourceMode == 'fb') {
+		jQuery('#jform_params_module_data_source').attr('class', '');
+		jQuery('#jform_params_module_data_source').addClass('fb');
+		jQuery('#myTabTabs li a').each(function(index, item){
+			item = jQuery(item);
+			if(item.html().indexOf('Twitter') >= 0 || item.html().indexOf('Google') >= 0){
+				item.parent().addClass('hidden');
+			} else {
+				item.parent().removeClass('hidden');
+			}
+		});
+	} else if (sourceMode == 'gplus') {
+		jQuery('#jform_params_module_data_source').attr('class', '');
+		jQuery('#jform_params_module_data_source').attr('gplus', '');
+		jQuery('#myTabTabs li a').each(function(index, item){
+			item = jQuery(item);
+			if(item.html().indexOf('Facebook') >= 0 || item.html().indexOf('Twitter') >= 0){
+				item.parent().addClass('hidden');
+			} else {
+				item.parent().removeClass('hidden');
+			}
+		});
+	} else {
+		jQuery('#jform_params_module_data_source').attr('class', '');
+		jQuery('#jform_params_module_data_source').addClass('twitter');
+		jQuery('#myTabTabs li a').each(function(index, item){
+			if(item.html().indexOf('Facebook') >= 0 || item.html().indexOf('Google') >= 0){
+				item.parent().addClass('hidden');
+			} else {
+				item.parent().removeClass('hidden');
+			}
+		});
 	}
-});
-
-/*
- *
- * Configuration manager class
- *
- */
-var SocialGK5ConfigManager = new Class({
-	// constructor
-	initialize: function() {
-		// create additional variable to avoid problems with the scopes
-		$obj_c = this;
-		// button load
-		document.id('config_manager_load').addEvent('click', function(e) {
-			e.stop();
-		    $obj_c.operation('load');
-		});
-		// button save
-		document.id('config_manager_save').addEvent('click', function(e) {
-			e.stop();
-		   	$obj_c.operation('save');
-		});
-		document.id('config_manager_delete').addEvent('click', function(e) {
-			e.stop();
-		   	$obj_c.operation('delete');
-		});
-	},
-	// operation made by the class
-	operation: function(type) {
-		// current url 
-
-		var current_url = window.location;
-		// check if the current url has no hashes
-		if((current_url + '').indexOf('#', 0) === -1) {
-			// if no - put the variables
-		    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');    
+	
+	// hide one of unnecessary tabs
+	jQuery('#jform_params_module_data_source').on('change blur', function() {
+		var sourceMode = jQuery('#jform_params_module_data_source').val();
+		console.log(sourceMode);
+		if(sourceMode == 'fb') {
+			jQuery('#jform_params_module_data_source').attr('class', '');
+			jQuery('#jform_params_module_data_source').addClass('fb');
+			jQuery('#myTabTabs li a').each(function(index, item){
+				item = jQuery(item);
+				console.log(item.html().indexOf('Twitter'));
+				if(item.html().indexOf('Twitter') >= 0 || item.html().indexOf('Google') >= 0){
+					item.parent().addClass('hidden');
+				} else {
+					item.parent().removeClass('hidden');
+				}
+			});
+		} else if (sourceMode == 'gplus') {
+			jQuery('#jform_params_module_data_source').attr('class', '');
+			jQuery('#jform_params_module_data_source').attr('gplus', '');
+			jQuery('#myTabTabs li a').each(function(index, item){
+				item = jQuery(item);
+				if(item.html().indexOf('Facebook') >= 0 || item.html().indexOf('Twitter') >= 0){
+					item.parent().addClass('hidden');
+				} else {
+					item.parent().removeClass('hidden');
+				}
+			});
 		} else {
-			// if the url has hashes - remove the hash 
-		    current_url = current_url.substr(0, (current_url + '').indexOf('#', 0) - 1);
-		    // and put the variables
-		    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');
+			jQuery('#jform_params_module_data_source').attr('class', '');
+			jQuery('#jform_params_module_data_source').addClass('twitter');
+			jQuery('#myTabTabs li a').each(function(index, item){
+				item = jQuery(item);
+				if(item.html().indexOf('Facebook') >= 0 || item.html().indexOf('Google') >= 0){
+					item.parent().addClass('hidden');
+				} else {
+					item.parent().removeClass('hidden');
+				}
+			});
 		}
-		// redirect to the url with variables
-		window.location = current_url;
-	} 
-});
+	});
+} 
+
+function SocialGK5ConfigManager() {
+	this.init();
+}
+
+SocialGK5ConfigManager.prototype.init = function() {
+	// create additional variable to avoid problems with the scopes
+	$obj = this;
+	// button load
+	jQuery('#config_manager_load').click( function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+	    $obj.operation('load');
+	});
+	// button save
+	jQuery('#config_manager_save').click( function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+	   	$obj.operation('save');
+	});
+	// button delete
+	jQuery('#config_manager_delete').click( function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+	   	$obj.operation('delete');
+	});
+}
+
+SocialGK5ConfigManager.prototype.operation = function(type) {
+
+	var current_url = window.location;
+	// check if the current url has no hashes
+	if((current_url + '').indexOf('#', 0) === -1) {
+		// if no - put the variables
+	    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');    
+	} else {
+		// if the url has hashes - remove the hash 
+	    current_url = current_url.substr(0, (current_url + '').indexOf('#', 0) - 1);
+	    // and put the variables
+	    current_url = current_url + '&gk_module_task='+type+'&gk_module_file=' + document.id('config_manager_'+type+'_filename').get('value');
+	}
+	// redirect to the url with variables
+	window.location = current_url;
+}

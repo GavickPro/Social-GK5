@@ -12,19 +12,28 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-// check for SSL connection
-$uri = JFactory::getURI();
-if($uri->isSSL()) {
-	$prefix = 'https';
-} else {
-	$prefix = 'http';
-}
 
 if($this->config['fb_code_type'] == 'iframe') {
-	echo '<iframe src="'.$prefix.'://www.facebook.com/plugins/recommendations.php?site='.urlencode($this->config['fb_site']).'&amp;width='.$this->config['fb_rec_width'].'&amp;height='.$this->config['fb_rec_height'].'&amp;header='.$this->config['fb_rec_header'].'&amp;colorscheme='.$this->config['fb_rec_colorscheme'].'&amp;font='.$this->config['fb_rec_font'].'&amp;linktarget='.$this->config['fb_rec_link_target'].'&amp;border_color="'.$this->config['fb_rec_border_color'].'scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:'.$this->config['fb_rec_width'].'px; height:'.$this->config['fb_rec_height'].'px;" allowTransparency="true"></iframe>';
+	echo '<iframe src="//www.facebook.com/plugins/recommendations.php?site='.urlencode($this->config['fb_site']).'&amp;width='.$this->config['fb_rec_width'].'&amp;height='.$this->config['fb_rec_height'].'&amp;header='.$this->config['fb_rec_header'].'&amp;colorscheme='.$this->config['fb_rec_colorscheme'].'&amp;linktarget='.$this->config['fb_rec_link_target'].'&amp;max_age="'.$this->config['fb_rec_max_age'].'scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:'.$this->config['fb_rec_width'].'px; height:'.$this->config['fb_rec_height'].'px;" allowTransparency="true"></iframe>';
 } elseif($this->config['fb_code_type'] == 'XFBML') {
-	echo '<fb:recommendations site="'.$this->config['fb_site'].'" width="'.$this->config['fb_rec_width'].'" height="'.$this->config['fb_rec_height'].'" linktarget="'.$this->config['fb_rec_link_target'].'" header="'.$this->config['fb_rec_header'].'" colorscheme="'.$this->config['fb_rec_colorscheme']. '" font="'.$this->config['fb_rec_font'].'" border_color="'.$this->config['fb_rec_border_color'].'"></fb:recommendations>';
+	echo '<fb:recommendations 
+		site="'.$this->config['fb_site'].'" 
+		width="'.$this->config['fb_rec_width'].'px" 
+		height="'.$this->config['fb_rec_height'].'px" 
+		linktarget="'.$this->config['fb_rec_link_target'].'" 
+		header="'.$this->config['fb_rec_header'].'" 
+		max_age="'.$this->config['fb_rec_max_age'].'"
+		colorscheme="'.$this->config['fb_rec_colorscheme']. '">
+	</fb:recommendations>';
 } else {
-    echo '<div class="fb-recommendations" data-site="'.$this->config['fb_site'].'" data-width="'.$this->config['fb_rec_width'].'" data-height="'.$this->config['fb_rec_height'].'" data-linktarget="'.$this->config['fb_rec_link_target'].'" header="'.$this->config['fb_rec_header'].'" data-colorscheme="'.$this->config['fb_rec_colorscheme']. '" data-font="'.$this->config['fb_rec_font'].'" data-border-color="'.$this->config['fb_rec_border_color'].'"></div>';
+    echo '<div class="fb-recommendations" 
+    data-site="'.$this->config['fb_site'].'" 
+    data-width="'.$this->config['fb_rec_width'].'px" 
+    data-height="'.$this->config['fb_rec_height'].'px" 
+    data-linktarget="'.$this->config['fb_rec_link_target'].'" 
+    data-header="'.$this->config['fb_rec_header'].'" 
+    data-max-age="'.$this->config['fb_rec_max_age'].'"
+    data-colorscheme="'.$this->config['fb_rec_colorscheme']. '">
+</div>';
 }
 /* eof */

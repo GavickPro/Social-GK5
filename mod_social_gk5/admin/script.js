@@ -5,12 +5,12 @@
  */
 
 // DOMContentLoaded event
-window.addEvent("domready",function(){
+jQuery(document).ready(function() {
 	// initialize the configuration manager
 	var configManager = new SocialGK5ConfigManager();
 	
 	// check Joomla! version and add suffix
-	if((jQuery('#gk_about_us').data('jversion')).substr(0,3) == '3.2') {
+	if(parseFloat((jQuery('#gk_about_us').data('jversion')).substr(0,3)) >= '3.2') {
 		jQuery('#module-form').addClass('j32');
 	}
 	

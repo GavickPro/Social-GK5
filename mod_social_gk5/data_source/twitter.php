@@ -75,10 +75,18 @@ class SocialGK5TwitterHelper
                 JFile::write(realpath('modules/mod_social_gk5/cache/cache.backup.json'), json_encode($this->pData));
             	}
             } else {
-                $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.json')));
+                if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.json', true, 512, JSON_BIGINT_AS_STRING)));
+                } else {
+                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.json')));
+                }
             }
             } else {
-				$this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json')));
+                if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+				    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json', true, 512, JSON_BIGINT_AS_STRING)));
+                } else {
+                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json')));
+                }
 			} /// close
         } else {
 			$this->getTweets();	
@@ -125,7 +133,11 @@ class SocialGK5TwitterHelper
                	   )
                	 );
                
-                $decode = json_decode($tmhOAuth->response['response'], true); //getting the file content as array
+                if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+                    $decode = json_decode($tmhOAuth->response['response'], true, 512, JSON_BIGINT_AS_STRING); //getting the file content as array
+                } else {
+                    $decode = json_decode($tmhOAuth->response['response'], true, 512);                  
+                }
                
                 $count = count($decode['statuses']); //counting the number of status
                 
@@ -269,7 +281,11 @@ class SocialGK5TwitterHelper
     function useBackup()
     {
         $this->error = '';
-        $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json')));
+        if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+            $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json', true, 512, JSON_BIGINT_AS_STRING)));
+        } else {
+            $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json')));
+        }
     }
 
 }

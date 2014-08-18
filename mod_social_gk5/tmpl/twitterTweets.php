@@ -56,9 +56,9 @@ defined('_JEXEC') or die('Restricted access');
 					<?php endif; ?>
 					
 					<?php if($this->config['twitter_show_actions']) : ?>
-						<a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $this->pData[$i]->id; ?>"><?php echo JText::_( 'MOD_SOCIAL_REPLY' ) ?></a>
-						<a class="retweet" href="https://twitter.com/intent/retweet?tweet_id=<?php echo $this->pData[$i]->id; ?>"><?php echo JText::_( 'MOD_SOCIAL_RETWEET' ) ?></a>
-						<a class="favorite" href="https://twitter.com/intent/favorite?tweet_id=<?php echo $this->pData[$i]->id; ?>"><?php echo JText::_( 'MOD_SOCIAL_FAVORITE' ) ?></a>
+						<a class="reply" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo number_format($this->pData[$i]->id,0,'.',''); ?>"><?php echo JText::_( 'MOD_SOCIAL_REPLY' ) ?></a>
+						<a class="retweet" href="https://twitter.com/intent/retweet?tweet_id=<?php echo number_format($this->pData[$i]->id,0,'.',''); ?>"><?php echo JText::_( 'MOD_SOCIAL_RETWEET' ) ?></a>
+						<a class="favorite" href="https://twitter.com/intent/favorite?tweet_id=<?php echo number_format($this->pData[$i]->id,0,'.',''); ?>"><?php echo JText::_( 'MOD_SOCIAL_FAVORITE' ) ?></a>
 					<?php endif; ?>
 					
 					</span>

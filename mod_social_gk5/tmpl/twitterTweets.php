@@ -19,7 +19,11 @@ defined('_JEXEC') or die('Restricted access');
 <?php if($this->pData == '' || count($this->pData) < 0) : ?>
 	<p><?php echo JText::_( 'MOD_SOCIAL_ANY_DATA' ); ?></p>
 <?php else : ?>
-	<?php if(($this->config['twitter_rows'] * $this->config['twitter_columns']); $i++) : ?>
+
+	<?php if(($this->config['twitter_rows'] * $this->config['twitter_columns']) > 0 && $this->config['twitter_tweet_amount'] >= ($this->config['twitter_rows'] * $this->config['twitter_columns'])) : ?>
+				
+		<?php for($i = 0; $i < ($this->config['twitter_rows'] * $this->config['twitter_columns']); $i++) : ?>
+			
 			<div class="gkTweet" style="width: <?php echo 100/$this->config['twitter_columns']."%!important"; ?>">
 				<div>
 				
@@ -63,7 +67,10 @@ defined('_JEXEC') or die('Restricted access');
 				<?php if(($i+1) % ($this->config['twitter_columns']) == 0) : ?>
 					<div class="gkDivider"></div>
 				<?php endif; ?>
+		
 		<?php endfor; ?>
+	
+		
 	<?php else : ?>
 		<p><?php echo JText::_( 'MOD_SOCIAL_NOT_SUFFICIENT_TWEETS_F' ).$this->config['twitter_columns']." columns *".$this->config['twitter_rows']. " rows = ".($this->config['twitter_rows'] * $this->config['twitter_columns'])." tweets, ".JText::_( 'MOD_SOCIAL_NOT_SUFFICIENT_TWEETS_S' ).$this->config['twitter_tweet_amount'].JText::_( 'MOD_SOCIAL_NOT_SUFFICIENT_TWEETS_T' ) ; ?></p>
 	<?php endif; ?>

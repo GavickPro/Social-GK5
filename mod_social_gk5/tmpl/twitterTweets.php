@@ -22,8 +22,15 @@ defined('_JEXEC') or die('Restricted access');
 	<div class="gkTweets">
 		<div>
 		<?php if(($this->config['twitter_rows'] * $this->config['twitter_columns']) > 0 && $this->config['twitter_tweet_amount'] >= ($this->config['twitter_rows'] * $this->config['twitter_columns'])) : ?>
+				
+			<?php 
+				$amount = $this->config['twitter_rows'] * $this->config['twitter_columns']; 
+				if($amount > count($this->pData)) {
+					$amount = count($this->pData);
+				}
+			?>	
 					
-			<?php for($i = 0; $i < ($this->config['twitter_rows'] * $this->config['twitter_columns']); $i++) : ?>
+			<?php for($i = 0; $i < $amount; $i++) : ?>
 				
 				<div class="gkTweet" style="width: <?php echo 100/$this->config['twitter_columns']."%!important"; ?>">
 					<div>

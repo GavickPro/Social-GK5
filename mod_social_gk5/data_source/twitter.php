@@ -98,29 +98,22 @@ class SocialGK5TwitterHelper
     /**
      *	RENDERING LAYOUT
      **/
-    function render()
-    {
-		
-    	require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterTweets'));
-		
+    function render() {
+    	require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterTweets'));	
     }
 
-    function dateDifference($date)
-    {
+    function dateDifference($date) {
         return $this->dateDiff("now", $date);
     }
 	
 	function getTweets() {
-			
-	      $url = 'https://api.twitter.com/1.1/search/tweets.json?q=' . $this->config['twitter_search_query'].'&amp;rpp=' . $this->config['twitter_tweet_amount'].'&amp;result_type=recent';
-
 		if (function_exists('curl_init') && ($this->config['twitter_search_query'] != '' || $this->config['twitter_tweet_amount'] > 0)) {                
                	$tmhOAuth = new tmhOAuth(array(
                	 'consumer_key' => $this->config['twitter_consumer_key'],
                	 'consumer_secret' => $this->config['twitter_consumer_secret'],
                	 'user_token' => $this->config['twitter_user_token'],
                	 'user_secret' => $this->config['twitter_user_secret'],
-               	 'curl_ssl_verifypeer' => false
+               	 'curl_ssl_verifypeer' => true
                	));
                
                	$tmhOAuth->request(

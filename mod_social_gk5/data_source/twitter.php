@@ -51,7 +51,7 @@ class SocialGK5TwitterHelper
             } else {
                         $content = '<script type="text/plain" class="cc-onconsent-social" ';    
             }
-            $content .= 'src="http://platform.twitter.com/widgets.js"></script>';
+            $content .= 'src="//platform.twitter.com/widgets.js"></script>';
             echo $content;
         }
         if($this->config['twitter_use_css']) {

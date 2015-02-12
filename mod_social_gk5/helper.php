@@ -31,9 +31,9 @@ class HighlighterGK5Helper {
 			// load the MooTools framework to use with the module
 			JHtml::_('behavior.framework', true);
 		} else if($this->config['include_jquery'] == 1) {
-			// if the user specify to include the jQuery framework - load newest jQuery 1.7.* 
+			// if the user specify to include the jQuery framework - load newest jQuery 1.10.* 
 			$doc = JFactory::getDocument();
-			$doc->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
+			$doc->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.10/jquery.min.js');
 		}
 	}
 	

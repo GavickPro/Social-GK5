@@ -33,14 +33,14 @@ defined('_JEXEC') or die('Restricted access');
 		<div class="gkTweet" style="width: <?php echo 100/$this->config['twitter_columns']."%!important"; ?>">
 			<div>
 				<?php if($this->config['twitter_show_avatar']) : ?>
-				<img src="<?php echo $this->pData[$i]->avatar; ?>" alt="<?php echo $this->pData[$i]->name; ?>" />
+				<img src="<?php echo str_replace('http://', '//', $this->pData[$i]->avatar); ?>" alt="<?php echo $this->pData[$i]->name; ?>" />
 				<?php endif; ?>
 		
 			
 				<?php if($this->config['twitter_show_uname'] || $this->config['twitter_show_fname']) : ?>
 				<span class="gkTweetName">
 						<?php if($this->config['twitter_show_uname']) : ?>
-							<a href="<?php echo 'http://twitter.com/'.$this->pData[$i]->url; ?>"><?php echo $this->pData[$i]->username; ?></a>
+							<a href="<?php echo 'https://twitter.com/'.$this->pData[$i]->url; ?>"><?php echo $this->pData[$i]->username; ?></a>
 						<?php endif; ?>
 						<?php if($this->config['twitter_show_uname']) : ?>
 							<small><?php echo $this->pData[$i]->name; ?></small>

@@ -76,14 +76,14 @@ class SocialGK5TwitterHelper
                 }
             } else {
                 if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.json', true, 512, JSON_BIGINT_AS_STRING)));
+                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.json'), true, 512, JSON_BIGINT_AS_STRING));
                 } else {
                     $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.json')));
                 }
             }
             } else {
                 if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json', true, 512, JSON_BIGINT_AS_STRING)));
+                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json'), true, 512, JSON_BIGINT_AS_STRING));
                 } else {
                     $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json')));
                 }

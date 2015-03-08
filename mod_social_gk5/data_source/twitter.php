@@ -10,10 +10,8 @@
  **/
 // no direct access
 defined('_JEXEC') or die('Restricted access');
-
 require 'tmhOAuth'.DS.'tmhOAuth.php';
 require 'tmhOAuth'.DS.'tmhUtilities.php';
-
 // Main class
 class SocialGK5TwitterHelper
 {
@@ -22,7 +20,7 @@ class SocialGK5TwitterHelper
     private $error;
     private $pData;
     private $json;
-    
+    private $id;
     
     /**
      *  INITIALIZATION 
@@ -32,14 +30,12 @@ class SocialGK5TwitterHelper
         jimport('joomla.filesystem.file');
         // configuration array
         $this->config = $params->toArray();
+        $this->id = $module->id;
         // query validation process
         $this->config['twitter_search_query'] = str_replace('#','%23', $this->config['twitter_search_query']);
         $this->config['twitter_search_query'] = str_replace('@','%40', $this->config['twitter_search_query']);
         $this->config['twitter_search_query'] = str_replace(' ','%20', $this->config['twitter_search_query']);
-        $this->config['twitter_lists_data'] = str_replace('@', '', $this->config['twitter_lists_data']);
-        $this->config['twitter_lists_data'] = str_replace(' ', '-', $this->config['twitter_lists_data']);
     }
-
     function getData()
     {
         clearstatcache();
@@ -60,32 +56,29 @@ class SocialGK5TwitterHelper
         }
     
         if($this->config['twitter_cache'] == 1) {
-            if(filesize(realpath('modules/mod_social_gk5/cache/cache.json')) == 0 || ((filemtime(realpath('modules/mod_social_gk5/cache/cache.json')) + $this->config['twitter_cache_time'] * 60) < time())) {
-            
-            
-            
-              
+            if(filesize(realpath('modules/mod_social_gk5/cache/cache.'.$this->id.'.json')) == 0 || ((filemtime(realpath('modules/mod_social_gk5/cache/cache.'.$this->id.'.json')) + $this->config['twitter_cache_time'] * 60) < time())) {
+
             // get the data from twitter
             $this->getTweets();
             
             if($this->error == '') {
                 // saving cache
                 if($this->pData != '') {
-                JFile::write(realpath('modules/mod_social_gk5/cache/cache.json'), json_encode($this->pData));
-                JFile::write(realpath('modules/mod_social_gk5/cache/cache.backup.json'), json_encode($this->pData));
+                	JFile::write(realpath('modules/mod_social_gk5/cache/cache.'.$this->id.'.json'), json_encode($this->pData));
+                	JFile::write(realpath('modules/mod_social_gk5/cache/cache.backup.'.$this->id.'.json'), json_encode($this->pData));
                 }
             } else {
                 if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.json'), true, 512, JSON_BIGINT_AS_STRING));
+                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.'.$this->id.'.json')), true, 512, JSON_BIGINT_AS_STRING);
                 } else {
-                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.json')));
+                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.backup.'.$this->id.'.json')));
                 }
             }
             } else {
                 if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json'), true, 512, JSON_BIGINT_AS_STRING));
+                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.'.$this->id.'.json')), true, 512, JSON_BIGINT_AS_STRING);
                 } else {
-                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json')));
+                    $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.'.$this->id.'.json')));
                 }
             } /// close
         } else {
@@ -93,15 +86,12 @@ class SocialGK5TwitterHelper
                         
         }
     }
-
-
     /**
      *  RENDERING LAYOUT
      **/
     function render() {
         require (JModuleHelper::getLayoutPath('mod_social_gk5', 'twitterTweets'));
     }
-
     function dateDifference($date) {
         return $this->dateDiff("now", $date);
     }
@@ -171,27 +161,26 @@ class SocialGK5TwitterHelper
                         }
                     }
                 }
-                            
-                function cmp($a, $b)
-                {
-                    $a = strtotime($a['timestamp']);
-                    $b = strtotime($b['timestamp']);
-                    return ($a == $b) ? 0 : ($a > $b ? -1 : 1);
-                }
+                
                 if($this->config['twitter_search_query'] == '' || $this->pData=='') {
                     $this->error = 'There is no feed to display';
                 } else {
-                    usort($this->pData, "cmp");
-                    // only way to get it working with cache properly
-                    $encoded = json_encode($this->pData);
-                    $this->pData = json_decode($encoded);
+                    usort($this->pData, array($this, "cmp"));
                 }
             } else {
                 $this->error = 'cURL extension and file_get_content method is not available on your server';
             }   
         
     }
-    
+    /*
+    	Function used to get the data comparision
+    */
+    function cmp($a, $b)
+  	{
+        $a = strtotime($a['timestamp']);
+        $b = strtotime($b['timestamp']);
+        return ($a == $b) ? 0 : ($a > $b ? -1 : 1);
+    }
     /*
     * Function to get the backup data
     * thanks to http://www.if-not-true-then-false.com/2010/php-calculate-real-differences-between-two-dates-or-timestamps/
@@ -199,7 +188,6 @@ class SocialGK5TwitterHelper
     function dateDiff($time1, $time2, $precision = 6)
     {
         date_default_timezone_set("UTC");
-
         // If not numeric then convert texts to unix timestamps
         if (!is_int($time1)) {
             $time1 = strtotime($time1);
@@ -207,7 +195,6 @@ class SocialGK5TwitterHelper
         if (!is_int($time2)) {
             $time2 = strtotime($time2);
         }
-
         // If time1 is bigger than time2
         // Then swap time1 and time2
         if ($time1 > $time2) {
@@ -215,11 +202,9 @@ class SocialGK5TwitterHelper
             $time1 = $time2;
             $time2 = $ttime;
         }
-
         // Set up intervals and diffs arrays
         $intervals = array('year', 'month', 'day', 'hour', 'minute');
         $diffs = array();
-
         // Loop thru all intervals
         foreach ($intervals as $interval) {
             // Set default diff to 0
@@ -234,7 +219,6 @@ class SocialGK5TwitterHelper
                 $ttime = strtotime("+1 " . $interval, $time1);
             }
         }
-
         $count = 0;
         $times = array();
         // Loop thru all diffs
@@ -265,17 +249,14 @@ class SocialGK5TwitterHelper
         // Return string with times
         return implode(", ", $times);
     }
-
-
     function useBackup()
     {
         $this->error = '';
         if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-            $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json', true, 512, JSON_BIGINT_AS_STRING)));
+            $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.'.$this->id.'.json', true, 512, JSON_BIGINT_AS_STRING)));
         } else {
-            $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.json')));
+            $this->pData = json_decode(JFile::read(realpath('modules/mod_social_gk5/cache/cache.'.$this->id.'.json')));
         }
     }
-
 }
 /*eof*/
